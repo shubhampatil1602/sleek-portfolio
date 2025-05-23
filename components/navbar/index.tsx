@@ -2,18 +2,27 @@
 
 import Image from "next/image";
 import { Container } from "../container";
-import Link from "next/link";
 
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
 import { NAV_ITEMS } from "./constants";
 import { useState } from "react";
+import { Link } from "next-view-transitions";
 
 export const Navbar = () => {
   const [hovered, setHovered] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   const { scrollY } = useScroll();
+
+  const y = useTransform(scrollY, [0, 100], [0, 10]);
+  const width = useTransform(scrollY, [0, 100], ["60%", "40%"]);
+
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 20) {
       setScrolled(true);
@@ -25,38 +34,40 @@ export const Navbar = () => {
   return (
     <Container>
       <motion.nav
-        animate={{
+        style={{
           boxShadow: scrolled ? "var(--custom-shadow)" : "none",
-          width: scrolled ? "50%" : "100%",
-          y: scrolled ? 10 : 0,
+          width,
+          y,
         }}
         transition={{ duration: 0.3, ease: "linear" }}
-        className="fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white px-2 py-2 dark:bg-neutral-900"
+        className='fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white px-2 py-2 dark:bg-neutral-900'
       >
-        <Image
-          src="/shubham.png"
-          height={"100"}
-          width={"100"}
-          alt="shubham"
-          className="h-10 w-10 rounded-full"
-        />
+        <Link href='/'>
+          <Image
+            src='/shubham.png'
+            height={"100"}
+            width={"100"}
+            alt='shubham'
+            className='h-10 w-10 rounded-full'
+          />
+        </Link>
 
-        <div className="flex items-center">
+        <div className='flex items-center'>
           {NAV_ITEMS.map((item, idx) => (
             <Link
               key={idx}
               href={item.href}
-              className="relative px-2 py-1 text-sm"
+              className='relative px-2 py-1 text-sm'
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
             >
               {hovered === idx && (
                 <motion.span
-                  layoutId="hovered-span"
-                  className="absolute inset-0 h-full w-full rounded-md bg-neutral-100 dark:bg-neutral-800"
+                  layoutId='hovered-span'
+                  className='absolute inset-0 h-full w-full rounded-md bg-neutral-100 dark:bg-neutral-800'
                 ></motion.span>
               )}
-              <span className="relative z-10"> {item.title}</span>
+              <span className='relative z-10'> {item.title}</span>
             </Link>
           ))}
         </div>

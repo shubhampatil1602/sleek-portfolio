@@ -13,6 +13,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "oklch(0.29 0 0)",
+        secondary: "oklch(0.56 0 0)",
       },
     },
   },

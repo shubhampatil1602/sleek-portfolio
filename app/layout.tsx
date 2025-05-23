@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+import { ViewTransitions } from "next-view-transitions";
+
 import { Navbar } from "@/components/navbar";
 
 const inter = Inter({
@@ -20,13 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body
-        className={`${inter.className} bg-neutral-100 antialiased dark:bg-neutral-700`}
-      >
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang='en'>
+        <body
+          className={`${inter.className} bg-neutral-100 antialiased dark:bg-neutral-700`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
