@@ -1,21 +1,18 @@
+@import "tw-animate-css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --custom-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+
+  --color-primary: var(--color-neutral-800);
+  --color-secondary: var(--color-neutral-500);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.dark {
+  --color-primary: var(--color-neutral-100);
+  --color-secondary: var(--color-neutral-400);
 }

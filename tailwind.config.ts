@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+import plugin from "tailwindcss/plugin";
 
 export default {
   content: [
@@ -14,5 +16,10 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    typography,
+    plugin(function ({ addVariant }) {
+      addVariant("dark", "&:is(.dark *)");
+    }),
+  ],
 } satisfies Config;
