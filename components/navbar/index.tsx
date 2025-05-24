@@ -21,7 +21,7 @@ export const Navbar = () => {
   const { scrollY } = useScroll();
 
   const y = useTransform(scrollY, [0, 100], [0, 10]);
-  const width = useTransform(scrollY, [0, 100], ["60%", "40%"]);
+  const width = useTransform(scrollY, [0, 100], ["58%", "50%"]);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 20) {

@@ -4,12 +4,12 @@ import Image from "next/image";
 import { motion } from "motion/react";
 
 import { PROJECTS } from "@/lib/constants";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export function Projects() {
   return (
     <div className="py-10">
-      <p className="text-secondary max-w-lg pt-4 text-sm md:text-sm">
+      <p className="max-w-lg pt-4 text-sm text-secondary md:text-sm">
         I love building web apps and products that can impact millions of life
       </p>
       <div className="grid grid-cols-1 gap-10 py-4 md:grid-cols-2">
