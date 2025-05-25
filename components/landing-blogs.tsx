@@ -8,8 +8,8 @@ export async function LandingBlogs() {
   const allBlogs = await getBlogs();
 
   return (
-    <div className="px-4">
-      <SectionHeading delay={0.4} className="pb-4">
+    <div className="px-4 py-6">
+      <SectionHeading delay={0.4} className="mb-4">
         Sharing knowledge as I learn
       </SectionHeading>
       <div className="flex flex-col gap-8">

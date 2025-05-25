@@ -34,7 +34,7 @@ export function SubHeading({
     >
       <Tag
         className={cn(
-          "max-w-lg px-4 pt-4 text-sm text-secondary md:text-sm",
+          "max-w-lg px-4 pt-4 text-sm text-secondary md:text-base",
           className,
         )}
       >

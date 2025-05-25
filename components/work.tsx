@@ -1,0 +1,55 @@
+"use client";
+
+import { getProjectTags } from "@/constants/projects";
+import { SectionHeading } from "./section-heading";
+import { TechStack } from "./tech-stack";
+import { WorkData } from "@/constants/work";
+import Image from "next/image";
+
+export function Work({ work }: { work: WorkData[] }) {
+  return (
+    <div className="shadow-sectionInset dark:shadow-section-inset-dark my-10 border-y border-neutral-100 px-4 py-6 dark:border-neutral-800">
+      <SectionHeading delay={0.4} className="mb-4">
+        Work Experience
+      </SectionHeading>
+      <div className="flex flex-col gap-6 py-10">
+        {work.map(
+          ({ company, description, duration, technologies, title, logo }) => (
+            <div
+              key={company}
+              className="flex flex-col justify-between md:flex-row md:items-start"
+            >
+              <div className="max-w-[80%]">
+                <h2 className="font-medium text-neutral-900 dark:text-neutral-100">
+                  {company}
+                </h2>
+                <div className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center">
+                  <p className="text-sm text-neutral-800 dark:text-neutral-200">
+                    {title}
+                  </p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                    {duration}
+                  </p>
+                </div>
+                <p className="text-sm text-neutral-500">{description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {getProjectTags(technologies).map((tag) => (
+                    <TechStack key={tag.name} tag={tag} />
+                  ))}
+                </div>
+              </div>
+
+              <Image
+                width={100}
+                height={100}
+                className="hidden object-contain md:block"
+                src={logo}
+                alt={company}
+              />
+            </div>
+          ),
+        )}
+      </div>
+    </div>
+  );
+}

@@ -21,6 +21,7 @@
   --color-primary: var(--color-neutral-800);
   --color-secondary: var(--color-neutral-500);
   --color-neutral-200: rgba(229, 229, 229, 0.5);
+  --color-neutral-700: rgba(55, 65, 81, 0.1);
 }
 
 .dark {

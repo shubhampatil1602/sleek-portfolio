@@ -13,20 +13,16 @@ export default function AboutPage() {
         <Scales />
         <Heading>About Me</Heading>
         <SubHeading>
-          I’m a frontend engineer focused on building reliable, responsive web
-          applications using React and Tailwind CSS. I care about clean code,
-          good design, and solving real problems through thoughtful development.
-          Currently, I’m expanding my skills by learning full-stack development
-          to build more complete and scalable solutions.
+          I&apos;m a passionate software engineer dedicated to crafting elegant
+          solutions for complex problems. With expertise in full-stack
+          development, I enjoy building user-centric applications that make a
+          difference.
         </SubHeading>
-        <SectionHeading className="max-w-lg px-4 pt-4 text-sm text-secondary md:text-sm">
+        <SectionHeading className="mx-4">
           Travelling is in my blood
         </SectionHeading>
         <Collage />
 
-        <SectionHeading className="max-w-lg px-4 pt-4 text-sm text-secondary md:text-sm">
-          Here is the timeline of my life achievements.
-        </SectionHeading>
         <Timeline />
       </Container>
     </div>

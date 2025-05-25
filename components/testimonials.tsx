@@ -6,8 +6,10 @@ import { SectionHeading } from "./section-heading";
 
 export function Testimonials() {
   return (
-    <div className="shadow-sectionInset my-4 border-neutral-100 px-4 py-4">
-      <SectionHeading delay={0.8}>People love my work</SectionHeading>
+    <div className="my-10 border-neutral-100 px-4 py-4">
+      <SectionHeading delay={0.8} className="mb-4">
+        People love my work
+      </SectionHeading>
       <div className="[mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
         <Marquee speed={40} pauseOnHover className="py-4">
           {testimonialsData.map((item, idx) => (

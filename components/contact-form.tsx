@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { Button } from "./button";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -105,15 +106,10 @@ export function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="You are crazy good, never change."
-            className="resize-none rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+            className="resize-none rounded-[6px] px-2 py-1 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
-        <button
-          type="submit"
-          className="rounded-[6px] bg-primary px-4 py-3 text-white"
-        >
-          Send Message
-        </button>
+        <Button type="submit">Send message</Button>
       </div>
     </form>
   );

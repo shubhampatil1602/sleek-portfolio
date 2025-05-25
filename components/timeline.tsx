@@ -6,6 +6,7 @@ import { IconCircleCheckFilled } from "@tabler/icons-react";
 
 import { cn } from "@/lib/utils";
 import { timelineData } from "@/constants/timeline";
+import { SectionHeading } from "./section-heading";
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,8 +15,11 @@ export function Timeline() {
   return (
     <div
       ref={ref}
-      className="shadow-sectionInset my-10 border-neutral-100 px-4 py-4"
+      className="shadow-sectionInset my-10 border-neutral-100 p-4 pt-1"
     >
+      <SectionHeading className="mx-2 my-10">
+        Timeline of Achievements
+      </SectionHeading>
       {timelineData.map((year, index) => (
         <div key={year.title} content="px-4 py-1" className="mb-4">
           <motion.h2

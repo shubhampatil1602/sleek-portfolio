@@ -18,6 +18,8 @@ export default {
                  0px 0px 0px 1px rgba(25, 28, 33, 0.08)`,
         section: `rgba(34, 42, 53, 0.06) 0px 0px 24px, rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(34, 42, 53, 0.04) 0px 0px 0px 1px, rgba(34, 42, 53, 0.08) 0px 0px 4px, rgba(47, 48, 55, 0.05) 0px 16px 68px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset`,
         sectionInset: `0px 1px 4px 0px var(--color-neutral-200) inset, 0px -1px 4px 0px var(--color-neutral-200) inset`,
+        buttonLightInset: `inset 0px 4px 8px 0px var(--color-neutral-700)`,
+        buttonDarkInset: `inset 0px 4px 8px 0px var(--color-neutral-200)`,
       },
       colors: {
         background: "var(--background)",
