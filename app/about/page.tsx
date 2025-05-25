@@ -1,13 +1,16 @@
 import { Collage } from "@/components/collage";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
+import { Scales } from "@/components/scales";
+import { SectionHeading } from "@/components/section-heading";
 import { SubHeading } from "@/components/sub-heading";
 import { Timeline } from "@/components/timeline";
 
 export default function AboutPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+        <Scales />
         <Heading>About Me</Heading>
         <SubHeading>
           I’m a frontend engineer focused on building reliable, responsive web
@@ -16,15 +19,14 @@ export default function AboutPage() {
           Currently, I’m expanding my skills by learning full-stack development
           to build more complete and scalable solutions.
         </SubHeading>
-        <p className="max-w-lg pt-4 text-sm text-secondary md:text-sm">
-          I love to travel and explore new places. I am a big fan of nature and
-          adventure. I am also big fan of technology and innovation.
-        </p>
+        <SectionHeading className="max-w-lg px-4 pt-4 text-sm text-secondary md:text-sm">
+          Travelling is in my blood
+        </SectionHeading>
         <Collage />
 
-        <p className="max-w-lg pt-4 text-sm text-secondary md:text-sm">
+        <SectionHeading className="max-w-lg px-4 pt-4 text-sm text-secondary md:text-sm">
           Here is the timeline of my life achievements.
-        </p>
+        </SectionHeading>
         <Timeline />
       </Container>
     </div>

@@ -2,6 +2,7 @@ import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
 import { LandingBlogs } from "@/components/landing-blogs";
 import { Projects } from "@/components/projects";
+import { Scales } from "@/components/scales";
 import { SubHeading } from "@/components/sub-heading";
 import { Testimonials } from "@/components/testimonials";
 
@@ -10,7 +11,8 @@ import { projects } from "@/constants/projects";
 export default function Home() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+        <Scales />
         <Heading>Shubham Patil</Heading>
         <SubHeading>
           I&apos;m a software engineer with a passion for building scalable and

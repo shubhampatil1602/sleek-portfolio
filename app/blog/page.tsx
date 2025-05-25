@@ -5,6 +5,7 @@ import { truncate } from "@/lib/helper-functions";
 import { getBlogs } from "@/utils/mdx";
 import { Heading } from "@/components/heading";
 import { SubHeading } from "@/components/sub-heading";
+import { Scales } from "@/components/scales";
 
 export const metadata: Metadata = {
   title: "All blogs - Shubham Patil",
@@ -15,7 +16,8 @@ export default async function BlogsPage() {
   const allBlogs = await getBlogs();
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+        <Scales />
         <Heading>All blogs</Heading>
         <SubHeading>
           I&apos;m a software engineer with a passion for building scalable and
@@ -23,7 +25,7 @@ export default async function BlogsPage() {
           for a frontend engineer or full stack engineer role.
         </SubHeading>
 
-        <div className="flex flex-col gap-8 py-10">
+        <div className="shadow-sectionInset my-5 flex flex-col gap-8 border-neutral-100 px-4 py-5">
           {allBlogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.title}>
               <div className="flex items-center justify-between">

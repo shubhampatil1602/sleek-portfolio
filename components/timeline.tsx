@@ -12,7 +12,10 @@ export function Timeline() {
   const isInView = useInView(ref, { once: true, amount: 0.6 });
 
   return (
-    <div ref={ref} className="py-10">
+    <div
+      ref={ref}
+      className="shadow-sectionInset my-10 border-neutral-100 px-4 py-4"
+    >
       {timelineData.map((year, index) => (
         <div key={year.title} content="px-4 py-1" className="mb-4">
           <motion.h2

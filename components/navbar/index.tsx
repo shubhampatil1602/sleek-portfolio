@@ -21,7 +21,7 @@ export function Navbar() {
   const { scrollY } = useScroll();
 
   const y = useTransform(scrollY, [0, 100], [0, 10]);
-  const width = useTransform(scrollY, [0, 100], ["60%", "50%"]);
+  const width = useTransform(scrollY, [0, 100], ["57%", "50%"]);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 20) {
@@ -40,7 +40,7 @@ export function Navbar() {
           y,
         }}
         transition={{ duration: 0.3, ease: "linear" }}
-        className="fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white px-3 py-2 dark:bg-neutral-900"
+        className="fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white px-2 py-2 dark:bg-neutral-900"
       >
         <Link href="/">
           <Image

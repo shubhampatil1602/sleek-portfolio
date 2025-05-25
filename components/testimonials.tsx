@@ -6,7 +6,7 @@ import { SectionHeading } from "./section-heading";
 
 export function Testimonials() {
   return (
-    <div className="py-10">
+    <div className="shadow-sectionInset my-4 border-neutral-100 px-4 py-4">
       <SectionHeading delay={0.8}>People love my work</SectionHeading>
       <div className="[mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
         <Marquee speed={40} pauseOnHover className="py-4">
@@ -29,7 +29,7 @@ function TestimonialCard({
   avatar: string;
 }) {
   return (
-    <div className="shadow-custom mx-4 flex h-48 w-full max-w-60 flex-col justify-between gap-4 rounded-xl p-4 transition duration-300 hover:shadow-md">
+    <div className="mx-4 flex h-48 w-full max-w-60 flex-col justify-between gap-4 rounded-xl p-4 shadow-custom transition duration-300 hover:shadow-md">
       <p className="text-sm text-neutral-700">{quote}</p>
       <div className="flex items-center gap-2">
         <Image

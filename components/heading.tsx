@@ -33,7 +33,7 @@ export function Heading({
     >
       <Tag
         className={cn(
-          "text-2xl font-bold tracking-tighter text-primary drop-shadow-lg md:text-4xl",
+          "px-4 text-2xl font-bold tracking-tighter text-primary drop-shadow-lg md:text-4xl",
           className,
         )}
       >

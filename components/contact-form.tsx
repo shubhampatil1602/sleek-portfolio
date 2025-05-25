@@ -53,66 +53,68 @@ export function ContactForm() {
   }
   return (
     <form
-      className="mx-auto flex max-w-lg flex-col gap-5 py-10"
+      className="shadow-sectionInset mx-auto my-4 border-neutral-100 py-12"
       onSubmit={handleSubmit}
     >
-      <div className="flex flex-col gap-2">
-        <label
-          className="text-sm font-medium tracking-tight text-neutral-600"
-          htmlFor="name"
+      <div className="mx-auto flex max-w-lg flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <label
+            className="text-sm font-medium tracking-tight text-neutral-600"
+            htmlFor="name"
+          >
+            Full name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Max Mayfield"
+            className="rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label
+            className="text-sm font-medium tracking-tight text-neutral-600"
+            htmlFor="name"
+          >
+            Email Address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="mayfield@projectmax.com"
+            className="rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <label
+            className="text-sm font-medium tracking-tight text-neutral-600"
+            htmlFor="name"
+          >
+            Message
+          </label>
+          <textarea
+            rows={5}
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="You are crazy good, never change."
+            className="resize-none rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+        <button
+          type="submit"
+          className="rounded-[6px] bg-primary px-4 py-3 text-white"
         >
-          Full name
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Max Mayfield"
-          className="shadow-custom rounded-[6px] px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
+          Send Message
+        </button>
       </div>
-      <div className="flex flex-col gap-2">
-        <label
-          className="text-sm font-medium tracking-tight text-neutral-600"
-          htmlFor="name"
-        >
-          Email Address
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="mayfield@projectmax.com"
-          className="shadow-custom rounded-[6px] px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-      <div className="flex flex-col gap-2">
-        <label
-          className="text-sm font-medium tracking-tight text-neutral-600"
-          htmlFor="name"
-        >
-          Message
-        </label>
-        <textarea
-          rows={5}
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="You are crazy good, never change."
-          className="shadow-custom resize-none rounded-[6px] px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-      <button
-        type="submit"
-        className="rounded-[6px] bg-primary px-4 py-3 text-white"
-      >
-        Send Message
-      </button>
     </form>
   );
 }

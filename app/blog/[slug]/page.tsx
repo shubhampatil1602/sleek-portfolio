@@ -3,6 +3,7 @@ import { Container } from "@/components/container";
 import { redirect } from "next/navigation";
 
 import { getBlogFrontMatterBySlug, getSingleBlog } from "@/utils/mdx";
+import { Scales } from "@/components/scales";
 
 export async function generateMetadata({
   params,
@@ -38,7 +39,8 @@ export default async function SingleBlogPage({
 
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-10 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+        <Scales />
         <img
           src={blog.frontmatter.image}
           alt={blog.frontmatter.title}
