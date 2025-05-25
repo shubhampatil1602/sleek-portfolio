@@ -1,4 +1,11 @@
-export const PROJECTS = [
+export type Project = {
+  title: string;
+  src: string;
+  href: string;
+  description: string;
+};
+
+export const projects: Project[] = [
   {
     title: "E-Commerce Platform",
     src: "/shubham.png",
@@ -15,6 +22,13 @@ export const PROJECTS = [
   },
   {
     title: "AI Image Generator",
+    src: "/shubham.png",
+    href: "https://github.com/CompVis/stable-diffusion",
+    description:
+      "An AI-powered image generation tool that creates unique artwork based on text prompts using machine learning models.",
+  },
+  {
+    title: "AI Image Generator2",
     src: "/shubham.png",
     href: "https://github.com/CompVis/stable-diffusion",
     description:

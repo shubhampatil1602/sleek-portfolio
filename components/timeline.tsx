@@ -14,7 +14,7 @@ type Data = {
   }[];
 };
 
-export default function Timeline() {
+export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
 
