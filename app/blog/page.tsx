@@ -23,7 +23,7 @@ export default async function BlogsPage() {
           for a frontend engineer or full stack engineer role.
         </SubHeading>
 
-        <div className="flex flex-col gap-4 py-10">
+        <div className="flex flex-col gap-8 py-10">
           {allBlogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.title}>
               <div className="flex items-center justify-between">

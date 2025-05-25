@@ -1,0 +1,28 @@
+---
+title: "What is Hoisting in JavaScript?"
+description: "Hoisting is JavaScript's default behavior of moving declarations to the top. Understand how variable and function declarations are hoisted during execution."
+image: "/shubham.png"
+date: "2025-05-25"
+---
+
+# JavaScript Hoisting Explained
+
+Hoisting refers to how JavaScript "lifts" declarations to the top of their scope during compilation.
+
+## Variable Hoisting
+
+```js
+console.log(a); // undefined
+var a = 10;
+```
+
+## Function Hoisting
+
+```js
+sayHello(); // Works
+function sayHello() {
+  console.log("Hello!");
+}
+```
+
+> `let` and `const` are hoisted too but stay in a temporal dead zone, causing a ReferenceError if accessed before declaration.

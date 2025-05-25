@@ -12,8 +12,8 @@ export async function LandingBlogs() {
       <SectionHeading delay={0.4} className="pb-4">
         Sharing knowledge as I learn
       </SectionHeading>
-      <div className="flex flex-col gap-4">
-        {allBlogs.map((blog, idx) => (
+      <div className="flex flex-col gap-8">
+        {allBlogs.slice(0, 3).map((blog, idx) => (
           <MotionDiv
             initial={{
               opacity: 0,
@@ -47,7 +47,7 @@ export async function LandingBlogs() {
                 </p>
               </div>
               <p className="max-w-lg pt-2 text-sm text-secondary md:text-sm">
-                {truncate(blog.description || "", 150)}
+                {truncate(blog.description || "", 120)}
               </p>
             </Link>
           </MotionDiv>

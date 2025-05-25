@@ -23,6 +23,7 @@
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-fast-marquee": "^1.6.5",
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.3",

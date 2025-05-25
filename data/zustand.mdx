@@ -1,0 +1,36 @@
+---
+title: "State Management with Zustand"
+description: "Zustand is a small, fast state-management tool for React apps. It’s minimal, scalable, and doesn’t require boilerplate code."
+image: "/shubham.png"
+date: "2025-05-29"
+---
+
+# Zustand: A Lightweight State Manager for React
+
+Zustand simplifies state management with minimal setup.
+
+## Installation
+
+```bash
+npm install zustand
+```
+
+## Creating a Store
+
+```js
+import { create } from "zustand";
+
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+## Using in Component
+
+```jsx
+const Counter = () => {
+  const { count, increment } = useStore();
+  return <button onClick={increment}>{count}</button>;
+};
+```
