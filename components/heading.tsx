@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,8 @@ export function Heading({
   children: React.ReactNode;
   className?: string;
 }) {
+  const pathname = usePathname();
+
   return (
     <div className="flex flex-col sm:flex-row sm:items-center">
       <motion.div
@@ -49,7 +52,8 @@ export function Heading({
           {children}
         </Tag>
       </motion.div>
-      <Role />
+
+      {pathname === "/" && <Role />}
     </div>
   );
 }
