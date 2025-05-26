@@ -8,23 +8,38 @@
     0px 2px 3px -1px rgba(0, 0, 0, 0.1), 0px 1px 0px 0px rgba(25, 28, 33, 0.02),
     0px 0px 0px 1px rgba(25, 28, 33, 0.08);
 
-  /* --shadow-section:
-    rgba(34, 42, 53, 0.06) 0px 0px 24px, rgba(0, 0, 0, 0.05) 0px 1px 1px,
-    rgba(34, 42, 53, 0.04) 0px 0px 0px 1px, rgba(34, 42, 53, 0.08) 0px 0px 4px,
-    rgba(47, 48, 55, 0.05) 0px 16px 68px,
-    rgba(255, 255, 255, 0.1) 0px 1px 0px inset;
+  --section-inset-shadow-color: var(--color-neutral-100);
+  --section-inset-shadow-color-10: rgba(229, 229, 229, 0.45);
 
-  --shadow-section-inset:
-    0px 1px 4px 0px var(--color-neutral-100) inset,
-    0px -1px 4px 0px var(--color-neutral-100) inset; */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
 
   --color-primary: var(--color-neutral-800);
-  --color-secondary: var(--color-neutral-500);
-  --color-neutral-200: rgba(229, 229, 229, 0.5);
-  --color-neutral-700: rgba(55, 65, 81, 0.1);
+  --color-secondary: var(--color-neutral-600);
+
+  --custom-shadow-color-1: rgba(0, 0, 0, 0.1);
+  --custom-shadow-color-2: rgba(25, 28, 33, 0.02);
+  --custom-shadow-color-3: rgba(25, 28, 33, 0.08);
 }
 
 .dark {
-  --color-primary: var(--color-neutral-100);
-  --color-secondary: var(--color-neutral-400);
+  --color-primary: var(--color-neutral-200);
+  --color-secondary: var(--color-neutral-500);
+
+  --section-inset-shadow-color: var(--color-neutral-800);
+  --section-inset-shadow-color-10: rgb(38, 38, 38, 0.9);
+  --section-inset-shadow-color-dark: var(--color-neutral-950);
+
+  --custom-shadow-color-1: rgba(255, 255, 255, 0.08);
+  --custom-shadow-color-2: rgba(255, 255, 255, 0.04);
+  --custom-shadow-color-3: rgba(255, 255, 255, 0.12);
 }

@@ -8,11 +8,11 @@ import Image from "next/image";
 
 export function Work({ work }: { work: WorkData[] }) {
   return (
-    <div className="shadow-sectionInset dark:shadow-section-inset-dark my-10 border-y border-neutral-100 px-4 py-6 dark:border-neutral-800">
+    <div className="my-10 border-y border-neutral-100 px-4 py-6 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark">
       <SectionHeading delay={0.4} className="mb-4">
         Work Experience
       </SectionHeading>
-      <div className="flex flex-col gap-6 py-10">
+      <div className="flex flex-col gap-6 py-6">
         {work.map(
           ({ company, description, duration, technologies, title, logo }) => (
             <div
@@ -40,11 +40,11 @@ export function Work({ work }: { work: WorkData[] }) {
               </div>
 
               <Image
-                width={100}
-                height={100}
-                className="hidden object-contain md:block"
                 src={logo}
                 alt={company}
+                width={100}
+                height={100}
+                className="hidden max-h-[40px] w-fit max-w-[100px] object-contain md:block"
               />
             </div>
           ),

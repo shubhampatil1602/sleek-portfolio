@@ -63,12 +63,12 @@ function Background() {
         ease: "easeInOut",
         delay: 1,
       }}
-      className="absolute inset-0 h-full w-full scale-[1.04] bg-neutral-100"
+      className="absolute inset-0 h-full w-full scale-[1.04] bg-neutral-100 dark:bg-neutral-800"
     >
-      <div className="absolute -left-px -top-px h-1 w-1 animate-pulse rounded-full bg-neutral-300"></div>
-      <div className="absolute -right-px -top-px h-1 w-1 animate-pulse rounded-full bg-neutral-300"></div>
-      <div className="absolute -bottom-px -left-px h-1 w-1 animate-pulse rounded-full bg-neutral-300"></div>
-      <div className="absolute -bottom-px -right-px h-1 w-1 animate-pulse rounded-full bg-neutral-300"></div>
+      <div className="absolute -left-px -top-px h-1 w-1 animate-pulse rounded-full bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="absolute -right-px -top-px h-1 w-1 animate-pulse rounded-full bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="absolute -bottom-px -left-px h-1 w-1 animate-pulse rounded-full bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="absolute -bottom-px -right-px h-1 w-1 animate-pulse rounded-full bg-neutral-300 dark:bg-neutral-700"></div>
     </motion.div>
   );
 }

@@ -16,7 +16,7 @@ export default async function BlogsPage() {
   const allBlogs = await getBlogs();
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
         <Heading>All blogs</Heading>
         <SubHeading>
@@ -25,7 +25,7 @@ export default async function BlogsPage() {
           for a frontend engineer or full stack engineer role.
         </SubHeading>
 
-        <div className="shadow-sectionInset my-5 flex flex-col gap-8 border-neutral-100 px-4 py-5">
+        <div className="shadow-sectionInset dark:shadow-sectionInsetDark my-5 flex flex-col gap-8 border-y border-neutral-100 px-4 py-5 dark:border-neutral-800">
           {allBlogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.title}>
               <div className="flex items-center justify-between">

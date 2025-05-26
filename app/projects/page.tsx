@@ -7,7 +7,7 @@ import { SubHeading } from "@/components/sub-heading";
 export default function ProjectsPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
         <Heading>Projects</Heading>
         <SubHeading>

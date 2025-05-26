@@ -39,14 +39,17 @@ export default async function SingleBlogPage({
 
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
         <img
           src={blog.frontmatter.image}
           alt={blog.frontmatter.title}
-          className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl border border-neutral-200 object-cover shadow-xl"
+          // className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl border border-neutral-200 object-cover shadow-xl"
+          className="rouned-full mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
         />
-        <div className="prose mx-auto">{blog.content}</div>
+        <div className="prose prose-sm mx-auto dark:prose-invert">
+          {blog.content}
+        </div>
       </Container>
     </div>
   );

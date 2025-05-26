@@ -15,7 +15,7 @@ export function Timeline() {
   return (
     <div
       ref={ref}
-      className="shadow-sectionInset my-10 border-neutral-100 p-4 pt-1"
+      className="shadow-sectionInset dark:shadow-sectionInsetDark my-10 border-y border-neutral-100 p-4 pt-1 dark:border-neutral-800"
     >
       <SectionHeading className="mx-2 my-10">
         Timeline of Achievements
@@ -36,7 +36,7 @@ export function Timeline() {
             style={{
               boxShadow: "var(--custom-shadow)",
             }}
-            className="mb-2 w-fit rounded-[5px] px-2 py-0.5 font-bold text-black"
+            className="mb-2 w-fit rounded-[6px] px-2 py-0.5 font-bold text-neutral-900 shadow-custom dark:text-neutral-100 dark:shadow-white"
           >
             {year.title}
           </motion.h2>
@@ -55,7 +55,7 @@ export function Timeline() {
                       delay: 0.2 * idx,
                       ease: "easeInOut",
                     }}
-                    className="text-neutral-600"
+                    className="text-neutral-600 dark:text-neutral-400"
                   >
                     {item.title}
                   </motion.h3>
@@ -72,7 +72,7 @@ export function Timeline() {
                       delay: 0.3 * idx,
                       ease: "easeInOut",
                     }}
-                    className="pl-6 pt-1 text-sm text-neutral-400"
+                    className="pl-6 pt-1 text-sm text-neutral-400 dark:text-neutral-500"
                   >
                     {item.description}
                   </motion.p>
@@ -111,7 +111,7 @@ function Step({
       }}
       className={cn("flex items-start gap-2", className)}
     >
-      <IconCircleCheckFilled className="mt-1 h-4 w-4 text-neutral-500" />
+      <IconCircleCheckFilled className="mt-1 h-4 w-4 text-neutral-600 dark:text-neutral-400" />
       {children}
     </motion.div>
   );

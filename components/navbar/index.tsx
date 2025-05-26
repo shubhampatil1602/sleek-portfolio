@@ -13,15 +13,18 @@ import {
 import { NAV_ITEMS } from "./constants";
 import { useState } from "react";
 import { Link } from "next-view-transitions";
+import { IconMoon, IconSun } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const { setTheme, theme } = useTheme();
 
   const { scrollY } = useScroll();
 
   const y = useTransform(scrollY, [0, 100], [0, 10]);
-  const width = useTransform(scrollY, [0, 100], ["57%", "50%"]);
+  const width = useTransform(scrollY, [0, 100], ["92%", "85%"]);
 
   useMotionValueEvent(scrollY, "change", (value) => {
     if (value > 20) {
@@ -33,46 +36,90 @@ export function Navbar() {
 
   return (
     <Container>
-      <motion.nav
-        style={{
-          boxShadow: scrolled ? "var(--custom-shadow)" : "none",
-          width,
-          y,
-        }}
-        transition={{ duration: 0.3, ease: "linear" }}
-        className="fixed inset-x-0 top-0 z-50 mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white px-2 py-2 dark:bg-neutral-900"
-      >
-        <Link href="/">
-          <Image
-            src="/shubham.png"
-            height={"100"}
-            width={"100"}
-            alt="shubham"
-            className="h-10 w-10 rounded-full"
-          />
-        </Link>
+      <div className="fixed inset-x-0 top-0 z-50 mx-auto hidden max-w-4xl md:block">
+        <motion.nav
+          style={{
+            width,
+            y,
+          }}
+          transition={{ duration: 0.3, ease: "linear" }}
+          className={`mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white/50 px-3 py-2 backdrop-blur-sm dark:bg-neutral-900/50 ${scrolled ? "shadow-custom" : ""}`}
+        >
+          <Link href="/">
+            <Image
+              src="/shubham.png"
+              height={"100"}
+              width={"100"}
+              alt="shubham"
+              className="h-10 w-10 rounded-full"
+            />
+          </Link>
 
-        <div className="flex items-center">
-          {NAV_ITEMS.map((item, idx) => (
-            <Link
-              key={idx}
-              href={item.href}
-              className="relative px-2 py-1 text-sm"
-              onMouseEnter={() => setHovered(idx)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {hovered === idx && (
-                <motion.span
-                  layoutId="hovered-span"
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="absolute inset-0 h-full w-full rounded-[6px] bg-neutral-100 dark:bg-neutral-800"
-                ></motion.span>
+          <div className="flex items-center">
+            <button className="flex items-center rounded-[6px] px-2 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800">
+              {theme === "dark" ? (
+                <IconSun
+                  className="size-4 cursor-pointer"
+                  onClick={() => setTheme("light")}
+                />
+              ) : (
+                <IconMoon
+                  className="size-4 cursor-pointer"
+                  onClick={() => setTheme("dark")}
+                />
               )}
-              <span className="relative z-10"> {item.title}</span>
-            </Link>
-          ))}
+            </button>
+            {NAV_ITEMS.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.href}
+                className="relative px-2 py-1 text-sm"
+                onMouseEnter={() => setHovered(idx)}
+                onMouseLeave={() => setHovered(null)}
+              >
+                {hovered === idx && (
+                  <motion.span
+                    layoutId="hovered-span"
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="absolute inset-0 h-full w-full rounded-[6px] bg-neutral-100 dark:bg-neutral-800"
+                  ></motion.span>
+                )}
+                <span className="relative z-10"> {item.title}</span>
+              </Link>
+            ))}
+          </div>
+        </motion.nav>
+      </div>
+
+      <nav className="fixed left-0 top-0 z-50 block w-full border-b border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-900 md:hidden">
+        <div className="flex w-full items-center justify-between px-4 py-3">
+          <Link href="/">
+            <Image
+              src="/shubham.png"
+              height={"100"}
+              width={"100"}
+              alt="shubham"
+              className="h-10 w-10 rounded-full"
+            />
+          </Link>
+          <button className="flex h-10 w-10 items-center justify-center rounded-md text-neutral-700 dark:text-neutral-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              ></path>
+            </svg>
+          </button>
         </div>
-      </motion.nav>
+      </nav>
     </Container>
   );
 }

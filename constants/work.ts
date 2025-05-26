@@ -15,7 +15,7 @@ export const workData: WorkData[] = [
     title: "SWE Intern",
     duration: "January 2025 - Present",
     description:
-      "Working in driving simulator project and documentation website of internal projects",
+      "Working on driving simulator project and documentation website of internal projects",
     logo: "https://tecknotrove.com/wp-content/uploads/2023/10/Primary-Logo-White-BG-crop2.jpg",
     technologies: ["CSHARP", "UNITY", "HTML", "JS", "CSS"],
   },

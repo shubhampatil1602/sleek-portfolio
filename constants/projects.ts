@@ -41,7 +41,7 @@ export const TAGS: Record<TagName, Tag> = {
   NEXTJS: {
     name: "Next.js",
     icon: RiNextjsFill,
-    color: "#000000",
+    color: `#000`,
   },
   TAILWIND: {
     name: "Tailwind CSS",
@@ -56,7 +56,7 @@ export const TAGS: Record<TagName, Tag> = {
   UNITY: {
     name: "Unity",
     icon: FaUnity,
-    color: "#000000",
+    color: "#000",
   },
   HTML: {
     name: "HTML",

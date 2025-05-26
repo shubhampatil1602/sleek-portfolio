@@ -13,29 +13,19 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        custom: `0px 2px 3px -1px rgba(0, 0, 0, 0.1),
-                 0px 1px 0px 0px rgba(25, 28, 33, 0.02),
-                 0px 0px 0px 1px rgba(25, 28, 33, 0.08)`,
+        custom: `0px 2px 3px -1px var(--custom-shadow-color-1), 0px 1px 0px 0px var(--custom-shadow-color-2), 0px 0px 0px 1px var(--custom-shadow-color-3)`,
         section: `rgba(34, 42, 53, 0.06) 0px 0px 24px, rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(34, 42, 53, 0.04) 0px 0px 0px 1px, rgba(34, 42, 53, 0.08) 0px 0px 4px, rgba(47, 48, 55, 0.05) 0px 16px 68px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset`,
-        sectionInset: `0px 1px 4px 0px var(--color-neutral-200) inset, 0px -1px 4px 0px var(--color-neutral-200) inset`,
-        buttonLightInset: `inset 0px 4px 8px 0px var(--color-neutral-700)`,
-        buttonDarkInset: `inset 0px 4px 8px 0px var(--color-neutral-200)`,
+        sectionInset: `0px 1px 4px 0px var(--section-inset-shadow-color-10) inset, 0px -1px 4px 0px var(--section-inset-shadow-color-10) inset`,
+        sectionInsetDark: `0px 1px 4px 0px var(--section-inset-shadow-color-dark) inset, 0px -1px 4px 0px var(--section-inset-shadow-color-dark) inset`,
+        buttonLightInset: `inset 0px 4px 8px 0px var(--color-neutral-200)`,
+        buttonDarkInset: `inset 0px 4px 8px 0px var(--color-neutral-700)`,
       },
+
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "oklch(0.29 0 0)",
-        secondary: "oklch(0.56 0 0)",
-        // background: "hsl(var(--background))",
-        // foreground: "hsl(var(--foreground))",
-        // primary: {
-        //   DEFAULT: "hsl(var(--primary))",
-        //   foreground: "hsl(var(--primary-foreground))",
-        // },
-        // secondary: {
-        //   DEFAULT: "hsl(var(--secondary))",
-        //   foreground: "hsl(var(--secondary-foreground))",
-        // },
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

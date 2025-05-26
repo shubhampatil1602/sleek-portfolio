@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,15 +27,21 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
-          className={`${inter.className} relative bg-neutral-100 antialiased [--pattern-fg:var(--color-gray-400)] dark:bg-neutral-700`}
+          className={`${inter.className} relative bg-neutral-100 antialiased [--pattern-fg:var(--color-neutral-400)] dark:bg-neutral-950`}
         >
-          <Toaster position="top-center" />
-
-          <Navbar />
-          {children}
-          <Footer />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster position="top-center" />
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </ViewTransitions>

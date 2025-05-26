@@ -18,7 +18,7 @@ export function Projects({
   projects?: Project[];
 }) {
   return (
-    <div className="shadow-sectionInset my-4 border-y border-neutral-100 px-4 py-6 dark:border-neutral-800">
+    <div className="shadow-sectionInset dark:shadow-sectionInsetDark my-4 border-y border-neutral-100 px-4 py-6 dark:border-neutral-800">
       <SectionHeading delay={0.2}>I love building things</SectionHeading>
       <div className="grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
         {projects.map((project, idx) => (

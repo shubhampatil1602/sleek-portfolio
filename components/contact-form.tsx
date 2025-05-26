@@ -54,7 +54,7 @@ export function ContactForm() {
   }
   return (
     <form
-      className="shadow-sectionInset mx-auto my-4 border-neutral-100 py-12"
+      className="shadow-sectionInset dark:shadow-sectionInsetDark mx-auto my-6 border-y border-neutral-100 px-4 py-12 dark:border-neutral-800"
       onSubmit={handleSubmit}
     >
       <div className="mx-auto flex max-w-lg flex-col gap-5">
@@ -72,7 +72,7 @@ export function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             placeholder="Max Mayfield"
-            className="rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+            className="rounded-[6px] bg-transparent px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -89,7 +89,7 @@ export function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="mayfield@projectmax.com"
-            className="rounded-[6px] px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+            className="rounded-[6px] bg-transparent px-2 py-2 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -106,7 +106,7 @@ export function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="You are crazy good, never change."
-            className="resize-none rounded-[6px] px-2 py-1 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
+            className="resize-none rounded-[6px] bg-transparent px-2 py-1 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
         <Button type="submit">Send message</Button>

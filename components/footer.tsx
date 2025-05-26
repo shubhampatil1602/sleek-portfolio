@@ -9,7 +9,7 @@ import { Container } from "./container";
 
 export function Footer() {
   return (
-    <Container className="flex justify-between border-t border-neutral-100 px-10 py-3">
+    <Container className="relative mx-auto flex h-full w-full max-w-4xl justify-between border-t border-neutral-100 bg-white px-10 py-3 dark:border-neutral-800 dark:bg-neutral-900 md:py-3">
       <p className="text-xs text-neutral-500">
         Built with love by Shubham Patil
       </p>

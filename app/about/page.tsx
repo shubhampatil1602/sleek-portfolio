@@ -9,7 +9,7 @@ import { Timeline } from "@/components/timeline";
 export default function AboutPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
         <Heading>About Me</Heading>
         <SubHeading>

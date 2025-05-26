@@ -14,7 +14,7 @@ import { workData } from "@/constants/work";
 export default function Home() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 md:pb-10 md:pt-20">
+      <Container className="min-h-screen px-4 pt-20 md:px-8 md:pb-10">
         <Scales />
         <Heading>Shubham Patil</Heading>
         <SubHeading>
