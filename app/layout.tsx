@@ -29,11 +29,11 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${inter.className} relative bg-neutral-100 antialiased [--pattern-fg:var(--color-neutral-400)] dark:bg-neutral-950`}
+          className={`${inter.className} relative bg-neutral-100 antialiased [--pattern-fg:var(--color-neutral-900)] dark:bg-black/50`}
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >

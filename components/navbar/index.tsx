@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Container } from "../container";
 
 import {
+  AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
@@ -19,6 +20,8 @@ import { useTheme } from "next-themes";
 export function Navbar() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
   const { setTheme, theme } = useTheme();
 
   const { scrollY } = useScroll();
@@ -54,21 +57,8 @@ export function Navbar() {
               className="h-10 w-10 rounded-full"
             />
           </Link>
-
           <div className="flex items-center">
-            <button className="flex items-center rounded-[6px] px-2 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800">
-              {theme === "dark" ? (
-                <IconSun
-                  className="size-4 cursor-pointer"
-                  onClick={() => setTheme("light")}
-                />
-              ) : (
-                <IconMoon
-                  className="size-4 cursor-pointer"
-                  onClick={() => setTheme("dark")}
-                />
-              )}
-            </button>
+            <ToggleThemeButton theme={theme} setTheme={setTheme} />
             {NAV_ITEMS.map((item, idx) => (
               <Link
                 key={idx}
@@ -102,7 +92,10 @@ export function Navbar() {
               className="h-10 w-10 rounded-full"
             />
           </Link>
-          <button className="flex h-10 w-10 items-center justify-center rounded-md text-neutral-700 dark:text-neutral-200">
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-md text-neutral-700 dark:text-neutral-200"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -120,6 +113,110 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+
+      <AnimatePresence mode="wait">
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{
+              opacity: 0,
+              transition: { duration: 0.3 },
+            }}
+            transition={{ duration: 0.3 }}
+            className="fixed left-0 right-0 top-0 z-50 flex h-full flex-col items-center justify-center gap-8 bg-white dark:bg-neutral-900 md:hidden"
+          >
+            <button
+              className="absolute right-4 top-3 flex h-10 w-10 items-center justify-center rounded-md text-neutral-700 dark:text-neutral-200"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+            {NAV_ITEMS.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.3,
+                  delay: idx * 0.1,
+                  ease: "linear",
+                }}
+              >
+                <Link
+                  className="text-2xl font-medium text-neutral-800 transition-colors hover:text-neutral-500 dark:text-neutral-200 dark:hover:text-neutral-400"
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  {item.title}
+                </Link>
+              </motion.div>
+            ))}
+            <ToggleThemeButton theme={theme} setTheme={setTheme} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Container>
+  );
+}
+
+function ToggleThemeButton({
+  theme,
+  setTheme,
+}: {
+  theme?: string;
+  setTheme: (theme: string) => void;
+}) {
+  return (
+    <>
+      {theme === "dark" ? (
+        <button
+          className="flex items-center rounded-[6px] px-2 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          onClick={() => setTheme("light")}
+        >
+          <motion.div
+            key={theme}
+            initial={{ rotate: 0 }}
+            animate={{ rotate: -90 }}
+            transition={{ duration: 0.3 }}
+          >
+            <IconSun className="size-4 text-neutral-400" />
+          </motion.div>
+        </button>
+      ) : (
+        <button
+          className="flex items-center rounded-[6px] px-2 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          onClick={() => setTheme("dark")}
+        >
+          <motion.div
+            key={theme}
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 90 }}
+            transition={{ duration: 0.3 }}
+          >
+            <IconMoon className="size-4 -rotate-90 text-neutral-800" />
+          </motion.div>
+        </button>
+      )}
+    </>
   );
 }
