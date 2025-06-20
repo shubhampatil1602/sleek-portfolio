@@ -1,8 +1,15 @@
+import { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
 import { Scales } from "@/components/scales";
 import { SubHeading } from "@/components/sub-heading";
+
+export const metadata: Metadata = {
+  title: "Contact | Shubham Patil",
+  description:
+    "Get in touch with Shubham Patil, a software engineer passionate about building innovative solutions. Reach out for collaborations, inquiries, or just to say hello!",
+};
 
 export default function ContactPage() {
   return (

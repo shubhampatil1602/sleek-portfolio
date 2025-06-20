@@ -1,12 +1,10 @@
-import { TagName } from "./projects";
-
 export type WorkData = {
   company: string;
   title: string;
   duration: string;
   description: string;
   logo: string;
-  technologies: TagName[];
+  stack: string[];
 };
 
 export const workData: WorkData[] = [
@@ -15,9 +13,9 @@ export const workData: WorkData[] = [
     title: "SWE Intern",
     duration: "January 2025 - Present",
     description:
-      "Working on driving simulator project and documentation website of internal projects",
+      "Working on dumper simulator project and documentation website of internal projects",
     logo: "https://tecknotrove.com/wp-content/uploads/2023/10/Primary-Logo-White-BG-crop2.jpg",
-    technologies: ["CSHARP", "UNITY", "HTML", "JS", "CSS"],
+    stack: ["CSharp", "Unity", "HTML", "JavaScript", "CSS", "React"],
   },
   {
     company: "PHICSIT InfoTech Pvt. Ltd.",
@@ -26,13 +24,13 @@ export const workData: WorkData[] = [
     description:
       "Merged 10+ PR's and Contributed to multiple pages across various branches in the project. Improved the UI/UX of the main page and several other pages.",
     logo: "https://phicsit.in/wp-content/uploads/2024/02/564341.png",
-    technologies: [
-      "REACT",
-      "TAILWIND",
-      "REDUX",
-      "TYPESCRIPT",
+    stack: [
+      "React",
+      "Tailwind CSS",
+      "Redux",
+      "TypeScript",
       "HTML",
-      "JS",
+      "JavaScript",
       "CSS",
     ],
   },
@@ -43,6 +41,6 @@ export const workData: WorkData[] = [
     description:
       "Completed a 1-month academic internship focused on building responsive web interfaces using React.js.",
     logo: "https://infolabz.in/photos/logo.png",
-    technologies: ["REACT", "TAILWIND", "TYPESCRIPT", "HTML", "JS", "CSS"],
+    stack: ["React", "Tailwind CSS", "HTML", "JavaScript", "CSS"],
   },
 ];

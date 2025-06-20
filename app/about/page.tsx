@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Collage } from "@/components/collage";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
@@ -5,6 +6,12 @@ import { Scales } from "@/components/scales";
 import { SectionHeading } from "@/components/section-heading";
 import { SubHeading } from "@/components/sub-heading";
 import { Timeline } from "@/components/timeline";
+
+export const metadata: Metadata = {
+  title: "About | Shubham Patil",
+  description:
+    "This is Shubham Patil's portfolio about page, showcasing his journey, skills, and experiences as a software engineer.",
+};
 
 export default function AboutPage() {
   return (

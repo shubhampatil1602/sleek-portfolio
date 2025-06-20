@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { Container } from "../container";
+import { useTheme } from "next-themes";
 
 import {
   AnimatePresence,
@@ -12,15 +13,15 @@ import {
 } from "motion/react";
 
 import { NAV_ITEMS } from "./constants";
-import { useState } from "react";
+import { Container } from "../container";
 import { Link } from "next-view-transitions";
 import { IconMoon, IconSun } from "@tabler/icons-react";
-import { useTheme } from "next-themes";
 
 export function Navbar() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   const { setTheme, theme } = useTheme();
 
@@ -49,13 +50,28 @@ export function Navbar() {
           className={`mx-auto flex max-w-4xl items-center justify-between rounded-full bg-white/50 px-3 py-2 backdrop-blur-sm dark:bg-neutral-900/50 ${scrolled ? "shadow-custom" : ""}`}
         >
           <Link href="/">
-            <Image
-              src="/shubham.png"
-              height={"100"}
-              width={"100"}
-              alt="shubham"
-              className="h-10 w-10 rounded-full"
-            />
+            <motion.div
+              className="relative h-10 w-10 overflow-hidden rounded-full"
+              onMouseEnter={() => setIsLogoHovered(true)}
+              onMouseLeave={() => setIsLogoHovered(false)}
+            >
+              <Image
+                src="/shubham.png"
+                height={"100"}
+                width={"100"}
+                alt="shubham"
+                className="h-10 w-10 rounded-full"
+              />
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: isLogoHovered ? "100%" : "-100%" }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+              />
+            </motion.div>
           </Link>
           <div className="flex items-center">
             <ToggleThemeButton theme={theme} setTheme={setTheme} />
@@ -84,13 +100,28 @@ export function Navbar() {
       <nav className="fixed left-0 top-0 z-50 block w-full border-b border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-900 md:hidden">
         <div className="flex w-full items-center justify-between px-4 py-3">
           <Link href="/">
-            <Image
-              src="/shubham.png"
-              height={"100"}
-              width={"100"}
-              alt="shubham"
-              className="h-10 w-10 rounded-full"
-            />
+            <motion.div
+              className="relative h-10 w-10 overflow-hidden rounded-full"
+              onMouseEnter={() => setIsLogoHovered(true)}
+              onMouseLeave={() => setIsLogoHovered(false)}
+            >
+              <Image
+                src="/shubham.png"
+                height={"100"}
+                width={"100"}
+                alt="shubham"
+                className="h-10 w-10 rounded-full"
+              />
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: isLogoHovered ? "100%" : "-100%" }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+              />
+            </motion.div>
           </Link>
           <button
             className="flex h-10 w-10 items-center justify-center rounded-md text-neutral-700 dark:text-neutral-200"

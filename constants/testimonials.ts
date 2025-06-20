@@ -1,32 +1,19 @@
 export const testimonialsData = [
   {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima, laudantium vitae voluptatum eaque pariatur.",
-    name: "John Doe",
+    quote: `Would you like to join our team at Dukaan and learn from the best? Let's chat! ~ Founder @Dukaan`,
+    name: "Suumit Shah",
     avatar: "/shubham.png",
   },
   {
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima, laudantium vitae voluptatum eaque pariatur.",
-    name: "John Doe",
+      "Hi Shubham, loved your dotprolabs entry! We're hiring a full-stack dev intern at TheHostelCo — let us know if you're interested to connect.",
+    name: "Palash Goel",
     avatar: "/shubham.png",
   },
   {
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima, laudantium vitae voluptatum eaque pariatur.",
-    name: "John Doe",
-    avatar: "/shubham.png",
-  },
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima, laudantium vitae voluptatum eaque pariatur!",
-    name: "John Doe",
-    avatar: "/shubham.png",
-  },
-  {
-    quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima, necessitatibus dolorem quis!",
-    name: "John Doe",
+      "Hi Shubham, loved your dotprolabs entry! We're hiring a full-stack dev intern at TheHostelCo — let us know if you're interested to connect.",
+    name: "Palash Goel",
     avatar: "/shubham.png",
   },
 ];

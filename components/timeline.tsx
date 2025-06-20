@@ -15,7 +15,7 @@ export function Timeline() {
   return (
     <div
       ref={ref}
-      className="shadow-sectionInset dark:shadow-sectionInsetDark my-10 border-y border-neutral-100 p-4 pt-1 dark:border-neutral-800"
+      className="my-10 border-y border-neutral-100 p-4 pt-1 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark"
     >
       <SectionHeading className="mx-2 my-10">
         Timeline of Achievements
@@ -36,7 +36,7 @@ export function Timeline() {
             style={{
               boxShadow: "var(--custom-shadow)",
             }}
-            className="mb-2 w-fit rounded-[6px] px-2 py-0.5 font-bold text-neutral-900 shadow-custom dark:text-neutral-100 dark:shadow-white"
+            className="mb-2 w-fit rounded-[6px] px-2 py-0.5 font-bold text-neutral-900 shadow-custom dark:border dark:border-neutral-700 dark:text-neutral-100"
           >
             {year.title}
           </motion.h2>

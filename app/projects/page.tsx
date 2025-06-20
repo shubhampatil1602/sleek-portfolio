@@ -1,8 +1,15 @@
+import { Metadata } from "next";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
 import { Projects } from "@/components/projects";
 import { Scales } from "@/components/scales";
 import { SubHeading } from "@/components/sub-heading";
+
+export const metadata: Metadata = {
+  title: "Projects | Shubham Patil",
+  description:
+    "Explore my projects showcasing my skills in software development, including web applications, tools, and more. Each project reflects my passion for coding and problem-solving.",
+};
 
 export default function ProjectsPage() {
   return (

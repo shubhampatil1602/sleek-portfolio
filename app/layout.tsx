@@ -5,9 +5,10 @@ import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "sonner";
 
+import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Chatbot } from "@/components/chatbot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,13 +35,19 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
+            enableSystem={true}
             disableTransitionOnChange
           >
             <Toaster position="top-center" />
-            <Navbar />
-            {children}
-            <Footer />
+            <main className="relative">
+              <Navbar />
+              {children}
+              <Footer />
+
+              <div className="fixed bottom-0 right-0">
+                <Chatbot />
+              </div>
+            </main>
           </ThemeProvider>
         </body>
       </html>

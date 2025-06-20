@@ -1,16 +1,18 @@
 import { Container } from "@/components/container";
-
 import { redirect } from "next/navigation";
-
 import { getBlogFrontMatterBySlug, getSingleBlog } from "@/utils/mdx";
 import { Scales } from "@/components/scales";
+import Image from "next/image";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const frontmatter = await getBlogFrontMatterBySlug(params.slug);
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const frontmatter = await getBlogFrontMatterBySlug(slug);
   if (!frontmatter) {
     return {
       title: "Blog not found",
@@ -23,14 +25,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function SingleBlogPage({
-  params,
-}: {
-  params: {
-    slug: string;
-  };
-}) {
-  const slug = params.slug;
+export default async function SingleBlogPage({ params }: PageProps) {
+  const { slug } = await params;
   const blog = await getSingleBlog(slug);
 
   if (!blog) {
@@ -41,11 +37,13 @@ export default async function SingleBlogPage({
     <div className="flex min-h-screen items-start justify-start">
       <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
-        <img
+        <Image
           src={blog.frontmatter.image}
           alt={blog.frontmatter.title}
-          // className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl border border-neutral-200 object-cover shadow-xl"
-          className="rouned-full mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
+          width={800}
+          height={400}
+          className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
+          priority
         />
         <div className="prose prose-sm mx-auto dark:prose-invert">
           {blog.content}

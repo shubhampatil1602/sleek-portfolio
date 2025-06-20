@@ -8,7 +8,7 @@ import { SubHeading } from "@/components/sub-heading";
 import { Scales } from "@/components/scales";
 
 export const metadata: Metadata = {
-  title: "All blogs - Shubham Patil",
+  title: "All blogs | Shubham Patil",
   description: "All my general wisdom and thoughts",
 };
 
@@ -25,7 +25,7 @@ export default async function BlogsPage() {
           for a frontend engineer or full stack engineer role.
         </SubHeading>
 
-        <div className="shadow-sectionInset dark:shadow-sectionInsetDark my-5 flex flex-col gap-8 border-y border-neutral-100 px-4 py-5 dark:border-neutral-800">
+        <div className="my-5 flex flex-col gap-8 border-y border-neutral-100 px-4 py-5 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark">
           {allBlogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.title}>
               <div className="flex items-center justify-between">
