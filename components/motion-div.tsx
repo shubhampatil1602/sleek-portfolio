@@ -1,9 +1,7 @@
 "use client";
 
-import { AnimationProps, motion } from "framer-motion";
+import { motion } from "motion/react";
 
-export const MotionDiv = (
-  props: AnimationProps & { children?: React.ReactNode },
-) => {
+export const MotionDiv = (props: React.ComponentProps<typeof motion.div>) => {
   return <motion.div {...props} />;
 };

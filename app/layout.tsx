@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+
 import "./globals.css";
 
 import { ViewTransitions } from "next-view-transitions";
@@ -16,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shubham Patil's Portfolio",
+  title: "Shubham Patil",
   description:
     "This is Shubham Patil's Portfolio built with React, Next.js, Tailwind CSS, motion and TypeScript showcasing his projects and skills. This website is designed with minimal and smooth micro-interactions.",
 };
@@ -49,6 +51,7 @@ export default function RootLayout({
               </div>
             </main>
           </ThemeProvider>
+          <Analytics />
         </body>
       </html>
     </ViewTransitions>
