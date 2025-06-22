@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="flex min-h-screen items-start justify-start">
-      <Container className="min-h-screen px-8 pt-20 md:pb-10">
+      <Container className="min-h-screen px-4 pt-20 sm:px-8 md:pb-10">
         <Scales />
         <Heading>Contact Me</Heading>
         <SubHeading>

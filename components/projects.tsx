@@ -41,7 +41,7 @@ export function Projects({
             key={project.title}
             className="group mb-4"
           >
-            <div className="group relative rounded-2xl delay-100 hover:shadow-custom">
+            <div className="group relative rounded-2xl delay-100 hover:shadow-custom active:shadow-none">
               <Link
                 href={project.github}
                 target="_blank"

@@ -166,7 +166,7 @@ export function Chatbot() {
             from Shubbi
           </motion.button>
         </PopoverTrigger>
-        <PopoverContent className="relative right-1 h-[35rem] w-[25.5rem] overflow-hidden rounded-[6px] border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800">
+        <PopoverContent className="relative right-1 h-[35rem] w-[23rem] overflow-hidden rounded-[6px] border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800 sm:w-[25.5rem]">
           <div className="flex h-full flex-col justify-between">
             <div className="flex-1 overflow-y-auto">
               <div className="space-y-4">
