@@ -19,7 +19,15 @@ export default function ContactPage() {
         <Heading>Contact Me</Heading>
         <SubHeading>
           I’m open to freelancing offers. Reach out to me to inquire more about
-          my work.
+          my work or{" "}
+          <a
+            className="text-blue-500 hover:underline"
+            href="https://cal.com/shubhampatil1602/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Schedule a Call
+          </a>
         </SubHeading>
         <ContactForm />
       </Container>

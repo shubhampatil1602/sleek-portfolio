@@ -44,7 +44,7 @@ export default function RootLayout({
               {children}
               <Footer />
 
-              <div className="fixed bottom-0 right-0">
+              <div className="fixed -bottom-1.5 right-[30%] sm:bottom-0 sm:right-0">
                 <Chatbot />
               </div>
             </main>

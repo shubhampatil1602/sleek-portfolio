@@ -5,12 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-const roles = [
-  "Front-end Engineer",
-  "Full Stack Engineer",
-  "Software Engineer",
-  "Design Engineer",
-];
+const roles = ["Front-end Engineer", "Full Stack Wizard", "Software Engineer"];
 
 export function Heading({
   as: Tag = "h1",

@@ -42,6 +42,8 @@ export function Work({ work }: { work: WorkData[] }) {
               alt={company}
               width={100}
               height={100}
+              placeholder="blur"
+              blurDataURL="/blur-placeholder.jpg"
               className="hidden max-h-[40px] w-fit max-w-[100px] object-contain md:block"
             />
           </div>

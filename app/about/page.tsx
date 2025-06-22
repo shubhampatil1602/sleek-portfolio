@@ -25,9 +25,7 @@ export default function AboutPage() {
           development, I enjoy building user-centric applications that make a
           difference.
         </SubHeading>
-        <SectionHeading className="mx-4">
-          Travelling is in my blood
-        </SectionHeading>
+        <SectionHeading className="mx-4">I Love Travelling</SectionHeading>
         <Collage />
 
         <Timeline />

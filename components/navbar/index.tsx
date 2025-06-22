@@ -16,6 +16,7 @@ import { NAV_ITEMS } from "./constants";
 import { Container } from "../container";
 import { Link } from "next-view-transitions";
 import { IconMoon, IconSun } from "@tabler/icons-react";
+import { SHUBHAM_IMAGE } from "@/lib/constants";
 
 export function Navbar() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -56,10 +57,13 @@ export function Navbar() {
               onMouseLeave={() => setIsLogoHovered(false)}
             >
               <Image
-                src="/shubham.png"
+                src={SHUBHAM_IMAGE}
                 height={"100"}
                 width={"100"}
                 alt="shubham"
+                priority
+                placeholder="blur"
+                blurDataURL="/blur-placeholder.jpg"
                 className="h-10 w-10 rounded-full"
               />
               <motion.div
@@ -106,7 +110,7 @@ export function Navbar() {
               onMouseLeave={() => setIsLogoHovered(false)}
             >
               <Image
-                src="/shubham.png"
+                src={SHUBHAM_IMAGE}
                 height={"100"}
                 width={"100"}
                 alt="shubham"

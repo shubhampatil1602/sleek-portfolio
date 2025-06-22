@@ -7,7 +7,15 @@ export const CallToAction = () => {
       <SectionHeading delay={1.2}>Get in touch</SectionHeading>
       <SubHeading className="px-0">
         I&apos;m currently looking for new opportunities. Whether you have a
-        question or want to say hi, hit that button.
+        question or want to say hi, hit that button or{" "}
+        <a
+          className="text-blue-500 hover:underline"
+          href="https://cal.com/shubhampatil1602/15min"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Schedule a Call
+        </a>
       </SubHeading>
       <div className="relative mt-4 max-w-lg">
         <input
@@ -17,7 +25,7 @@ export const CallToAction = () => {
         ></input>
         <a
           href="mailto:shubhamspatilnbr@.com"
-          className="shadow-buttonLightInset dark:shadow-buttonDarkInset absolute right-1 top-1/2 -translate-y-1/2 rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-700 transition-colors hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200"
+          className="absolute right-1 top-1/2 -translate-y-1/2 rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-700 shadow-buttonLightInset transition-colors hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset"
         >
           Send Enquiry
         </a>

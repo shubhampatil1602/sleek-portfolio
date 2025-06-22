@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
 import { testimonialsData } from "@/constants/testimonials";
@@ -21,28 +20,11 @@ export function Testimonials() {
   );
 }
 
-function TestimonialCard({
-  quote,
-  name,
-  avatar,
-}: {
-  quote: string;
-  name: string;
-  avatar: string;
-}) {
+function TestimonialCard({ quote, name }: { quote: string; name: string }) {
   return (
     <div className="mx-4 flex h-48 w-full max-w-60 flex-col justify-between gap-4 rounded-xl p-4 shadow-custom transition duration-300 hover:shadow-md">
       <p className="text-sm text-neutral-700 dark:text-neutral-200">{quote}</p>
-      <div className="flex items-center gap-2">
-        <Image
-          width={40}
-          height={40}
-          src={avatar}
-          alt={name}
-          className="size-4 rounded-full object-cover"
-        />
-        <p className="text-sm text-neutral-500 dark:text-neutral-300">{name}</p>
-      </div>
+      <p className="text-sm text-neutral-500 dark:text-neutral-300">{name}</p>
     </div>
   );
 }

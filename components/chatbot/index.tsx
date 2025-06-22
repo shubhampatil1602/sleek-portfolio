@@ -10,6 +10,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { IconLoader, IconSend } from "@tabler/icons-react";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 // Typing Indicator Component - Memoized to prevent re-renders
 const TypingIndicator = React.memo(() => {
@@ -38,25 +40,15 @@ interface MessageBubbleProps {
   message: { role: string; content: string };
 }
 const MessageBubble = React.memo(({ message }: MessageBubbleProps) => {
-  // Typewriter effect removed: just show the full message content
   const content = message.content;
   const getMessageDimensions = () => {
-    // const charCount = text.length;
-    // const avgCharsPerLine = 35;
-    // const lineHeight = 20;
-    // const estimatedLines = Math.max(1, Math.ceil(charCount / avgCharsPerLine));
-    // const minHeight = 24;
-    // const estimatedHeight = Math.max(
-    //   minHeight,
-    //   estimatedLines * lineHeight + 16,
-    // );
     return {
-      // minHeight: `${estimatedHeight}px`,
       width: "fit-content",
       maxWidth: "80%",
     };
   };
   const dimensions = message.role !== "user" ? getMessageDimensions() : {};
+
   return (
     <div
       className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
@@ -70,7 +62,55 @@ const MessageBubble = React.memo(({ message }: MessageBubbleProps) => {
         style={dimensions}
       >
         <div>
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkBreaks]}
+            components={{
+              code({
+                inline,
+                className,
+                children,
+                ...props
+              }: React.DetailedHTMLProps<
+                React.HTMLAttributes<HTMLElement>,
+                HTMLElement
+              > & { inline?: boolean }) {
+                return inline ? (
+                  <code {...props} className="rounded bg-neutral-200 px-1">
+                    {children}
+                  </code>
+                ) : (
+                  <pre className="rounded bg-neutral-200 p-2">
+                    <code className={className}>{children}</code>
+                  </pre>
+                );
+              },
+              ul: ({ children, ...props }) => (
+                <ul {...props} className="list-disc pl-5 text-left">
+                  {children}
+                </ul>
+              ),
+              ol: ({ children, ...props }) => (
+                <ol {...props} className="list-decimal pl-5 text-left">
+                  {children}
+                </ol>
+              ),
+              li: ({ children, ...props }) => (
+                <li {...props} className="mb-1">
+                  {children}
+                </li>
+              ),
+              a: ({ children, ...props }) => (
+                <a
+                  {...props}
+                  className="text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {children}
+                </a>
+              ),
+            }}
+          >
+            {content}
+          </ReactMarkdown>
         </div>
       </div>
     </div>
@@ -114,7 +154,7 @@ export function Chatbot() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm font-semibold text-neutral-700 shadow-buttonLightInset transition-all duration-200 hover:bg-neutral-200 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset dark:hover:bg-neutral-700"
+            className="flex items-center justify-center rounded-[6px] border border-neutral-200 bg-neutral-100 px-2 py-1.5 text-xs font-semibold text-neutral-700 shadow-buttonLightInset transition-all duration-200 hover:bg-neutral-200 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset dark:hover:bg-neutral-700 sm:px-4 sm:text-sm"
           >
             <motion.span
               animate={isOpen ? { rotate: 15 } : { rotate: 0 }}
@@ -123,7 +163,7 @@ export function Chatbot() {
             >
               👋
             </motion.span>
-            Hello from Shubbi
+            from Shubbi
           </motion.button>
         </PopoverTrigger>
         <PopoverContent className="relative right-1 h-[35rem] w-[25.5rem] overflow-hidden rounded-[6px] border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800">

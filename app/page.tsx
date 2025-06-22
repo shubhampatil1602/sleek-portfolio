@@ -18,8 +18,17 @@ export default function Home() {
         <Scales />
         <Heading>Shubham Patil</Heading>
         <SubHeading>
-          Focused on sharp pixels and clean JavaScript, delivering digital
-          experiences that are both beautiful and easy to use.
+          Full Stack Dev from India. Open to freelance work, remote roles, and
+          full-time opportunities. Have an idea or project? Let’s connect for a{" "}
+          <a
+            className="text-blue-500 hover:underline"
+            href="https://cal.com/shubhampatil1602/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            quick chat
+          </a>
+          .
         </SubHeading>
         <Projects projects={projects.slice(0, 3)} />
         <LandingBlogs />

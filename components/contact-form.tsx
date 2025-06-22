@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "./button";
+import { IconLoader } from "@tabler/icons-react";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,17 +11,18 @@ export function ContactForm() {
     email: "",
     message: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, email, message } = formData;
 
-    if (!name || !email || !message) {
+    if (!name.trim() || !email.trim() || !message.trim()) {
       toast.error("Please fill in all fields");
       return;
     }
 
     try {
+      setIsSubmitting(true);
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -42,6 +44,8 @@ export function ContactForm() {
     } catch (error) {
       console.error("Error sending message:", error);
       toast.error("An error occurred while sending the message");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -54,7 +58,7 @@ export function ContactForm() {
   }
   return (
     <form
-      className="shadow-sectionInset dark:shadow-sectionInsetDark mx-auto my-6 border-y border-neutral-100 px-4 py-12 dark:border-neutral-800"
+      className="mx-auto my-6 border-y border-neutral-100 px-4 py-12 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark"
       onSubmit={handleSubmit}
     >
       <div className="mx-auto flex max-w-lg flex-col gap-5">
@@ -109,7 +113,13 @@ export function ContactForm() {
             className="resize-none rounded-[6px] bg-transparent px-2 py-1 text-sm shadow-custom focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
-        <Button type="submit">Send message</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <IconLoader className="mx-auto size-5 animate-spin text-center" />
+          ) : (
+            "Send message"
+          )}
+        </Button>
       </div>
     </form>
   );
