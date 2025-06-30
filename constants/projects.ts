@@ -39,7 +39,7 @@ export const projects: Project[] = [
     title: "Food App",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513172/portfolio/projects/swiggy.png",
     github: "https://github.com/shubhampatil1602/swiggy-clone",
-    deploy: "/",
+    deploy: "https://foodapp-swiggy-clone.vercel.app/",
     description:
       "A food delivery app with integration of Swiggy API for real-time restaurant data. Implemented a config-driven UI to display nearby restaurants and enhance personalized browsing.",
     stack: ["React", "Redux", "Tailwind CSS"],
