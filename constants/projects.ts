@@ -41,7 +41,7 @@ export const projects: Project[] = [
     github: "https://github.com/shubhampatil1602/swiggy-clone",
     deploy: "https://foodapp-swiggy-clone.vercel.app/",
     description:
-      "A food delivery app with integration of Swiggy API for real-time restaurant data. Implemented a config-driven UI to display nearby restaurants and enhance personalized browsing.",
+      "A frontend project with the live Swiggy API to display real-time restaurant data. Includes a config-driven UI, add to cart, smooth shimmer effects, and search functionality.",
     stack: ["React", "Redux", "Tailwind CSS"],
   },
 
@@ -49,9 +49,9 @@ export const projects: Project[] = [
     title: "Youtube (FE) with live API",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513178/portfolio/projects/siuutube.png",
     github: "https://github.com/shubhampatil1602/SiuuTube",
-    deploy: "/",
+    deploy: "https://siuu-tube.vercel.app/",
     description:
-      "Built a responsive video streaming platform using YouTube Live API with debounced, cached search and n-level nested comments. Integrated live chat, shimmer UI.",
+      "Frontend YouTube-like app with live API: debounced & cached search, infinite scroll, nested comments, live chat, shimmer loading, and theme toggle.",
     stack: ["React", "Redux", "Tailwind CSS"],
   },
   {
