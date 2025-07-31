@@ -1,0 +1,178 @@
+---
+title: "GenAI 101: Not Magic, Not Thinking - Just Predicting the Next Word."
+description: "If you think AI is magic and it's coming for your job, let’s clear up that misconception. Spoiler: it’s just really good at guessing words."
+image: "/blur-placeholder.jpg"
+date: "2025-07-31"
+---
+
+## Introduction to GenAI
+
+As software engineers, we're supposed to solve real-world problems and make users lives easier. And now, apparently, AI helps with that. But **what the heck is this AI?**
+
+For some developers, it's a lifesaver. For others, it feels like a full-blown nightmare. This article is your crash course on understanding what GenAI actually is, how it works, and why it's not as magical as it seems.
+
+Generative AI, or **GenAI**, is the new buzzword that's opening up an entirely new world of possibilities. It's being used to:
+
+- Enhance user experience
+- Automate tasks
+- Create stories, code, and art
+
+---
+
+## What is Generative AI?
+
+Let's break it down:
+
+### The Basics
+
+**Generative AI** is simply a system that can generate _something_ using artificial intelligence. That **something** can be:
+
+- 📝 Text
+- 🖼️ Images
+- 💻 Code
+- 🎵 Music
+- 😂 Even memes
+
+### Real-World Examples
+
+If you've heard of tools like **ChatGPT**, **Gemini**, **Claude**, or **Grok**, then congratulations you've already encountered GenAI in action. These tools are powered by something called **Large Language Models (LLMs)**.
+
+### Understanding ChatGPT
+
+Let's take ChatGPT as an example. The **GPT** in ChatGPT stands for `Generative Pretrained Transformer`:
+
+- **Generative** - It can generate new content
+- **Pretrained** - It has already been trained on massive amounts of data
+- **Transformer** - The architecture that powers it, originally developed by Google for language translation
+
+> **Fun Fact:** Google built something for Translate, and it ended up powering most of the AI tools we're now amazed by.
+
+---
+
+## How Does an LLM Understand What You Say?
+
+### Google Search vs. ChatGPT
+
+Let's compare it with Google Search:
+
+**Google Search:**
+
+- You type: _"What is the capital of India"_
+- Google crawls the internet and returns relevant links
+
+**ChatGPT:**
+
+- You ask: _"Hi, I want to know the capital of India"_
+- It doesn't search the internet in real-time
+- Instead, it generates an answer from what it already knows
+- Response: _"Hey, the capital of India is Delhi."_
+
+**Notice something?** It gives you a friendly tone, like you're chatting with someone. That's because it's trained on tons of real conversations, documents, books, and articles.
+
+---
+
+## How LLMs Generate Responses
+
+### The Token-by-Token Process
+
+When you send a query like:
+
+> "Hi, I am Shubham"
+
+The LLM doesn't magically know what to say next. It **predicts one token at a time**:
+
+```
+Hi → Hi, → Hi, I → Hi, I am → Hi, I am Shubham → Hi, I am Shubham. How → Hi, I am Shubham. How can I ...
+```
+
+This process continues until the model decides the answer is complete or hits a length limit.
+
+### The Computational Reality
+
+Every single token prediction requires a **forward pass through a neural network**, which means **tons of computation happening behind the scenes**.
+
+Now imagine millions of users asking ChatGPT things like:
+
+> _"Write me a 1000-word essay on quantum physics in the tone of Shakespeare."_
+
+That's a **lot** of GPU power.
+
+> **This is exactly why NVIDIA is selling so many GPUs** because LLMs need massive processing to keep up with token generation in real time.
+
+---
+
+## The Four-Step Process Behind the Magic
+
+### Step 1: Tokenization
+
+This is where it all starts.
+
+When you enter a sentence like: **"I love pani puri!"**
+
+The model doesn't see it as one piece of text. It breaks it down into chunks called `tokens`. These tokens are often words or subwords, depending on the tokenizer.
+
+### Step 2: Token Dictionary
+
+Each token is mapped to a specific number using a predefined dictionary:
+
+```javascript
+const TOKEN_DICTIONARY = {
+  I: 49,
+  am: 20,
+  an: 97,
+  engineer: 49,
+  by: 59,
+  profession: 76,
+  and: 70,
+  love: 89,
+  coding: 99,
+  you: 100,
+  he: 101,
+  she: 102,
+  "balle balle": 103,
+  "pani puri": 104,
+};
+```
+
+So, the sentence **"I love pani puri!"** is internally represented as:
+
+```javascript
+[49, 89, 104];
+```
+
+That's what the model really sees: **numbers**. No text. No emotions. No deep thoughts. Just numeric tokens.
+
+### Step 3: Vector Embeddings
+
+Once tokens are identified, they're passed into a multi-dimensional mathematical space called `vector embeddings`. In simple terms, words are given coordinates in a huge multi-dimensional space that helps the model understand their meaning in context.
+
+**Example:**
+
+- **"Raju loves Maggi"**
+  - **Raju** → person
+  - **Maggi** → food
+  - **loves** → emotion
+
+These relationships are learned by the model during training. So when it sees similar contexts in your queries, it knows how to respond naturally.
+
+### Step 4: Positional Encoding
+
+Understanding which word comes where is crucial:
+
+- **"Raju loves Maggi"** ≠ **"Maggi loves Raju"**
+
+To solve this, the model uses **positional encoding** which keeps track of where each token appears in the sentence. This helps the model understand:
+
+- Grammar
+- Sentence structure
+- Meaning
+
+---
+
+## Conclusion
+
+**GenAI is not thinking. It's just predicting the next word, really fast, based on what it has seen before.**
+
+---
+
+_Article Date: July 31, 2025_
