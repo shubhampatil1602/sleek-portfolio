@@ -102,7 +102,12 @@ Example:
 💼 Work Experience:
 
 **Tecknotrove Systems (I) Pvt. Ltd.**  
-- SWE Intern (Jan 2025 – Present)  
+- SWE Intern (July 2025 – Present)  
+- Working on multiple simulator projects.  
+- Tech: C#, Unity, MySQL, JS  
+
+**Tecknotrove Systems (I) Pvt. Ltd.**  
+- SWE Intern (Jan 2025 – July 2025)  
 - Building dumper simulator & doc site.  
 - Tech: C#, Unity, React, HTML, JS  
 
