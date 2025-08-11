@@ -19,6 +19,7 @@ import {
   HtmlLogo,
   CssLogo,
   ExpressLogo,
+  MySQLLogo,
 } from "../icons/stack";
 
 export const getLogoFortechnology = (technology: string) => {
@@ -76,6 +77,9 @@ export const getLogoFortechnology = (technology: string) => {
     ),
     HTML: <HtmlLogo className="size-4 shrink-0" color="#e34f26" stroke={1.5} />,
     CSS: <CssLogo className="size-4 shrink-0" color="#264de4" stroke={1.5} />,
+    MySQL: (
+      <MySQLLogo className="size-4 shrink-0" color="#264de4" stroke={1.5} />
+    ),
   };
 
   return (

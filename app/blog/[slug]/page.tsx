@@ -37,15 +37,22 @@ export default async function SingleBlogPage({ params }: PageProps) {
     <div className="flex min-h-screen items-start justify-start">
       <Container className="min-h-screen px-8 pt-20 md:pb-10">
         <Scales />
-        <Image
-          src={blog.frontmatter.image}
-          alt={blog.frontmatter.title}
-          width={800}
-          height={400}
-          className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
-          placeholder="blur"
-          blurDataURL="/blur-placeholder.jpg"
-        />
+        <div className="relative">
+          <Image
+            src={blog.frontmatter.image}
+            alt={blog.frontmatter.title}
+            width={800}
+            height={400}
+            className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
+            placeholder="blur"
+            blurDataURL="/blur-placeholder.jpg"
+          />
+          <div className="absolute top-[155px] w-full">
+            <h1 className="text-center text-4xl font-extrabold tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              {blog.frontmatter.tag}
+            </h1>
+          </div>
+        </div>
         <div className="prose prose-sm mx-auto dark:prose-invert">
           {blog.content}
         </div>

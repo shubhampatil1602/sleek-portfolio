@@ -3,6 +3,7 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 type FrontMatter = {
+  tag: string;
   title: string;
   date: string;
   description: string;
@@ -13,7 +14,7 @@ export const getSingleBlog = async (slug: string) => {
   try {
     const singleBlog = await fs.readFile(
       path.join(process.cwd(), "data", `${slug}.mdx`),
-      "utf-8"
+      "utf-8",
     );
 
     const { content, frontmatter } = await compileMDX<FrontMatter>({
@@ -45,7 +46,7 @@ export const getBlogs = async () => {
         slug,
         ...frontMatter,
       };
-    })
+    }),
   );
 
   return allBlogs;
@@ -54,7 +55,7 @@ export const getBlogs = async () => {
 export const getBlogFrontMatterBySlug = async (slug: string) => {
   const singleBlog = await fs.readFile(
     path.join(process.cwd(), "data", `${slug}.mdx`),
-    "utf-8"
+    "utf-8",
   );
 
   if (!singleBlog) return null;

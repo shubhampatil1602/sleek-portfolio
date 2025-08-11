@@ -10,10 +10,18 @@ export type WorkData = {
 export const workData: WorkData[] = [
   {
     company: "Tecknotrove Systems (I) Pvt. Ltd.",
+    title: "Software Engineer",
+    duration: "July 2025 - Present",
+    description: "Working on multiple simulator projects",
+    logo: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513478/portfolio/companies/tecknotrove.webp",
+    stack: ["CSharp", "Unity", "MySQL", "JavaScript"],
+  },
+  {
+    company: "Tecknotrove Systems (I) Pvt. Ltd.",
     title: "SWE Intern",
-    duration: "January 2025 - Present",
+    duration: "January 2025 - July 2025",
     description:
-      "Working on dumper simulator project and documentation website of internal projects",
+      "Worked on Driving and Dumper simulator project and documentation website for internal projects",
     logo: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513478/portfolio/companies/tecknotrove.webp",
     stack: ["CSharp", "Unity", "HTML", "JavaScript", "CSS", "React"],
   },
@@ -33,14 +41,5 @@ export const workData: WorkData[] = [
       "JavaScript",
       "CSS",
     ],
-  },
-  {
-    company: "InfoLabz IT Services Pvt. Ltd.",
-    title: "Frontend Developer Intern",
-    duration: "July 2024 - August 2024",
-    description:
-      "Completed a 1-month academic internship focused on building responsive web interfaces using React.js.",
-    logo: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513586/portfolio/companies/infolabz.png",
-    stack: ["React", "Tailwind CSS", "HTML", "JavaScript", "CSS"],
   },
 ];

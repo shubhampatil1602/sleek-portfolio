@@ -15,6 +15,7 @@ import {
   IconBrandCSharp,
   IconBrandHtml5,
   IconBrandCss3,
+  IconBrandMysql,
 } from "@tabler/icons-react";
 import { SiExpress, SiPostgresql, SiRedux } from "react-icons/si";
 
@@ -37,3 +38,4 @@ export const UnityLogo = IconBrandUnity;
 export const CSharpLogo = IconBrandCSharp;
 export const HtmlLogo = IconBrandHtml5;
 export const CssLogo = IconBrandCss3;
+export const MySQLLogo = IconBrandMysql;

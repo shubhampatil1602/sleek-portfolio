@@ -154,16 +154,16 @@ export function Chatbot() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex items-center justify-center rounded-[6px] border border-neutral-200 bg-neutral-100 px-2 py-1.5 text-xs font-semibold text-neutral-700 shadow-buttonLightInset transition-all duration-200 hover:bg-neutral-200 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset dark:hover:bg-neutral-700 sm:px-4 sm:text-sm"
+            className="flex h-10 w-20 items-center justify-center rounded-[6px] border border-neutral-200 bg-neutral-100 text-xs font-semibold text-neutral-700 shadow-buttonLightInset transition-all duration-200 hover:bg-neutral-200 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset dark:hover:bg-neutral-700 sm:px-4 sm:text-sm"
           >
+            Hey
             <motion.span
               animate={isOpen ? { rotate: 15 } : { rotate: 0 }}
               transition={{ duration: 0.2 }}
-              className="mr-2"
+              className="ml-1"
             >
               👋
             </motion.span>
-            from Shubbi
           </motion.button>
         </PopoverTrigger>
         <PopoverContent className="relative right-1 h-[35rem] w-[23rem] overflow-hidden rounded-[6px] border bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-800 sm:w-[25.5rem]">

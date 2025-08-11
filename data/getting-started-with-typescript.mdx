@@ -1,0 +1,338 @@
+---
+tag: "typescript"
+title: "Getting started with typescript"
+description: "TypeScript is a programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language."
+image: "/blur-placeholder.jpg"
+date: "2025-08-11"
+---
+
+# What is typescript?
+
+TypeScript is a programming language developed and maintained by Microsoft.
+It is a strict `syntactical superset` of JavaScript and adds optional static typing to the language.
+
+## Where/How does typescript code run?
+
+Typescript code never runs in your browser. Your browser can only understand `javascript`.
+
+- Javascript is the runtime language (the thing that actually runs in your browser/nodejs runtime)
+- Typescript is something that compiles down to javascript
+- When typescript is compiled down to javascript, you get `type checking` (similar to C++). If there is an error, the conversion to Javascript fails.
+
+## Typescript compiler
+
+`tsc` is the official typescript compiler that you can use to convert `Typescript` code into `Javascript`
+
+There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are -
+
+- esbuild
+- swc
+
+## Let's initialize a project with typescript using `tsc` compiler
+
+**Step 1: Install tsc/typescript globally**
+
+```bash
+npm install -g typescript
+```
+
+**Step 2 - Initialize an empty Node.js project with typescript**
+
+```bash
+mkdir node-app
+cd node-app
+npm init -y
+npx tsc --init
+```
+
+These commands should initialize two files in your project
+
+- `package.json` (for npm)
+- `tsconfig.json` (for typescript)
+
+**Step 3 - Create a index.ts file**
+
+```JavaScript
+const a: number = 1;
+console.log(a);
+```
+
+**Step 4 - Compile the ts file to js file**
+
+```js
+tsc - b;
+```
+
+**Step 5 - Explore the newly generated index.js file**
+
+<div className="flex justify-center items-center gap-2">
+<div>
+```js
+const a: number = 1;
+console.log(a);
+```
+</div>
+->
+<div>
+```JavaScript
+"use strict";
+const a = 1;
+console.log(a);
+```
+
+</div>
+</div>
+
+## The `tsconfig` file
+
+The `tsconfig` file has a bunch of options that you can change to change the compilation process.
+
+**Some of these include**
+
+**1. target**
+
+- The `target` option in a `tsconfig.json` file specifies the ECMAScript target version to which the TypeScript compiler will compile the TypeScript code
+- To try it out, try compiling the following code for target being `ES5` and `es2020`
+
+```JavaScript
+const greet = (name: string) => `Hello, ${name}!`;
+```
+
+Output for ES5
+
+```JavaScript
+"use strict";
+var greet = function (name) { return "Hello, ".concat(name, "!"); };
+```
+
+Output for ES2020
+
+```JavaScript
+"use strict";
+const greet = (name) => `Hello, ${name}!`;
+```
+
+**2. rootDir**
+
+- Where should the compiler look for `.ts` files. Good practise is for this to be the `src` folder
+
+**3. outDir**
+
+- Where should the compiler look for spit out the `.js` files.
+
+**4. removeComments**
+
+- Weather or not to include comments in the final `js` file
+
+## Basic Types in TypeScript
+
+Typescript provides you some basic types: `number`, `string`, `boolean`, `null`, `undefined`
+
+## **Let’s create some simple functions using these types -**
+
+**1. How to give types to arguments of a function?**
+
+- Write a function that greets a user given their first name.
+  - Argument - firstName
+  - Logs - Hello `{firstName}`
+  - Doesn’t return anything
+
+```JavaScript
+function greet(firstName: string) {
+    console.log("Hello " + firstName);
+}
+
+greet("shubham");
+```
+
+**2. How to assign a return type to a function?**
+
+- Write a function that calculates the sum of two functions
+
+```JavaScript
+function sum(a: number, b: number): number {
+    return a + b;
+}
+
+console.log(sum(2, 3));
+```
+
+**3. Type inference**
+
+- Return true or false based on if a user is 18+
+
+```JavaScript
+function isLegal(age: number) {
+    if (age > 18) {
+        return true;
+    } else {
+        return false
+    }
+}
+
+console.log(isLegal(2));
+```
+
+**4. Create a function that takes another function as input, and runs it after 1 second.**
+
+```JavaScript
+function delayedCall(fn: () => void) {
+    setTimeout(fn, 1000);
+}
+
+delayedCall(function() {
+    console.log("hi there");
+})
+```
+
+## Interfaces
+
+**What are interfaces?**
+
+How can you assign types to objects? For example, a user object that looks like this -
+
+```JavaScript
+const user = {
+	firstName: "Shubham",
+	lastName: "Patil",
+	email: "ssp@gmail.com".
+	age: 23,
+}
+```
+
+To assign a type to the `user` object, you can use `interfaces`
+
+```JavaScript
+interface User {
+	firstName: string;
+	lastName: string;
+	email: string;
+	age: number;
+}
+```
+
+**Example 1: Create a function isLegal that returns true or false if a user is above 18. It takes a user as an input.**
+
+```JavaScript
+interface User {
+	firstName: string;
+	lastName: string;
+	email: string;
+	age: number;
+}
+
+function isLegal(user: User) {
+    if (user.age > 18) {
+        return true
+    } else {
+        return false;
+    }
+}
+```
+
+**Example 2: Create a React component that takes todos as an input and renders them**
+
+```JavaScript
+// Todo.tsx
+interface TodoType {
+  title: string;
+  description: string;
+  done: boolean;
+}
+
+interface TodoInput {
+  todo: TodoType;
+}
+
+function Todo({ todo }: TodoInput) {
+  return <div>
+    <h1>{todo.title}</h1>
+    <h2>{todo.description}</h2>
+  </div>
+}
+```
+
+## Types
+
+**What are types?**
+
+Very similar to `interfaces`, types let you `aggregate` data together.
+
+```JavaScript
+type User = {
+	firstName: string;
+	lastName: string;
+	age: number
+}
+```
+
+But they let you do a few other things.
+
+**1. Unions**
+
+- Let’s say you want to print the `id` of a user, which can be a number or a string.
+- You can not do this using `interfaces`
+
+```JavaScript
+type StringOrNumber = string | number;
+
+function printId(id: StringOrNumber) {
+  console.log(`ID: ${id}`);
+}
+
+printId(101); // ID: 101
+printId("202"); // ID: 202
+```
+
+**2. Intersection**
+
+- What if you want to create a type that has every property of multiple `types`/ `interfaces`
+- You can not do this using `interfaces`
+
+```JavaScript
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type Manager = {
+  name: string;
+  department: string;
+};
+
+type TeamLead = Employee & Manager;
+
+const teamLead: TeamLead = {
+  name: "harkirat",
+  startDate: new Date(),
+  department: "Software developer"
+};
+```
+
+## Arrays in TS
+
+- If you want to access arrays in typescript, it’s as simple as adding a `[]` annotation next to the type
+
+**Example:**
+
+```JavaScript
+interface User {
+	firstName: string;
+	lastName: string;
+	age: number;
+}
+
+function filteredUsers(users: User[]) {
+    return users.filter(x => x.age >= 18);
+}
+
+console.log(filteredUsers([{
+    firstName: "harkirat",
+    lastName: "Singh",
+    age: 21
+}, {
+    firstName: "Raman",
+    lastName: "Singh",
+    age: 16
+}, ]));
+```
