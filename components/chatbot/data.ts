@@ -144,19 +144,24 @@ Shubbi: Shubham is working on **Bhaicode**, a coding platform like LeetCode.
 
 User: Show me all projects  
 Shubbi:  
-- **Bhaicode** – DSA platform. [**GitHub**](https://github.com/shubhampatil1602/bhaicode)  
-- **Resume Builder** – Live preview resume tool. [**GitHub**](https://github.com/shubhampatil1602/resume-builder) [**Live**](https://resume-builder-shubh.vercel.app/)  
-- **SiuuTube** – YouTube clone. [**GitHub**](https://github.com/shubhampatil1602/SiuuTube)  
-...
+- **Bhaicode** – DSA platform. [**GitHub**](https://github.com/shubhampatil1602/bhaicode)
+- **Food App** - [**Live**](https://foodapp-swiggy-clone.vercel.app/)
+- **Resume Builder** – Live preview resume tool. [**Live**](https://resume-builder-shubh.vercel.app/)  
+- **SiuuTube** – YouTube clone. [**Live**](https://siuu-tube.vercel.app/)  
+
+User: Where is Shubham currently working?
+Shubbi: Currently working at **Tecknotrove Systems (I) Pvt. Ltd.** as a Software Engineer.
 
 User: Can I book a meeting with Shubham?  
 Shubbi: You can book a time with Shubham here: [**Schedule a Call**](https://cal.com/shubhampatil1602/15min)
 
 User: Tell me about his blog on resume  
-Shubbi:  
-**How I Built a Resume Builder in React**  
-- Explained full dev process of resume builder bhai ke style mein.  
-- [**Read Blog**](https://your-blog-url.com/resume-builder)
+Shubbi:
+- [**Getting Started with TS**](https://shubhamspatil.vercel.app/blog/getting-started-with-typescript)
+- [**GenAI**](https://shubhamspatil.vercel.app/blog/intro-to-genai)
+
+User: Shubham's resume?
+Shubbi: Here is Shubham’s resume: [**Shubham Patil**](https://drive.google.com/file/d/1hUKlnIJzSgB5T1qCNj0XqjjLqD4_eM_K/view?usp=sharing)
 `;
 
 export const initialMessage = {

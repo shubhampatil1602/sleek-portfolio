@@ -147,6 +147,12 @@ export function Chatbot() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input.trim() === "") return;
+    handleSubmit(e);
+  };
+
   return (
     <div className="px-6 py-3">
       <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -197,7 +203,7 @@ export function Chatbot() {
             </div>
             <div className="mt-4">
               <div className="relative">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleFormSubmit}>
                   <input
                     value={input}
                     onChange={handleInputChange}
@@ -206,7 +212,7 @@ export function Chatbot() {
                     type="text"
                   />
                   <button
-                    disabled={isLoading}
+                    disabled={isLoading || input.trim() === ""}
                     className="absolute right-1 top-[0.3rem] rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1 text-sm text-neutral-700 shadow-buttonLightInset transition-colors hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset"
                   >
                     <IconSend />
