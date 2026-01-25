@@ -43,7 +43,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
             alt={blog.frontmatter.title}
             width={800}
             height={400}
-            className="mx-auto mb-20 max-h-96 w-full max-w-2xl rounded-2xl object-cover shadow-xl"
+            className="mx-auto mb-20 max-h-[26rem] w-full max-w-2xl rounded-2xl object-cover shadow-xl"
             placeholder="blur"
             blurDataURL="/blur-placeholder.jpg"
           />

@@ -1,0 +1,208 @@
+---
+tag: ""
+title: "Understanding Network Devices"
+description: "In this blog, we will see how internet reaches your home from underwater fibre optic cables and how network devices help your data to reach its destination via the internet!"
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1769369506/portfolio/blogs/network%20devices.png"
+date: "2026-01-25"
+---
+
+## What is a Network Device?
+
+A network device is a physical hardware device or a software component that helps computers and systems communicate with each other over a network in a secure, reliable, and efficient way.
+Think of a network like a city, and network devices as roads, traffic signals, bridges, and checkpoints that allow vehicles (data) to move smoothly and safely from one place (computer) to another.
+
+---
+
+## How Does the Internet Get To Your Home?
+
+Imagine you connected your laptop to your phone - that’s a tiny network. Now imagine connecting every school, office, and home network in the world together using wires and signals. That giant web is the internet. The journey of how the internet reaches your home is incredible. It travels across the ocean via (fibre optic / submarine cables) at nearly the speed of light. There are hundreds of active undersea fibre optic cables forming a vast network stretching over 1.4 million kilometers.
+
+The fibre optic cables are not directly connected to your home. Some companies own and operate the undersea cables. There are some layers in between:
+
+- There is something called **Internet Service Provider (ISPs)**, Providers usually buy or lease bandwidth from the global network operators rather than owning the cables themselves.
+- The popular ISPs in India are: Jio, Airtel, Vodafone Idea, BSNL.
+- _(Fun Fact)_ In India, Tata Communications operates one of the largest and most advanced subsea fiber networks in the world, carrying roughly 30% of the world’s internet routes.
+
+So, we understand there are underwater cables and ISPs. But the question is how does the internet reach my home? To bring the internet from the ISP into a home, a device called a **Modem** is used. Let’s understand what a modem is and why it exists.
+
+---
+
+## What is a Modem and how it connects your network to the internet?
+
+If you use internet in your home and office, you’ve probably heard terms like **modem** and **router** from time to time. While some people use the two words interchangeably, they are not the same thing. Modem brings internet service in your home from the **ISPs**, while the router delivers that internet connection to the devices (laptop/phone/tv) in your home, allowing them to connect wirelessly via WiFi or Ethernet cables.
+
+Modem (**Modulator/Demodulator**) is a hardware device that converts digital signals into analog signals and vice versa (cable, DSL). Your computer sends digital data (1s and 0s) to the modem. The modem modulates (changes) this digital data into analog signals that can travel through physical lines. When the modem receives analog signals from the internet, it demodulates them back into the digital data that your computer and other devices can process. Modem serves as a bridge between your Local Network (LAN) and your ISP.
+
+In short, The modem is the first device in your home that talks to the ISP, converting signals so your internal network can use the internet.
+
+---
+
+## What is a Router and how it directs traffic?
+
+A Router is a networking device which helps connecting different networks and decides where your data (packets) should go. A Router can be wired or wireless device. **Wireless routers usually contain multiple components: router + switch + wireless access point.** When your computer sends some data to other computer, it is transferred in the form of packets. Think of packet as a letter, Earlier when there was no internet or telephone, we used to write our messages in a letter with an address as its destination so that the postal services would know where to send this letter. Exactly like that when you send some information via a computer to another computer, It is transferred in the form of Packets in chunks. A packet contains **payload** and a **header**. Once the receiver receives your message, which was sent over the wires, cables, and radio waves of the Internet, it is reassembled by the receiver's computer into the original message.
+
+> **Payload** refers to actual data. **Header** refers to instructions for network devices, containing routing information like source/destination IP addresses.
+
+So far, we understand how router works (high level). Let’s see how it works technically:
+
+In networking world, according to our analogy your home address refers to an **Internet Protocol (IP)** address. There are two separate network exists: **Local Network** (Laptop, TV, Phone) and **The Internet** (APIs, google servers). These two worlds cannot talk directly without a mediator. That mediator is the **router**.
+
+There are two types of IP addresses:
+
+1. **Private IP address (Inside your home)**
+
+Your router gives each device an IP address like:
+
+- Laptop -> 192.168.1.201
+- Mobile -> 192.168.1.202
+- TV -> 192.168.1.203
+
+These are called private IP addresses. Key rules about private IPs:
+
+- Only valid inside your home
+- The internet cannot see them
+- Router assigns them automatically
+- Without this, devices won’t know who is who
+
+2. **Public IP address (Outside your home)**
+
+Your ISP gives **one IP address** to your router, like: 103.xx.xx.xx. This is your public IP address. Key rules:
+
+- The entire internet can see this only this one IP.
+- Google does not know about your phone or laptop separately
+
+Let’s assume you have 5 devices and 1 public IP and All device open google.com at the same time. Now you must have been thinking, How does the router know, which response belongs to which device? Here comes **Network Address Translation (NAT).** When a device request something (google.com), NAT takes packet from **192.168.1.xx** (private IP of laptop) -> replaces private IP with public IP **103.xx...** -> Remembers that the request came from the laptop. When response comes back to **103.xx...** -> Router’s NAT checks its table -> Sends the response to laptop.
+
+> **Gateway**: Many ISPs provide a single device that combines both modem and router functions into one box, often called a gateway.
+
+---
+
+## Switch vs Hub: how local networks actually work?
+
+So far, we understand:
+
+> **Internet -> ISP -> Modem -> Router -> Home network**.
+
+Inside my home network, how do devices talk to each other? This problem is solved by **Hub / Switch**. Each of your devices (Phone / Laptop / TV) has a private IP address and everyone is in same network, thanks to **router**. The device which is responsible for internal communications is **switch** (historically **hub**). **Hub** is a dumb device. What a hub does is: It **receives data from one device and sends it to all devices**. You want to send some data to phone from laptop, What hub does is, it will send data to every device connected to the network (TV, phone, other phone, etc) which are connected to network, resulting in **wasting bandwidth, causing collisions and very insecure**. That’s why **Hubs are basically obsolete today**.
+
+Here comes **Switch -> a smart internal traffic manager**, a switch learns who is connected where. Each device has a hardware entity called **MAC address**. The switch builds a **MAC address table**:
+
+| Device | Port   |
+| ------ | ------ |
+| Laptop | Port 1 |
+| Phone  | Port 2 |
+| TV     | Port 3 |
+
+Now, when laptop sends data to phone, What **switch** does is: Looks at destination MAC -> Sees phone has Port 2 -> Sends data **only to Phone**. No waste, No collisions.
+
+> hub/switch is present inside a router.
+
+### Switch vs Hub:
+
+| Feature         | Hub         | Switch             |
+| --------------- | ----------- | ------------------ |
+| Intelligence    | None        | Smart              |
+| Sends data to   | All devices | Only target device |
+| Bandwidth usage | Wasted      | Efficient          |
+| Security        | Very poor   | Much better        |
+| Used today?     | No          | Yes                |
+
+Switches do not care about IP address, Because a switch works at a lower level than IP. Switches works at hardware level (MAC). **Routers care about IP addresses and Switches care about MAC addresses**. Every Network Interface Card (NIC) has a MAC address baked into hardware. A MAC address looks like **A4:5E:60:9B:12:3F**.
+
+Key properties of MAC addresses:
+
+- Unique (globally)
+- Fixed (usually)
+- Exists before IP
+- Works even with no internet
+
+So MAC address answers: **Who is this device on this wire?** That is exactly what a switch needs.
+
+> Network Interface Card (NIC) can be a Laptop WiFi chip / Ethernet port.
+
+---
+
+## What is a Firewall and why security lives here?
+
+Until now, we understand:
+
+> **Internet -> ISP -> Modem -> Router (IP + NAT) -> Switch -> Devices (Home network)**.
+
+Now ask the next natural question to yourself. If data can freely move in and out of our network, what prevents anything harmful from entering it? Its because of the **Firewall**. Now imagine this situation: Your router allows traffic in and out -> Millions of computers on the internet can reach your public IP -> Some of them can be attackers, bots, malware.. Without restrictions anyone can send packets to your devices. This is the reason, why **Firewall exists to decide what is allowed and what is blocked.**
+
+We understand what firewall does, but what a Firewall actually is? In computer science, everything that is happening follows some sort of rules / protocols. **A Firewall is a system that monitors network traffic and decides whether to allow or block packets based on predefined rules**. Think of it as a decision maker. **Firewall does not generate or route traffic, Firewall only filters traffic.**
+
+> Firewall is usually built into the router. In enterprises, Firewall is often a separate device or service.
+
+---
+
+## What is a Load Balancer and why scalable systems need it?
+
+So far, our focus was on user side (your home network). Imagine you are watching a cricket match on JioHotstar (Live OTT platform), you must have noticed crores of people watch the live match at same time. Now ask the next natural question: is one backend server enough to handle crores of traffic (request)? No! Eventually, Server becomes slow, request will fail and system will crash. This is a scalability problem and is solved by **Load Balancers**.
+
+**A Load Balancer is a system that, Receives incoming requests and distributes them across multiple servers**. Client sends request -> Backend has many servers -> It is Load Balancer’s job to distribute the traffic. But, It does not randomly distributes traffic, It uses strategies like Round Robin algo., Least connections, Fastest response, etc.. **Load balancer is aware of server health**. If a server crashes or stop responding, it stops sending traffic to it and Clients don’t even notice.
+
+**Without Load Balancers:**
+
+```
+  [ Users ]
+      │
+      ▼
+┌──────────────┐
+│ Server       |
+└──────────────┘
+```
+
+**With Load Balancers:**
+
+```
+      [ Users ]
+          │
+          ▼
+   ┌──────────────┐
+   │ Load Balancer│
+   └──────┬───────┘
+          │
+    ┌─────┴─────┐
+    ▼           ▼
+┌───────┐   ┌───────┐
+│ServerA│   │ServerB│
+└───────┘   └───────┘
+```
+
+## How all these devices work together in a real-world setup?
+
+What a journey it was, we started from underwater fibre optic cables to scalability discussion. When you open a website at home, the flow looks like this:
+
+> Your Device -> Switch (or WiFi) -> Router (Private IP → Public IP, NAT) -> Modem -> ISP -> Internet
+
+**Let’s break responsibilities:**
+
+- **Device** -> Creates request (HTTP, HTTPS, API call)
+- **Switch** -> Moves data inside your home using MAC addresses
+- **Router** -> Connects your home network to the internet, Uses IP addresses, Performs NAT
+- **Modem** -> Translates signals for ISP
+
+Up to this point, everything is about getting OUT of your home. Once the request reaches the service (e.g., a backend):
+
+> Internet → Firewall → Load Balancer → Backend Servers
+
+**Each device has a very specific role.**
+
+- **Firewall** -> Filters incoming and outgoing traffic, allowing only trusted connections
+- **Load Balancer** -> Distributes incoming requests across multiple backend servers and monitors their health
+- **Backend Servers** -> Process requests, run application logic, and return responses to users
+
+---
+
+## Where DNS fits in all of this?
+
+DNS resolution happens before the router, firewall, or load balancer are involved. Before any request is sent, your device uses Domain Name System (DNS) to convert a domain name like **google.com** into an IP address. Once the IP is known, the entire network flow described above begins.
+
+> You can see DNS in action by running `nslookup google.com` or `ping google.com` in your terminal.
+
+---
+
+## TL;DR
+
+The internet reaches your home through undersea fiber-optic cables, ISPs, and a modem that connects your home to the global network. Routers and switches manage how data moves inside your home using IP and MAC addresses, while NAT lets multiple devices share one public IP. Firewalls protect the network by filtering traffic, and load balancers enable scalability by distributing requests across multiple servers. DNS translates domain names into IP addresses, after which the entire network flow takes place.
