@@ -1,0 +1,191 @@
+---
+tags: "cURL, networking"
+title: "Getting started with cURL"
+description: "In this blog, we explore what cURL is, how it works, and why developers need it, with hands-on examples."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1769445423/portfolio/blogs/curl.png"
+date: "2026-01-26"
+---
+
+## What is cURL (in very simple terms)
+
+You’re here which means you know there is something called **internet**, when you search something on your browser, you get some results. But ever wondered how you get those results? It is **Server**. In internet world, if you search something -> you are sending a **request** to the server and in return, the server sends some **response**. **A server is just another computer, sits somewhere on the internet whose job is to store data or listen incoming requests and responds to them**. Your browser does a lot of stuff behind the scenes, you just don’t see it. When you’re watching a video on youtube, the video loads in chunks depending on your internet speed. Imagine its a 10 mins video -> You straight away jump in 6th min of the video -> Your browser will request for the chunks of that part of the video from the youtube server without letting you know and it will do this continuously.
+
+If we look from developer’s perspective, When you create some sort of API for your software, you got your backend ready but without frontend you cannot test all the requests from the browser. Now, you want something that gets your work done without frontend. Here comes cURL. Whether you’re a student, developer, DevOps engineer, SysAdmin, QA or in any other technical role, you should know about cURL. cURL is one of the ways to talk to servers. Think of cURL as a way to manually send the same requests that browsers and apps send automatically. (As described in docs) **cURL is a command line tool and library for transferring data with URL syntax**, supports majority of internet protocols, **libcurl** is the library cURL is using to do its job behind the scenes.
+
+> **Client Uniform Resource Locator (cURL)** is developed by a Swedish developer Daniel Stenberg. It is an open source project, and its code can be found <a href='https://github.com/curl/curl' target='_blank'>here</a>.
+
+---
+
+## Why programmers need cURL
+
+As we discussed earlier, You’re searching something -> Your browsers sends **request** to the server. But, there are multiple types of request that your browser can send. Coming back to developer’s / programmers perspective, you got your backend ready of your software but without frontend you cannot test it on browser, But why? There are multiple types of requests -> the request follows **HTTP protocol** (we will talk in other blog about HTTP) -> GET, POST, PUT, DELETE are some examples of HTTP requests. Okay, how do I actually use cURL? Let’s start with the simplest cURL command and make our first request.
+
+---
+
+## Making your first request using cURL
+
+cURL comes pre-installed on most macOS and Linux systems, and on Windows 10 version 1803 and later. To verify if cURL is already installed, run the following command:
+
+```bash
+curl --version
+```
+
+> If you’re using older versions of windows, search `how to install curl in windows 7 / 8 / 10` in your browser
+
+Let’s search google.com but this time from the terminal / command prompt using cURL
+
+```bash
+curl https://www.google.com
+```
+
+> Congratulations! You just made your first request to the Google server using cURL.
+
+What the above command means? **Hey server at this URL, give me whatever you normally give to a browser**. The response should look like:
+
+```bash
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://www.google.com/">here</A>.
+</BODY></HTML>
+```
+
+When you run this command, cURL does some things:
+
+1. Looks up the IP address of the domain (DNS) [google.com -> 142.251.220.14]
+2. Opens a network connection to the server
+3. Sends a GET request (fetching something)
+4. Prints the response body to your terminal
+
+But you must have been thinking, instead of nice webpage, why there is raw HTML / Text content? This is intentional, cURL does not render a webpage but, it only shows what the server sends. The server actually sends additional information along with the response, such as whether the request was successful or if the content was redirected. By default, cURL hides these details and only shows the response body. So what exactly does a full request and response look like?
+
+---
+
+## Understanding request and response
+
+Every interaction with a server looks like this:
+
+```
+Client  →  Request  →  Server
+Client  ←  Response ←  Server
+```
+
+A **Request** means, i am asking or i want something from the **server**. A request contains **action** -> what do you want, **target** -> where your request will go (server), and some **optional extra information**. A **Response** answers to question of request, it sends back **status** -> success / fail, **Data** -> actual response, **Metadata** -> extra information about the response. Earlier, when we talked about running your first command using **curl google.com**, we got some HTML response and the response contains **301 Moved**. What is this 301? It is a **status code**. This is part of HTTP status codes and there are multiple predefined status codes which denotes whether the response is success, fail, server down, authorization based etc.
+
+For a user, **data** is the actual content returned by the server (HTML, JSON, Text, Files). That’s why you saw raw HTML earlier. The **metadata** is not the main content but it is very useful for browser. A metadata includes **Content type, Encoding, Caching rules**. Earlier, we also talked about HTTP methods. Most real-world interactions start with these two:
+
+- **GET** -> Used to fetch data, it is read only. The default behavior for cURL is to invoke an HTTP GET method on the given URL.
+- **POST** -> Used to send data. To use any platform you need to provide them your credentials, the job of server is to safely send your credentials to the database. That’s a POST request (you are sending something from your browser).
+
+**Some more cURL commands:**
+
+- You already saw **301 moved**, but how to handle this? The **-L** flag.
+
+```bash
+curl -L https://www.google.com
+
+# -L flag follow redirects and now we will get the final response
+```
+
+- How to see response’s metadata? The **-i** flag.
+
+```bash
+curl -i https://www.google.com
+
+# -i flag shows metadata of the requested url such as headers, content-type, cache-control, etc..
+```
+
+Now that we know how to make requests and inspect responses, let’s use cURL to talk to real APIs.
+
+---
+
+## Using cURL to talk to APIs
+
+Now we know what a response looks like and how to inspect it. You must have been thinking, how do real applications use cURL to talk to APIs (an endpoint) or test whether an API is working correctly, and usually that will require sending arguments to it. You’re right, I am talking about the POST request.
+
+**Before jumping into POST, let’s talk to an API using GET:**
+
+```bash
+curl https://jsonplaceholder.typicode.com/posts/1
+
+# sample free open-source api to learn
+```
+
+Response:
+
+```bash
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}%
+```
+
+- Now let’s start with **POST** by passing arguments as values. The **--data** flag:
+
+```bash
+curl --data "name=John&surname=Doe" https://www.example.com
+
+# --data is equivalent to using -d, and both will make the method change to POST automatically
+```
+
+- Or Pass arguments using JSON (**APIs usually return JSON, not HTML**.)
+
+```bash
+curl -H "Content-Type: application/json" \
+     --data '{"name":"John","surname":"Doe"}' \
+     https://www.example.com
+
+# Most APIs expect JSON data along with a Content-Type: application/json header (-H), which tells the server how to interpret the request body.
+```
+
+- We can also use the **-X** flag (-request) to specify which method we want to invoke:
+
+```bash
+curl -X "POST" \
+-d "name=John&surname=Doe" https://www.example.com
+
+# In most cases, using -d is enough, because cURL automatically switches the request to POST.
+```
+
+---
+
+## Common mistakes beginners make with cURL
+
+- Seeing 301 Moved and thinking the request failed? Many servers redirect requests. Forgetting the **-L** flag is a very common mistake.
+
+```bash
+# Without -L (you see 301 Moved)
+curl https://google.com
+
+# With -L (follows redirect and gets final response)
+curl -L https://google.com
+```
+
+- **-d** flag already denotes as POST request, so no need to write **-X POST** because tutorials do
+
+```bash
+# This is already a POST request
+curl -d "name=John&age=25" https://www.example.com
+
+# This also works, but -X POST is unnecessary
+curl -X POST -d "name=John&age=25" https://www.example.com
+```
+
+- When dealing with **JSON** data, always use **Content-Type: application/json**
+
+```bash
+curl -H "Content-Type: application/json" \
+     -d '{"name":"John","age":25}' \
+     https://www.example.com
+```
+
+- Errors are still valid responses, status code and error messages are information. The more you get errors -> the more your debugging skills will improve
+
+---
+
+## TL;DR
+
+cURL shows you exactly what the server sends, not a rendered webpage. Redirects, status codes, and errors are part of normal HTTP communication. Once you understand this, cURL becomes a powerful tool for testing and debugging APIs.
