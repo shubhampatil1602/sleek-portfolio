@@ -1,0 +1,180 @@
+---
+tags: "networking, chaicode"
+title: "How DNS resolution works"
+description: "In this blog, we will understand what happens when you open a website like google.com. We’ll explore how DNS works under the hood, what the browser sees when you request a website, and how domain names are resolved step by step. Along the way, we’ll use basic dig commands to inspect and understand the DNS resolution process."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1769962832/portfolio/blogs/How_DNS_resolution_works_infographic_aa6aol.png"
+date: "2026-02-01"
+---
+
+## What is DNS and why name resolution exists
+
+Imagine you buy your first smart phone of your life. What is the first thing you’ll do? Save contacts of your friends or your loved ones right? You met your group of friends and everyone is sharing mobile numbers with each other. Here is the problem, is it possible to remember each mobile number by heart? No, one single wrong digit and call might get connected to someone else. Every time to save a contact number, there are minimum 2 components: A unique 10 digit contact number with respective country code and the corresponding user’s name [+91 9123456789 -> John]. Similarly there are millions of website hosted on the internet, **just like we remember names instead of numbers, the internet lets us use domain names instead of IP addresses (IPv4 or IPv6)**. Here comes **Domain Name System (DNS)**, it is like the phone book of the internet. Each website which is present on the internet has its corresponding IP address similar to **216.198.79.1 -> shubhamspatil.me**. **The internet routes traffic using IP addresses, not domain names**.
+
+**The DNS System in short**: When you search **google.com** on your browser -> the request goes to **DNS system** -> DNS looks up the IP using its hierarchy of **records**, in which IP the google.com is hosted? -> Example: 142.251.220.46 -> the DNS sends the information of this IP to the browser -> browser uses this IP to make **HTTP request** to the server -> server will send the **HTML, CSS and JS** files -> browser **renders** the web page. In short, **DNS only resolves domain name and gives IP in return** and **before any HTTP request can happen, the domain name must first be translated into an IP**. Now you must be thinking, how does DNS actually find this IP? Who does it ask first?
+
+> DNS is independent, it does not care about your website / HTML / protocol. DNS just tell who should i talk to next.
+
+---
+
+## What is the `dig` command and when it is used
+
+> dig is to DNS what: curl is to HTTP
+
+Your browser does a lot of stuff behind the scenes and communicating with DNS is one of them. The **Domain Information Groper `dig`** is a powerful command-line tool that lets us see what DNS is doing by providing detailed domain information. **The `dig` command allows to perform DNS lookups and debug nameserver configuration**. It **allows to query information about various DNS records, including host addresses, mail exchanges (MX), name servers (NS).** It is the most commonly used tool because of its flexibility and ease of use.
+
+**`dig` is used when:**
+
+- A website is not loading
+- DNS changes are not reflecting
+- Check different DNS record types (A, NS, MX, etc.)
+- You want to know: which server answered, what records exist, how long a query took, etc
+
+The **DNS lookup** simply means, whenever a user types a domain name (such as **google.com**) into their browser window, this triggers a DNS lookup. By default, when this happens `dig` asks your system’s **recursive DNS resolver**, if the resolver already has the answer cached, it returns immediately. Otherwise, it goes out and asks other DNS servers on your behalf, which we’ll explore next.
+
+To look up an IP address assigned to a particular domain, use the command in the following form:
+
+```bash
+dig google.com A
+
+# this dig utility is used to display the IP address of google.com
+```
+
+Okay, dig can ask DNS questions, but who are the servers that actually know the answers?
+
+---
+
+## Understanding `dig . NS` and root name servers
+
+Command:
+
+```bash
+dig . NS
+# . represents root zone
+# NS -> Name Server records
+```
+
+Output:
+
+```bash
+# There are 13 root server identities (a–m), they actually consist of hundreds of distributed server instances worldwide using Anycast routing
+a.root-servers.net.
+b.root-servers.net.
+c.root-servers.net.
+...
+m.root-servers.net.
+```
+
+**Why does DNS even need root servers?** => _**decentralization**_
+
+- to avoid a single central database
+- to allow independent management of TLDs
+- to scale globally
+
+DNS is not a single big server, it works in hierarchy: **Root -> TLD -> Authoritative -> records (A/AAAA/etc.)**. **The purpose of `dig . NS` is to retrieve the list of root name servers**. Root name servers are the servers at the root (top) of the DNS hierarchy. They do not know google’s IP, but they know who manages **.com, .org, .in, .net,..** **These are Top Level Domain (TLD) servers**.
+
+---
+
+## Understanding `dig com NS` and TLD name servers
+
+**TLD stands for Top Level Domain**. A TLD name server knows **which authoritative name servers are responsible for domains under that TLD**. But, who runs these `.com` TLD servers? Let’s ask DNS who is responsible for the `.com` TLD:
+
+Command:
+
+```bash
+dig com NS
+# Who are the name servers responsible for the .com top-level domain?
+```
+
+Output:
+
+```bash
+# If you want to know anything under .com, ask these servers next.
+a.gtld-servers.net.
+b.gtld-servers.net.
+c.gtld-servers.net.
+...
+m.gtld-servers.net.
+```
+
+Now you might have these 3 natural questions:
+
+- Where did these **gtld-servers.net** come from?
+- How did the resolver even reach **.com** servers?
+- What role do TLD servers play in the full DNS journey?
+
+The reason we see **a.gtld-servers.net** is: **.com** is a **generic Top Level Domain (gTLD)** and is operated by a **registry**. For **.com**, that registry is **Verisign** (a global provider of domain name registry services). So, **Root servers** point to **.com TLD servers** -> **.com TLD servers** point to **authoritative servers** for google.com.
+
+Up to this point, DNS servers have only been telling us **who to ask next**. **Neither root nor TLD servers store actual IP addresses**. The next step in the DNS hierarchy is the **authoritative name server**, **the server that is responsible for a specific domain and acts as the final source of truth for its DNS records**.
+
+---
+
+## Understanding `dig google.com NS` and authoritative name servers
+
+Command:
+
+```bash
+dig google.com NS
+```
+
+Output:
+
+```bash
+# Each authoritative name server have their own name servers: These are of google
+ns1.google.com
+ns2.google.com.
+ns3.google.com.
+ns4.google.com.
+```
+
+In DNS, **authoritative** means **a server that holds the original and official DNS records for a particular domain (e.g., google.com) and is responsible for providing those records to the rest of the internet**. It is the final source of truth and they don’t delegate further, they answer directly. When a query reaches an authoritative server, it provides the correct IP address or reports that the domain does not exist (NXDOMAIN).
+
+> NXDOMAIN (Non-Existent Domain) is a DNS error code indicating that a domain name does not exist and cannot be resolved to an IP address.
+
+The **DNS records** and **authoritative NS** are often termed together but they serve different purposes. **Records looks like: A, AAAA, TXT, MX, CNAME, etc.. A Name Server (NS) looks like: ns1.google.com., cruz.ns.cloudflare.com., etc..** The actual IP is stored in **A record (ipv4) and AAAA record (if it is ipv6)**. **The CNAME (Canonical name) record stores value as alias to another name**. We can say, **NS** records point to another domain name that represents the next authoritative name server (e.g., **cruz.ns.cloudflare.com**), allowing DNS resolution to continue through delegation.
+
+At this point, the DNS hierarchy ends. The resolver has reached the server that owns the domain’s records. Now we can finally connect this entire chain to what actually happens when a browser loads a website.
+
+---
+
+## Understanding `dig google.com` and the full DNS resolution flow
+
+Command:
+
+```bash
+dig google.com
+```
+
+Output:
+
+```bash
+# returns A/AAAA records for google.com
+142.250.183.206
+```
+
+Let’s start from 0. What actually happens, step by step, when a browser resolves a domain?
+
+> resolver refers to recursive DNS resolver and it is present in ISP’s DNS server, Wi-Fi router, public DNS service
+
+- You typed **google.com** in your **browser**
+- Browser asks **OS** to **resolve** **google.com**
+- OS asks **recursive resolver**
+- **Resolver checks cache**: if hit -> return IP, if miss -> start delegation
+- Resolver asks **root** -> who handles **.com**?
+- Resolver asks **.com TLD** -> who handles google.com?
+- Resolver asks **authoritative server** -> give me A/AAAA
+- Resolver returns **IP(s)** to browser
+- Browser makes **HTTP/HTTPS request** using IP
+
+> DNS resolution ends before any HTTP request is made — it simply gives the browser an IP address. Everything after that belongs to HTTP, TLS, and application servers.
+
+---
+
+## TL;DR
+
+| DNS Layer                 | What it is responsible for | Question it answers                                                                |
+| ------------------------- | -------------------------- | ---------------------------------------------------------------------------------- |
+| **Client (Browser / OS)** | Starts DNS resolution      | **I have a domain name, who should I ask?**                                        |
+| **Recursive Resolver**    | Finds the final DNS answer | **What is the IP address for this domain?**                                        |
+| **Root (`.`)**            | Top of the DNS hierarchy   | **Which name servers manage each TLD** (like `.com`, `.in`, `.org`)?               |
+| **TLD (`.com`, `.in`)**   | Manages a top-level domain | **Which authoritative name servers manage a specific domain** (like `google.com`)? |
+| **Authoritative**         | Final source of truth      | **What are the DNS records for this domain** (A, AAAA, MX, etc.)?                  |
