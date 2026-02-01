@@ -19,7 +19,7 @@ interface BlogListProps {
   tags: string[];
 }
 
-const POSTS_PER_PAGE = 5;
+const POSTS_PER_PAGE = 10;
 
 export function BlogList({ blogs, tags }: BlogListProps) {
   const [searchQuery, setSearchQuery] = useState("");
