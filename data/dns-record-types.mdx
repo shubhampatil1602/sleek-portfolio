@@ -1,0 +1,232 @@
+---
+tags: "networking, chaicode"
+title: "DNS Record Types Explained"
+description: "In this blog, we’ll understand what DNS is, why it’s needed, and explore important DNS records such as A, AAAA, CNAME, MX, NS, and TXT. We’ll also see how all these records work together to handle website access, email delivery, and domain verification."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1770143239/portfolio/blogs/dns%20record%20types.png"
+date: "2026-02-02"
+---
+
+## What DNS is (explained in very simple terms)
+
+When you type something on your browser (e.g. google.com), how does a browser know where the website lives? You might have heard about IP because remembering numbers like 142.250.195.196 for every website would be impractical. Computers don’t understand names, they understand numbers. That’s where **Domain Name System (DNS)** comes in. DNS is the phonebook of the Internet, it translates human-friendly website names (like www.google.com) into the numerical IP addresses (like 142.250.195.196). Once the browser receives this IP, it asks the server for the website. **DNS doesn’t give you the website, it only tells you where it lives**.
+
+> I would highly recommend to read the previous blog: <a href="/blog/how-dns-resolution-works" target='_blank'>How DNS resolution works</a>
+
+---
+
+## Why DNS records are needed
+
+You might be thinking, if DNS just converts name -> IP, why do we need different types of records at all? Every website you see on the internet is hosted somewhere. Each website has its designated IP address. DNS records exist because a single domain name needs to store different kinds of information, not just an IP address. A domain may need to answer **Where the website is hosted?**, **Where should emails be delivered?**, **Who controls this domain?**, **Should this domain name point to another name?**, etc. One IP cannot answer all of this, IP only tells where, Not how, who, or what else.
+
+> DNS records organize the information in a structured way so computers know exactly what to do.
+
+---
+
+## What an NS Record is (who is responsible for a domain)
+
+**Name Servers (NS) Record** identifies which provider is authoritative for your domain, meaning it tells the internet which company’s servers are holding your actual DNS settings. When you buy a domain (e.g., **shubhamspatil.me**) from a registrar like **Namecheap** but want to manage your DNS through cloudflare, you update the NS records at your registrar. You tell Namecheap: **Use these nameservers: cruz.ns.cloudflare.com** and **decker.ns.cloudflare.com.** When someone visits your site, the internet asks the (.me) registry, who is in charge? The registry points to the NS records you set. Now the visitor’s browser knows to talk to cloudflare’s servers to get your site’s IP.
+
+You can run the following command to see **NS** in action:
+
+```bash
+dig shubhamspatil.me NS
+
+# alternatively you can run "nslookup type=ns shubhamspatil.me" for the same result
+```
+
+Output:
+
+```bash
+...
+shubhamspatil.me.	4502	IN	NS	cruz.ns.cloudflare.com.
+shubhamspatil.me.	4502	IN	NS	decker.ns.cloudflare.com.
+...
+# This shows that Cloudflare’s nameservers are authoritative for this domain.
+```
+
+---
+
+## What an A Record is (domain -> IPv4 address)
+
+An **A (Address) Record** is the most fundamental record type in DNS. It is used to **map the domain to a corresponding IP address in IPv4 (32-bit) format**. **A record** answers: **Where is this domain hosted?** Without an **A (or equivalent) record**, a domain cannot resolve to an IPv4 address. Think of A Record as a contact you save in your phone, you save a contact number with the person’s name. Similarly DNS resolves a domain name to IP (A Record).
+
+A simple **A record** looks like this:
+
+| Type | Name             | Content      |
+| ---- | ---------------- | ------------ |
+| A    | shubhamspatil.me | 216.198.79.1 |
+
+You can run the following command to see **A Record** in action:
+
+```bash
+dig shubhamspatil.me A
+```
+
+Output:
+
+```bash
+...
+;; ANSWER SECTION:
+shubhamspatil.me.	9	IN	A	216.198.79.1
+...
+```
+
+---
+
+## What an AAAA Record is (domain → IPv6 address)
+
+Just like **A record matches the domain name to an IPv4 address**, Similarly the **AAAA (quad-A) record match the domain name to a IPv6 addresses**. Both solve the same problem, but for different versions of IP. **IPv6 is the latest version of Internet Protocol (IP)**. One important difference between both is **IPv6 addresses are longer than IPv4 addresses**. We’re almost out of IPv4 addresses, which is where **AAAA records** comes in. **They function the same as A records but utilize 128-bit IPv6 address**. Currently, they coexist, IPv6 is designed to eventually become the primary protocol.
+
+A simple **AAAA record** looks like this:
+
+| Type | Name             | Content            |
+| ---- | ---------------- | ------------------ |
+| AAAA | shubhamspatil.me | 64:ff9b::d8c6:4f01 |
+
+You can run the following command to see **AAAA Record** in action:
+
+```bash
+dig shubhamspatil.me AAAA
+```
+
+Output:
+
+```bash
+...
+;; QUESTION SECTION:
+;shubhamspatil.me.		IN	AAAA
+
+;; ANSWER SECTION:
+shubhamspatil.me.	377	IN	AAAA	64:ff9b::d8c6:4f01
+...
+```
+
+Question you might have: Can I have both an A and an AAAA record for the same website? Though the usage of quad A records is not that popular just yet, it is possible for a website to hold both IPV4 and IPV6 addresses, so yes, you can have both records for the same website.
+
+---
+
+## What a CNAME Record is (one name pointing to another name)
+
+**Canonical name (CNAME) Record is a type of DNS entry used to alias one domain name to another**. When you create a CNAME record, you’re creating a record that points to another DNS record instead of an IP address. When a user types blog.example.com, DNS resolves it (via CNAME -> A) Eg: blog.example.com -> example.com
+
+A common use case for CNAME records is when your domain points to a hosting platform. For example, if your DNS is managed by Cloudflare and your site is hosted on Vercel, you might configure: **www.shubhamspatil.me -> 936ff1b0f5a891ab.vercel-dns-017.com** If Vercel ever changes its underlying IP addresses, they update their own DNS records internally. Your CNAME does not need to change, which is why CNAME records are useful for avoiding manual IP updates.
+
+A simple **CNAME record** looks like this:
+
+| Type  | Name                 | Content                             |
+| ----- | -------------------- | ----------------------------------- |
+| CNAME | www.shubhamspatil.me | 936ff1b0f5a891ab.vercel-dns-017.com |
+
+> Note: CNAME records are typically used for subdomains (www, blog, app), not the root domain.
+
+You can run the following command to see **CNAME Record** in action:
+
+```bash
+dig www.shubhamspatil.me CNAME
+# using www.shubhamspatil.me because root domains (like shubhamspatil.me)
+# usually cannot have CNAME records
+```
+
+Output:
+
+```bash
+...
+;; QUESTION SECTION:
+;www.shubhamspatil.me.		IN	CNAME
+
+;; ANSWER SECTION:
+www.shubhamspatil.me.	377	IN	CNAME	936ff1b0f5a891ab.vercel-dns-017.com.
+...
+```
+
+The flow:
+
+```
+www.shubhamspatil.me → CNAME → shubhamspatil.me
+shubhamspatil.me     → A     → 216.198.79.1
+```
+
+---
+
+## What an MX Record is (how emails find your mail server)
+
+Up to now, DNS helped answer questions like this:
+
+- Where is my website hosted? (A/AAAA)
+- Who controls the domain? (NS)
+
+Now the new problem appears, if someone sends an email to john@hello.com, how does the internet know which server should receive it? This is not the website problem, this is email delivery problem. **Mail Exchange (MX) Record** exists to solve this, without MX records, email delivery becomes unreliable.
+
+**Mail Exchange (MX) Record** tells mail servers where to deliver emails for a domain, just like **A Record** tell browsers where to load a website from. Let’s see how email delivery works:
+
+- When someone sends an email to shubhamspatilnbr@gmail.com
+- The sender’s mail server **(MTA - Mail Transfer Agent)** looks at the recipient’s address
+- It ignores the **shubhamspatilnbr** part for a moment and focuses solely on the domain: **gmail.com**
+- The sender’s mail server asks DNS: Do you have MX Record for **gmail.com**?
+- DNS responds with MX Records like: **mail1.provider.com**, **mail2.provider.com**
+- The sender’s mail server then resolves the IP address of Gmail’s mail server
+- Using the **SMTP protocol**, the sender’s mail server connects to Gmail’s mail server and hands over the email
+
+> MX records have a priority number. Lower the number === higher the priority. Eg: (**10 mail1.example.com**, **20 mail2.example.com**). It means, try **mail1** first, if it fails then try **mail2**
+
+---
+
+## What a TXT Record is (extra information and verification)
+
+Before understanding about **TXT record**, Let’s start with what problem TXT Record solves:
+
+- A / AAAA -> where the website lives (IP)
+- CNAME -> aliasing names
+- NS -> who controls DNS
+- MX -> where emails should be delivered
+
+Now a new question appears: How does a service verify that you actually own a domain, or trust emails sent from it? DNS needs a place to store verification tokens, security rules, and ownership proofs. TXT records exist for this exact reason.
+
+A TXT (Text) record allows domain owners to attach arbitrary text data to a domain. This information is read by services (not users) to verify domain ownership, configure email security, and support other domain-related validations.
+
+---
+
+## TL;DR - How all DNS records work together for one website
+
+When a user interacts with a webiste or email, how do DNS records participate together? Not all records used at once. Each one is consulted only when needed. Imagine 3 different interaction:
+
+1. **Visiting a website: Where is this website hosted? (www.shubhamspatil.me)**
+
+- When user types www.shubhamspatil.me in browser
+- The DNS Resolution begins by using the Root Server (Root server says, Ask the TLD server of .me)
+- DNS queries to .me TLD server
+- DNS now knows the Authoritative nameservers (Eg: cloudflare)
+- DNS asks Cloudflare: Give me DNS records for www.shubhamspatil.me
+- Cloudflare responds: www.shubhamspatil.me → CNAME → target-hostname
+- DNS follows the CNAME and resolves: A or AAAA record depending on the type of IP
+- Browser receives the IP and connects to the server
+- Records involved: **NS → CNAME → A / AAAA**
+
+2. **Sending an email: Which mail server should receive this email?**
+
+- An email is sent to hello@shubhamspatil.me
+- The sender’s mail server extracts the domain shubhamspatil.me
+- It queries DNS for MX records
+- DNS returns the mail server hostnames (**mail1.provider.com**)
+- Those hostnames are resolved using A / AAAA records
+- The email is delivered using SMTP
+- Records involved: **NS → MX → A / AAAA**
+
+3. **Verifying domain ownership: Do you really own this domain?**
+
+- Service asks you to add a verification token
+- You add a TXT record
+- Service queries DNS: TXT records for shubhamspatil.me
+- Token matches → ownership verified
+- Records involved here: **NS → TXT**
+
+```bash
+Domain: shubhamspatil.me
+│
+├─ Website access → NS → CNAME → A / AAAA → Server
+│
+├─ Email delivery → NS → MX → A / AAAA → Mail server
+│
+└─ Verification  → NS → TXT → Trust established
+
+```
