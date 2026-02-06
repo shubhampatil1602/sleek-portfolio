@@ -1,0 +1,101 @@
+---
+tags: "networking, chaicode"
+title: "TCP Working: 3-Way Handshake & Reliable Communication"
+description: "In this blog, we break down how TCP works under the hood—from the 3-way handshake to reliable, ordered, and loss-free data transfer."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1770405780/portfolio/blogs/Understanding_TCP__3-Way_Handshake_Explained_m6sit5.png"
+date: "2026-02-06"
+---
+
+## What is TCP and why it is needed
+
+Data is the most important thing on the internet and it’s important that the transmission of this data should happen reliablely. Everything in this world has some set of rules and protocols, without rules there is no discipline. Imagine internet allows data to transfer freely without any rules. What can happen? Your data might loss some packets in middle, data can be transferred to some different machine, delay in receiving the data at the other end, etc. To avoid such problems, the **Transmission Control Protocol (TCP)** exists on the internet.
+
+**TCP is the relaible communication protocol** which makes sure that the data sent from one computer should fully reach its destination in correct order, without loosing any data packets. TCP is such a reliable protocol and that is the reason why downloading files, sending files and data transfer is depended on TCP.
+
+---
+
+## Problems TCP is designed to solve
+
+**TCP is the standard for reliable data transfer**. Popular messanging softwares such as **Whatsapp, Instagram, Google Chat, iMessage** everybody uses TCP for messanging and data transfer. If there were no protocols for data transfers:
+
+- data packets might get steal before it reaches its destination
+- data packets can be arrived at wrong order. (**Who am i? !== i? Who am**)
+- congestion - different messages might mixed with each other
+- your message never reach its destination
+
+**TCP** solve these problems by:
+
+- **detecting missing data packets**
+- make sures **data packets reaches in correct order in its destination**
+- **resending loss packets**
+- **Confirming what was received**
+- **congestion control**
+
+---
+
+## What is the TCP 3-Way Handshake
+
+There are two types of devices on the internet: Client which is you and Server who is always on listenting to client request. Whenever you send some data via the internet. There are some sequence of steps that happens. Before sending actual data, TCP makes a connection and this setup is called **3-way handshake**. The TCP 3-way handshake is a process to establish a reliable connection between client and server before data transfer. It ensures that both sides are synchronized and ready to communicate.
+
+Imagine you’re on a phone call, how the conversation begins?
+
+- **You**: Hello, Am i audiable?
+- **Other end**: Hello, yes you’re audiable!
+- **You**: This is how TCP handshake looks like..
+
+---
+
+## Step-by-step working of SYN, SYN-ACK, and ACK
+
+**SYN stands for Synchronize, SYN-ACK stands for Synchronize + Acknowledge, ACK stands for Acknowledge**. **The process synchronizes sequence numbers and acknowledgment parameters**. The TCP 3-way handshake involves three essential steps that synchronize communication between a client and server:
+
+**Step 1: Client to Server (SYN)**
+
+- The client initiates the connection by sending **SYN message (synchronize)** packet to the server (**I want to start a connection**). This informs the server that client is ready to start a communication.
+
+**Step 2: Server to Client (SYN + ACK)**
+
+- Upon receiving SYN, the server responds with both **SYN and ACK** flags set. The server replies, (**I received your request, and I’m ready too**).
+
+**Step 3: Client to Server (ACK)**
+
+- Finally, the client sends an **ACK** message back to the server. The connection is now established, and data transmission can begin reliablely.
+
+This three-step TCP handshake ensures mutual synchronization and connection reliability before any actual data exchange.
+
+---
+
+## How data transfer works in TCP
+
+As we saw in previous section, TCP establishes connection via 3-way handshake. TCP won’t send your whole message at one go. **The message is transferred in the form of packets and uses sequence numbers for reordering**. It’s TCP’s responsibility that the data packets should reach destination in correct order without any packet loss.
+
+Once the connection is established, **TCP starts sending data in small chunks called segments**. Each chunk is assigned a sequence number so the receiver end knows the correct order. The receiver than send back the **ACK** to confirm what is received and only after confirmation the further communication happen smoothly.
+
+---
+
+## How TCP ensures reliability, order, and correctness
+
+There is another protocol called **UDP**, we will talk regarding UDP in other blog but what makes TCP special is it constanly checks itself while sending data:
+
+- **reliability**: TCP guarantees that the data sent from one end of a connection will arrive at the other end safely. It will detect the failure, notify accordingly and resend it.
+- **order**: Packet may travel different path through the network, there are chances they can arrive out of order, it uses 32-bit sequence numbers to reorder segments that arrive out of order.
+- **correctness**: Ensures that the data received is the exactly same as the data sent, a checksum (error-detection field) is included in TCP header,
+
+---
+
+## How a TCP connection is closed
+
+For establishing connection, TCP uses 3-way handshake but when communication is complete, a **TCP connection is closed using a 4-way handshake process** which ensures both parties (client and server) have finished sending and acknowledging data.
+
+The steps in a 4-way handshake are:
+
+- The client sends a **FIN** (Finish) segment to the server. This indicates that the client has no more data to send.
+- The server receives the **FIN** and immediately sends an **ACK (Acknowledgment)** back. At this point, the connection is in a **half-close** state. The client is done sending, but the server might still have some remaining data to push out.
+- Once the server has finished sending all its remaining data, it sends its own **FIN** segment to the client to signal that it is also ready to close the connection.
+- The client receives the server’s **FIN** and sends a final **ACK** back.
+
+---
+
+## TL;DR
+
+TCP is the protocol that makes sure data sent over the internet reaches the right destination, in the correct order, without loss. It does this by establishing a connection (3-way handshake), tracking packets, acknowledging delivery, and retransmitting missing data.
