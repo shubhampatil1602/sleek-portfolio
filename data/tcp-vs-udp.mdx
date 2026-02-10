@@ -1,0 +1,111 @@
+---
+tags: "networking, chaicode"
+title: "TCP vs UDP: When to Use What, and How TCP Relates to HTTP"
+description: "In this blog, we explore the key differences between TCP and UDP by comparing reliability and speed using real-world examples. We also explain how TCP relates to HTTP and why HTTP remains stateless despite running on a reliable connection."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1770754961/portfolio/blogs/tcp-vs-udp_s8bkjb.png"
+date: "2026-02-08"
+---
+
+## What are TCP and UDP (at a very high level)
+
+In the internet world, every second millions of messages, videos, files are transmitted accross the internet on multiple devices. Ever wondered how does millions of data travels so smoothly? Behind the scenes, a constant battle is being fought, a battle between **speed** and **reliability**. Every single data you send or receive has to make a choice between two protocols: **Transmission Control Protocol (TCP)** and **User Datagram Protocol (UDP)**.
+
+Imagine you’re watch a live sports match, what would you prefer?
+
+- raw live streaming of match but with **packet loss** and video quality can be compromised due to slow internet
+- delay of some time in loading video for exact match clips
+
+Obviously, you’ll choose option 1 right? That’s your **UDP**. Now imagine you are sending video file to someone over the internet. What would you prefer?
+
+- send full video without any data packet loss but delivery might take time
+- just send the full video immediately with packet losses
+
+Obviously, you’ll choose option 1 right? That’s your **TCP**. These two protocols decide how data moves from one place to another. **TCP** makes sure nothing gets lost in middle, while **UDP** focuses on speed and getting data delivered as quickly as possible.
+
+---
+
+## Key differences between TCP and UDP
+
+**Transmission Control Protocol (TCP)**:
+
+- TCP establishes a connection before sending data, ensuring that every packet reaches its destination correctly and in the right order. Hence, **Connection Oriented Protocol**
+- Slower data transfer, but more reliable (full data packets delivered guaranteed)
+- **Three-Way Handshake**: Before sending data, TCP sets up a connection using a three-step process (SYN, SYN-ACK, and ACK) to ensure both devices are ready to communicate.
+- Read more about <a href="/blog/tcp-working" target='_blank'>**Three-Way Handshake**</a>.
+
+**User Datagram Protocol (UDP)**:
+
+- UDP does not establish connection before sending data. Hence, **Connectionless Protocol**
+- Faster data transfer, but less reliable (some data packets might get lost along the way)
+- **Stateless protocol**: does not maintain connection between sender and receiver, each data packet travel independently
+- **No prior communication required**: since it’s stateless, UDP can send data immediately making it faster than TCP
+- **Broadcast support**: UDP allows data to be sent to multiple devices at once. Making it ideal for applications like: live streaming, multiplayer games
+
+---
+
+## When to use TCP
+
+**TCP is the backbone of internet communication, used when you need guaranteed data delivery**. TCP is used in situations where **accuracy and reliability** matter more than speed. An important use case is online banking and transactions. When you transfer money or send sensitive data, you don’t want even a single bit to be lost or arrive out of order. TCP ensures secure, complete, and error-free transmission. Even **video streaming platforms like Netflix and YouTube use TCP** in certain cases, especially when buffering is preferred over missing video frames. This ensures that a high-quality stream is delivered without errors.
+
+---
+
+## When to use UDP
+
+**UDP is great to use where speed matters more than perfection**. UDP is widely used in **Phone calls**, **Live video streaming** because a glitch (missing data packets) is better than long delays. Same goes for **online gaming** and **stock market price updates**, where fast response time is necessary. If some data packets loss, it’s still better than lagging behind. Even **DNS (helps your browsers to find websites) uses UDP because it needs to work quickly and efficiently.**
+
+---
+
+## Common real-world examples of TCP vs UDP
+
+> TCP chooses correctness, UDP chooses speed.
+
+**TCP (when reliability matters)**:
+
+- Web browsing (HTTP/HTTPS): pages must load completely and correctly
+- Emails (SMTP, IMAP): losing data is not acceptable
+- File downloads: even a small error can corrupt the file
+
+**UDP (when speed matters)**:
+
+- Video streaming / live calls: slight data loss is better than delay
+- Online gaming: real-time updates matter more than accuracy
+- DNS lookups: quick request–response, no need for reliability
+
+---
+
+## What is HTTP and where it fits
+
+> HTTP stands for Hypertext Transfer Protocol. It is an application layer, request-response protocol for the web.
+
+HTTP is the foundation of World Wide Web. It is used to load the web pages using hypertext links. Its like a language for web browsers used to communicate with servers, when you type **google.com** the browser sends an HTTP request to sever and server return HTTP response to it. Web browsing (HTTP/HTTPS) relies on TCP protocol because when you load a webpage, you want every part of the page (text, image, videos) to arrive in order. Imagine reading an article where random paragraphs go missing or change in order, that’s what **TCP** prevents. As a request-response protocol, HTTP gives users a way to interact with web resources such as HTML files by transmitting hypertext messages between clients and servers.
+
+---
+
+## Relationship between TCP and HTTP
+
+**HTTP depends on TCP.** TCP’s job is reliability. It ensures:
+
+- Data reaches the correct destination
+- Data arrives in order
+- No data is lost
+- Lost packets are retransmitted
+
+TCP starts with a handshake:
+
+```
+Client → SYN
+Server → SYN + ACK
+Client → ACK
+```
+
+> All these things happends, even before HTTP starts talking.
+
+Information is exchanged between clients and servers in the form of hypertext documents (HTML), from which HTTP gets its name. Hypertext is structured text that uses **hyperlinks**. HTTP follows a request‑response paradigm in which the client makes a request and the server issues a response that includes not only the requested content, but also relevant status information about the request. HTTP is an application‑layer protocol and relies on an underlying network‑layer protocol such as Transmission Control Protocol (TCP) to function.
+
+**HTTP is NOT the same as TCP**. They solve different problems, at different layers, and they work together. HTTP defines methods such as GET, POST, etc., status codes, headers, request-response format.
+One confussion you might have: **If HTTP runs on TCP (which is stateful), why is HTTP stateless?**
+Because they manage different kinds of state. Think of it like a phone call vs. the conversation you're having:
+
+**TCP** is concerned with the connection. Its job is to make sure the **line** is open, the data arrives in the right order, and nothing gets lost. It has **state** because it remembers: **I am currently talking to Computer A, we are on packet #5, and the connection is stable**.
+
+**HTTP** sits on top of that phone call. It is concerned with the request. When HTTP is **stateless**, it means it has a very short memory. Every time you send a request (like clicking a link), HTTP treats it as if it’s meeting you for the first time. It doesn't remember what you asked 30 seconds ago.
