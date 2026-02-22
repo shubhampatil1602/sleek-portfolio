@@ -10,7 +10,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Chatbot } from "@/components/chatbot";
+// import { Chatbot } from "@/components/chatbot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,7 +36,7 @@ export default function RootLayout({
         >
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             enableSystem={true}
             disableTransitionOnChange
           >
@@ -46,9 +46,9 @@ export default function RootLayout({
               {children}
               <Footer />
 
-              <div className="fixed bottom-8 right-0 sm:bottom-0">
+              {/* <div className="fixed bottom-8 right-0 sm:bottom-0">
                 <Chatbot />
-              </div>
+              </div> */}
             </main>
           </ThemeProvider>
           <Analytics />

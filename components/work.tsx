@@ -29,7 +29,13 @@ export function Work({ work }: { work: WorkData[] }) {
                   {duration}
                 </p>
               </div>
-              <p className="text-sm text-neutral-500">{description}</p>
+              <ul className="">
+                {description.map((d) => (
+                  <li className="mb-3 text-sm text-neutral-500" key={d}>
+                    {d}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-4 flex flex-wrap gap-2">
                 {stack.map((s) => (
                   <TechStack key={s} stack={s} />
