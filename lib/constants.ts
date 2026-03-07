@@ -1,2 +1,2 @@
 export const SHUBHAM_IMAGE =
-  "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513156/portfolio/projects/shubham.png";
+  "https://res.cloudinary.com/dgiyltklg/image/upload/v1772888202/profile.png";

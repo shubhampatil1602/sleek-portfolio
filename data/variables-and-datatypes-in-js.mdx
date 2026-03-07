@@ -1,0 +1,454 @@
+---
+tags: "javascript, chaicode"
+title: "Understanding Variables and Data Types in JavaScript"
+description: "In this blog, we are understanding variables, data types, scope, and hoisting. These concepts might seem small at first, but they influence how JavaScript code behaves under the hood. The best way to truly understand them is to open your browser console, experiment with examples, and observe how JavaScript responds."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1772889968/portfolio/blogs/js-var-and-datatypes_vtcqwq.png"
+date: "2026-03-7"
+---
+
+## What variables are and why they are needed
+
+Data stored in your computer’s memory has a unique address but remembering those addresses is difficult for humans. Variables allow us to refer to that data using meaningful names. If you are reading this, I assume you have already written a simple "Hello World" program in your favourite programming language. But where do variables come into the picture?
+
+In this blog we will use the JavaScript programming language. Let's start with how to declare a variable.
+
+```js
+// Syntax for JavaScript => keyword variableName = value;
+// Syntax for c++/java => dataType variableName = value;
+
+const num = 10;
+const name = "John";
+const fruits = ["apple", "mango", "banana"];
+
+// Dont worry we will deep dive into let / var / const later in this blog
+```
+
+A variable is like a box that stores a value. Variables act as human-friendly labels for values stored in memory. Every programming language supports different data types. JavaScript is a dynamically typed language, which means we do not need to explicitly specify a datatype. For example: Variable can hold different types of values.
+
+```js
+let value = 10; // number
+value = "hello"; // string
+value = false; // boolean
+```
+
+JavaScript does not require datatype keywords like int or string. Instead, we use variable declaration keywords (var, let, const). Now let’s discuss strict rules and naming conventions for JavaScript variables:
+
+1. **The Language "Laws" (Syntax Rules).** If you break these, your code will throw a **SyntaxError**.
+
+```js
+// ✅ VALID: Can start with a letter, $, or _
+const playerName = "Kohli";
+const $price = 1700;
+const _count = 5;
+
+// ❌ INVALID: Cannot start with a number
+// const 1player = "Error";
+
+// ❌ INVALID: No hyphens or spaces
+// const player-name = "Error";
+// const player name = "Error";
+
+// ❌ INVALID: Cannot use reserved keywords
+// const return = 10;
+// const if = true;
+
+// ⚠️ CASE SENSITIVITY: These are 3 different variables
+const price = 100;
+const Price = 200;
+const PRICE = 300;
+```
+
+2. **Industry Conventions (Naming Styles)**. These are the patterns professional developers use to keep code readable.
+
+```js
+// 1. camelCase (Standard for variables & functions)
+const totalSpentAmount = 5000;
+function calculateRemainingPurse() { ... }
+
+// 2. PascalCase (Standard for Classes and React Components)
+class PlayerProfile { ... }
+function UserDashboard() { ... }
+
+// 3. UPPER_SNAKE_CASE (Standard for hardcoded constants)
+const MAX_TEAM_SIZE = 11;
+const API_BASE_URL = "https://api.ipl.com";
+
+// 4. snake_case (Rare in JS, common in Python/Databases)
+const user_id = "u123";
+```
+
+3. **Usage of Special Symbols ($ and \_)**. These are legal everywhere, but they usually carry a specific meaning.
+
+```js
+// The $ sign: Usually represents a DOM/UI element
+const $submitButton = document.querySelector("#submit");
+
+// The _ (Underscore): Usually represents a "private" or internal variable
+const _internalSecret = "xyZ123";
+
+// The "Throwaway" underscore: Used when you must name a variable but don't need it
+// Example: Getting the index of an array without using the item itself
+players.map((_, index) => console.log(index));
+```
+
+Following naming conventions makes code easier to read for other developers.
+
+---
+
+## How to declare variables using var, let, and const
+
+There are three keywords to declare variables in JavaScript. Each keyword behaves slightly differently and has a specific purpose. Modern JavaScript mostly uses **let** and **const**.
+
+> var existed in older JavaScript, but `let` and `const` were introduced in ES6 (2015).
+
+1. **var**
+
+- Old way of declaring variables
+- Still works
+- Rarely used in modern code
+
+```js
+var score = 50;
+console.log(score); // 50
+```
+
+2. **let**
+
+- Used when the value may change.
+- _let_ allows reassignment, _var_ also allows reassignment, but it behaves differently in terms of **scope** and **hoisting**. We will explore those differences later.
+
+```js
+let score = 10;
+score = 20; // reassignment
+```
+
+3. **const**
+
+- const is used when the variable should not be reassigned.
+- const variables cannot be reassigned.
+- The contents of objects or arrays declared with const can still change.
+
+```js
+const pi = 3.14;
+pi = 4; // ❌ TypeError: Assignment to constant variable.
+
+const student = {
+  name: "Jonathon Byres",
+};
+student.name = "Mike Wheeler"; // ✅ VALID
+```
+
+In modern JavaScript, developers prefer using **const** by default, and **let** when the value needs to change. Variables declared with **var** are hoisted to the top of their scope, meaning the declaration part is moved to the top, but not the initialization. This can result in undefined behavior if not understood properly.
+
+```js
+console.log(hoistedVar); // undefined
+var hoistedVar = "Hoisted!";
+```
+
+---
+
+## Primitive data types (string, number, boolean, null, undefined, ..)
+
+Now that we know different ways to create a variable using `var`, `let` and `const`. It’s time to store values inside them.
+
+### There are total 7 Primitive datatypes in JavaScript:
+
+Let’s understand with the analogy of cricket. Think of **datatype** as different equipment in cricketer’s kit bag. You wouldn’t try to bat with wicket-keeping glove, right? Similarly, in JavaScript, every piece of information has a specific **type** that tells the computer how to handle it.
+
+1. **Number**
+
+- This handles all things **math**.
+- Whether it’s a player’s jersey number or their batting average, if it’s a numeric value, it's a **Number**.
+- The **Number** can be _Integer_, _floating-point_, or special values in JavaScript such as _NaN_ and _Infinity_.
+
+```js
+const jerseyNumber = 18; // Virat Kohli’s iconic Number (integer value)
+let runRate = 6.5; // floating value
+
+console.log(typeof jerseyNumber); // number
+console.log(typeof runRate); // number
+console.log(typeof NaN); // number
+console.log(typeof Infinity); // number
+```
+
+2. **String**
+
+- This represents textual data written within Double Quotes (" "), Single Quotes (' '), or Backticks (``).
+- It is essentially a collection of characters.
+
+```js
+const captain = "Rohit Sharma";
+const instruction = "Koi Garden me nahi ghoomega!!";
+
+const instructionToPlayers = `Captain ${captain} says to players: ${instruction}`;
+
+console.log(instructionToPlayers);
+// Captain Rohit Sharma says to players: Koi Garden me nahi ghoomega!!
+```
+
+You can check the type of a value using the **typeof** operator.
+
+3. **Boolean**
+
+- A logical type representing one of two values: true or false.
+- These are used frequently in conditional logic (if/else statements).
+
+```js
+// Just like an umpire's decision, it’s a binary "Yes" or "No."
+let isDRSAvailable = true;
+console.log(typeof isDRSAvailable); // boolean
+```
+
+4. **Undefined**
+
+- A variable that has been declared but has not yet been assigned a value is automatically given the type **undefined** by JavaScript.
+
+```js
+let playingXI; // undefined
+
+// The variable is declared, but until the toss happens
+// and the names are assigned, it remains undefined.
+```
+
+5. **Null**
+
+- This represents the intentional absence of a value.
+- It is one of JavaScript’s "falsy" values and is often used to explicitly signal that a variable is "empty."
+
+```js
+let injuryStatus = null;
+
+// You are explicitly stating there is "no value" here right now.
+```
+
+6. **BigInt**
+
+- It is used to store very large integers in JavaScript that **Number** cannot store.
+- Standard Numbers in JS cannot safely represent integers larger than $2^{53} - 1$. BigInt allows you to work with arbitrarily large integers by appending an **n** to the end of the number.
+
+```js
+let totalFansInHistory = 9007199254740995n;
+
+// stats so massive they break the standard "Number" limit.
+```
+
+7. **Symbol**:
+
+- Introduced in ES6. Symbols are unique and immutable primitive value used as a key for object properties.
+- Even if two symbols are created with the same description, they are strictly unequal to each other.
+
+```js
+const playerID = Symbol("Kohli");
+
+console.log(playerID); // Symbol(Kohli)
+console.log(typeof playerID); // symbol
+```
+
+### Non-Primitive:
+
+**Non-Primitive types are reference types**. In JavaScript, **objects are the only mutable values** meaning, **Objects can be modified after creation**. Objects can be seen as **collection of key-value properties**. With the object syntax, a limited set of properties are initialized, then properties can be added or removed later.
+
+**Three types of Objects** (Technically, Arrays and Functions are special types of Objects):
+
+1. **Object**
+
+An Object stores data in key-value pairs. It allows you to group related data and functions together into a single entity.
+
+```js
+// Think of a Player Profile. It’s not just one value;
+//  it’s a collection of many details belonging to one person.
+
+const player = {
+  name: "Hardik Pandya",
+  role: "All-rounder",
+  jerseyNumber: 33,
+  isCaptain: false,
+  stats: {
+    matches: 86,
+    wickets: 84,
+  },
+};
+
+console.log(typeof player); // object
+console.log(player.name); // Hardik Pandya
+console.log(player.stats.matches); // 86
+```
+
+2. **Array**
+
+An Array is a special type of object used for storing **ordered collections of values**. Each value is accessed by a numerical index, starting from 0.
+
+```js
+// Think of the Batting Order. The sequence matters,
+// and you access players by their position in the lineup.
+
+// Index:               0       1         2        3
+const battingOrder = ["Gill", "Rohit", "Kohli", "Iyer"];
+
+console.log(typeof battingOrder); // object
+console.log(battingOrder[0]); // Gill (The opener)
+console.log(battingOrder.length); // 4
+```
+
+3. **Function**
+
+A Function is a **callable object that performs a specific task**. It allows you to wrap a block of code and execute it whenever needed.
+
+```js
+// Think of a Umpire’s Signal. When the umpire performs the "Signal" action,
+// a specific rule is executed (like declaring a No-Ball or a Six).
+
+function checkDecision(isOut) {
+  if (isOut) {
+    console.log("Finger raised: You're out!");
+  } else {
+    console.log("Arms extended: It's a Wide!");
+  }
+}
+
+checkDecision(true); // Finger raised: You're out!
+```
+
+> Task for you: Open inspector of your browser and check the type of Array, Function and Object using typeof operator.
+
+---
+
+## Basic difference between var, let, and const
+
+The main differences between `var`, `let`, and `const` are their **scope**, **hoisting** **behavior**, and **reassignment rules**.
+
+**Hoisting**: It is a JavaScript behavior where variable and function declarations are processed before the code execution phase.
+
+**JavaScript executes your code in 2 phases**:
+
+- Memory Phase
+- Code Execution Phase
+
+### Execution Context
+
+Whenever JavaScript runs a program, it creates something called an **Execution Context**.
+
+For every function call, a new **execution context** is created, which contains:
+
+- Variable environment
+- Scope chain
+- this binding
+
+This execution context is pushed into the **call stack** and removed once the function finishes executing.
+
+```js
+var age = 10;
+
+function getSum(num1, num2) {
+  const sum = num1 + num2;
+  console.log(sum);
+}
+
+getSum(2, 2);
+```
+
+<img
+  src="https://res.cloudinary.com/dgiyltklg/image/upload/v1772888502/portfolio/blogs/global-ex-con-example.png"
+  alt="global execution context"
+  placeholder="blur"
+  blurDataURL="/blur-placeholder.jpg"
+/>
+
+During the memory phase, variables and function declarations are stored in memory before the code actually runs.
+
+### Hoisting with var:
+
+Variables declared with **var** are hoisted and initialized with **undefined** during the memory phase.
+
+```js
+console.log(a); // undefined
+var a = 10;
+```
+
+Even though **a** is declared after the **console.log**, the code does not throw an error. This happens because during the memory phase, JavaScript internally treats the code like this:
+
+<img
+  src="https://res.cloudinary.com/dgiyltklg/image/upload/v1772888403/portfolio/blogs/var-example.png"
+  alt="var example"
+  placeholder="blur"
+  blurDataURL="/blur-placeholder.jpg"
+/>
+
+**var** is **function scoped**, which means it is accessible throughout the function in which it is declared. If declared outside a function, it becomes part of the **global scope**.
+
+### Hoisting with let and const
+
+Variables declared with **let** and **const** are also hoisted, but they are not initialized during the memory phase. Instead, they stay in a region called the **Temporal Dead Zone (TDZ)**.
+
+The Temporal Dead Zone (TDZ) is the period between the start of a block and the moment a variable declared with let or const is initialized. If we try to access the variable during this time, JavaScript throws an error.
+
+```js
+console.log(a); // ReferenceError: Cannot access 'a' before initialization
+let a = 20;
+```
+
+<img
+  src="https://res.cloudinary.com/dgiyltklg/image/upload/v1772888402/portfolio/blogs/let-const-example.png"
+  alt="let and const example"
+  placeholder="blur"
+  blurDataURL="/blur-placeholder.jpg"
+/>
+
+---
+
+## What is scope (very beginner-friendly explanation)
+
+**Scope in JavaScript determines where a variable can be accessed in your code**. In simple terms, scope defines the visibility of variables. JavaScript has three types of scopes:
+
+- **Global scope**
+- **Function scope**
+- **Block scope**
+
+A variable declared outside any function or block belongs to **global scope**, which means it can accessed anywhere in the program.
+
+```js
+const name = "Virat";
+console.log(name); // Virat
+```
+
+Variables declared inside a function are **function scoped**, meaning they are accessible anywhere inside the function. But accessing the variable outside the function will cause an error.
+
+```js
+function example() {
+  let score = 100;
+  console.log(score);
+}
+
+example(); // 100
+console.log(score); // ReferenceError: score is not defined
+```
+
+A **block** refers to code inside curly braces **{ }**, such as inside loops or conditional statements. Variables declared with **let** and **const** are block scoped, meaning they only exist inside the block where they are declared.
+
+```js
+{
+  let x = 10;
+}
+
+console.log(x); // ReferenceError: x is not defined
+```
+
+This is one of the key differences between **var**, **let**, and **const**.
+
+---
+
+## TL;DR
+
+- **Variables** act like labeled boxes that store values in memory, making data easier for humans to work with.
+- JavaScript uses **`var`**, **`let`**, and **`const`** to declare variables.
+  - Use **`const` by default**, **`let` when the value may change**, and avoid **`var`** in modern code.
+- JavaScript is **dynamically typed**, meaning a variable can hold different types of values over time.
+- There are **7 primitive data types** in JavaScript: `Number`, `String`, `Boolean`, `Undefined`, `Null`, `BigInt`, and `Symbol`.
+- **Objects, Arrays, and Functions** are **non-primitive (reference) types** used to store structured data and behavior.
+- **Hoisting** moves variable and function declarations to the top of their scope during the **memory phase** of execution.
+- `var` is hoisted and initialized as `undefined`, while `let` and `const` remain in the **Temporal Dead Zone (TDZ)** until initialization.
+- **Scope** determines where variables are accessible in code: **global**, **function**, and **block** scope.
+
+Understanding variables, data types, scope, and hoisting forms the foundation of JavaScript programming. These concepts might seem small at first, but they influence how JavaScript code behaves under the hood. The best way to truly understand them is to open your browser console, experiment with examples, and observe how JavaScript responds.
+
+Happy coding! 🚀

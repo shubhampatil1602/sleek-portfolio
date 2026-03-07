@@ -12,48 +12,50 @@ export function Work({ work }: { work: WorkData[] }) {
         Work Experience
       </SectionHeading>
       <div className="flex flex-col gap-6 py-6">
-        {work.map(({ company, description, duration, stack, title, logo }) => (
-          <div
-            key={company}
-            className="flex flex-col justify-between md:flex-row md:items-start"
-          >
-            <div className="max-w-[80%]">
-              <h2 className="font-medium text-neutral-900 dark:text-neutral-100">
-                {company}
-              </h2>
-              <div className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center">
-                <p className="text-sm text-neutral-800 dark:text-neutral-200">
-                  {title}
-                </p>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                  {duration}
-                </p>
+        {work.map(
+          ({ company, description, duration, stack, title, logo }, idx) => (
+            <div
+              key={company + idx}
+              className="flex flex-col justify-between md:flex-row md:items-start"
+            >
+              <div className="max-w-[80%]">
+                <h2 className="font-medium text-neutral-900 dark:text-neutral-100">
+                  {company}
+                </h2>
+                <div className="flex flex-col gap-2 py-2 sm:flex-row sm:items-center">
+                  <p className="text-sm text-neutral-800 dark:text-neutral-200">
+                    {title}
+                  </p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                    {duration}
+                  </p>
+                </div>
+                <ul className="">
+                  {description.map((d) => (
+                    <li className="mb-3 text-sm text-neutral-500" key={d}>
+                      {d}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {stack.map((s) => (
+                    <TechStack key={s} stack={s} />
+                  ))}
+                </div>
               </div>
-              <ul className="">
-                {description.map((d) => (
-                  <li className="mb-3 text-sm text-neutral-500" key={d}>
-                    {d}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {stack.map((s) => (
-                  <TechStack key={s} stack={s} />
-                ))}
-              </div>
-            </div>
 
-            <Image
-              src={logo}
-              alt={company}
-              width={100}
-              height={100}
-              placeholder="blur"
-              blurDataURL="/blur-placeholder.jpg"
-              className="hidden max-h-[40px] w-fit max-w-[100px] object-contain md:block"
-            />
-          </div>
-        ))}
+              <Image
+                src={logo}
+                alt={company}
+                width={100}
+                height={100}
+                placeholder="blur"
+                blurDataURL="/blur-placeholder.jpg"
+                className="hidden max-h-[40px] w-fit max-w-[100px] object-contain md:block"
+              />
+            </div>
+          ),
+        )}
       </div>
     </div>
   );
