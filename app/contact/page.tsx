@@ -18,8 +18,10 @@ export default function ContactPage() {
         <Scales />
         <Heading>Contact Me</Heading>
         <SubHeading>
-          I’m open to freelancing offers. Reach out to me to inquire more about
-          my work or{" "}
+          If you&apos;re building an interesting product or looking for a
+          backend-focused full stack developer, feel free to reach out. I&apos;m
+          open to discussing engineering roles, collaborations, or interesting
+          technical problems. Reach out to me to inquire more about my work or{" "}
           <a
             className="text-blue-500 hover:underline"
             href="https://cal.com/shubhampatil1602/15min"

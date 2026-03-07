@@ -18,8 +18,9 @@ export default function Home() {
         <Scales />
         <Heading>Shubham Patil</Heading>
         <SubHeading>
-          Full Stack Dev from India. Open to freelance work, remote roles, and
-          full-time opportunities. Have an idea or project? Let’s connect for a{" "}
+          Backend-focused Full Stack Developer from India. I build scalable
+          APIs, authentication systems, and production-ready web applications
+          using Node.js, React, Next.js and TypeScript. Let’s connect for a{" "}
           <a
             className="text-blue-500 hover:underline"
             href="https://cal.com/shubhampatil1602/15min"

@@ -18,10 +18,10 @@ export default function ProjectsPage() {
         <Scales />
         <Heading>Projects</Heading>
         <SubHeading>
-          I&apos;m a passionate software engineer dedicated to crafting elegant
-          solutions for complex problems. With expertise in full-stack
-          development, I enjoy building user-centric applications that make a
-          difference.
+          These projects reflect my journey in building web applications using
+          modern frontend tools. Along the way, I’am also exploring backend
+          concepts like API design and authentication to better understand how
+          full-stack systems work.
         </SubHeading>
         <Projects />
       </Container>

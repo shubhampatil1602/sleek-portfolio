@@ -25,9 +25,9 @@ export default async function BlogsPage() {
         <Scales />
         <Heading>All blogs</Heading>
         <SubHeading>
-          I&apos;m a software engineer with a passion for building scalable and
-          efficient systems. I&apos;m currently working as an intern and looking
-          for a frontend engineer or full stack engineer role.
+          I write about programming, networking fundamentals, generative AI, and
+          how systems work behind the scenes. I also document my learning
+          journey and share insights from the projects I build.
         </SubHeading>
 
         <BlogList blogs={allBlogs} tags={allTags} />

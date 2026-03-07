@@ -20,10 +20,10 @@ export default function AboutPage() {
         <Scales />
         <Heading>About Me</Heading>
         <SubHeading>
-          I&apos;m a passionate software engineer dedicated to crafting elegant
-          solutions for complex problems. With expertise in full-stack
-          development, I enjoy building user-centric applications that make a
-          difference.
+          I&apos;m a software engineer who enjoys building web applications and
+          exploring how systems work behind the scenes. My main interest lies in
+          backend development — designing APIs, handling data, and understanding
+          the architecture that powers modern web apps.
         </SubHeading>
         <SectionHeading className="mx-4">I Love Travelling</SectionHeading>
         <Collage />
