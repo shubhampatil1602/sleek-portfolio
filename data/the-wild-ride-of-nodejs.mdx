@@ -1,0 +1,57 @@
+---
+tags: "nodejs, javascript"
+title: "The Wild Ride of Node.js"
+description: "Node.js started in 2009 when Ryan Dahl built a JavaScript runtime using Chrome's V8 engine to solve web server inefficiency problems with non-blocking I/O. The project exploded after NPM launched in 2010, survived a dramatic community split when a frustrated developer forked it into io.js in 2014, and eventually merged back together under the OpenJS Foundation. Today it's everywhere, proving Jeff Atwood's 2007 prediction that JavaScript would eventually run everything—and Ryan Dahl even came back to improve on his original idea with Deno in 2018."
+image: "https://res.cloudinary.com/dgiyltklg/image/upload/v1772970309/portfolio/blogs/nodejs_dohi4u.png"
+date: "2025-12-21"
+---
+
+## How Node.js Went From "What's That?" to Running Half the Internet
+
+So there's this quote from Jeff Atwood (the Stack Overflow guy) back in 2007: "Any application that can be written in JavaScript, will eventually be written in JavaScript."
+
+At the time, people probably thought he was exaggerating. JavaScript was that language you used to make image sliders and validate forms. Now? It's literally everywhere. And we can thank Node.js for a lot of that.
+
+## Ryan Dahl Had a Problem
+
+Picture this: it's 2009, and Ryan Dahl is working on web servers. He keeps running into the same annoying issue, servers like Apache would just... wait. Need to read a file? Wait. Database query? Wait. Everything's blocked until that one task finishes.
+
+Ryan thought this was ridiculous. So he grabbed Chrome's V8 engine (the thing that makes JavaScript run fast in your browser) and built a way to run JavaScript outside the browser. He called it Web.js at first because, well, web servers. But then he realized it could do way more than that, so Node.js it became.
+
+The magic trick? Non-blocking I/O. Instead of sitting around waiting, Node would say "okay, I'll come back to that" and handle other stuff in the meantime. Simple idea, huge impact.
+
+## Then NPM Showed Up and Everything Got Crazy
+
+2010 rolls around and Isaac Schlueter creates NPM. If Node.js was the car, NPM was the highway system. Suddenly everyone could share code with everyone else. Need a library? `npm install whatever`. Done.
+
+The JavaScript community went absolutely nuts with this. People started building and sharing everything. Today NPM has over a million packages. Some are amazing. Some are... questionable. But that's open source for you.
+
+In 2011, Node got Windows support (thanks to Joyent and Microsoft teaming up), which meant it wasn't just a Mac/Linux thing anymore. More devs, more adoption, more chaos in the best way possible.
+
+## The Drama Years
+
+Here's where things get spicy.
+
+Ryan stepped back in 2012. Still around, just not running things anymore. Isaac took over. But then Node's development started slowing down, and people weren't happy about it.
+
+In 2014, a dev named Fedor got so fed up that he literally forked the entire project and called it io.js. Yep, there were suddenly TWO versions of Node. The community was like "umm, guys?"
+
+Luckily, everyone came to their senses in September 2015. Node.js and io.js merged back together, and they formed an actual foundation to manage things properly. No more single-company drama.
+
+Fast forward to 2019, and the Node.js Foundation merged with the JS Foundation to become the OpenJS Foundation. Apparently, merging foundations is just what you do when you grow up.
+
+## Plot Twist: Ryan's Back (With a New Project)
+
+Remember Ryan? The original Node creator? In May 2018, he launched Deno. Yeah, he basically said "I've learned some things since 2009, let me try this again."
+
+Deno fixes a bunch of Node's old quirks. Better security, TypeScript built-in, cleaner APIs. Will it replace Node? Probably not anytime soon. But it's pretty funny that the guy who started all this is now building the competition.
+
+## Where We Are Now
+
+Node.js is basically everywhere now. Your favorite apps? Probably using it. Big companies? Using it. That random startup down the street? Definitely using it.
+
+It's cross-platform, open-source, and has a package ecosystem that makes other languages jealous (and maybe a little concerned about dependency management, but that's another story).
+
+Jeff Atwood was onto something. JavaScript really did take over the world. And it all started because one guy was tired of waiting for his web server to finish reading files.
+
+Pretty wild, right?
