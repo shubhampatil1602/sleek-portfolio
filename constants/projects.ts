@@ -9,6 +9,22 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "SnackDesk",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1780829468/portfolio/projects/snackdesk.png",
+    github: "https://github.com/shubhampatil1602/snack-desks",
+    deploy: "https://snackdesk.shubhamspatil.me",
+    description:
+      "A real-time snack ordering platform used by 30+ members, featuring RBAC, live order updates with SSE, notifications, configurable ordering windows, and org-level administration.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "SSE",
+      "Docker",
+    ],
+  },
+  {
     title: "Bhaicode",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513164/portfolio/projects/bhaicode.png",
     github: "https://github.com/shubhampatil1602/bhaicode",
