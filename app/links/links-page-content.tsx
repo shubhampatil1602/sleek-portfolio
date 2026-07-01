@@ -79,7 +79,7 @@ const links = [
 export function LinksPageContent() {
   return (
     <div className="flex min-h-screen items-start justify-center">
-      <Container className="min-h-screen w-full px-4 pt-24 sm:px-8 md:pb-10 md:pt-32">
+      <Container className="min-h-screen w-full px-8 pt-24 md:pb-10 md:pt-32">
         <Scales />
 
         <div className="mx-auto mb-8 flex w-full max-w-md flex-row items-center gap-5">
