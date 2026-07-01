@@ -10,7 +10,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "SnackDesk",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1780829468/portfolio/projects/snackdesk.png",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1782870720/portfolio/projects/snacdesk.png",
     github: "https://github.com/shubhampatil1602/snack-desks",
     deploy: "https://snackdesk.shubhamspatil.me",
     description:
