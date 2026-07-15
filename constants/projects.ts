@@ -25,6 +25,33 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "PR Pilot - AI Code Reviewer",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1784130368/portfolio/projects/pr-pilot.png",
+    github: "https://github.com/shubhampatil1602/ai-pr-reviewer",
+    deploy: "https://pr-pilot.shubhamspatil.me",
+    description:
+      "PR Pilot is an AI-powered code review assistant that helps developers continuously improve their code quality by providing instant, automated feedback and smart suggestions.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Docker",
+      "Inngest",
+      "Pinecone",
+      "AI",
+    ],
+  },
+  {
+    title: "Resume Builder",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513158/portfolio/projects/resume-builder.png",
+    github: "https://github.com/shubhampatil1602/resume-builder",
+    deploy: "https://resume-builder-shubh.vercel.app/",
+    description:
+      "This real-time resume builder using React, allowing users to create and edit resumes dynamically. It features a user-friendly interface for easy resume management.",
+    stack: ["React", "Motion", "Tailwind CSS"],
+  },
+  {
     title: "Bhaicode",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513164/portfolio/projects/bhaicode.png",
     github: "https://github.com/shubhampatil1602/bhaicode",
@@ -41,15 +68,6 @@ export const projects: Project[] = [
       "Docker",
       "AWS",
     ],
-  },
-  {
-    title: "Resume Builder",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513158/portfolio/projects/resume-builder.png",
-    github: "https://github.com/shubhampatil1602/resume-builder",
-    deploy: "https://resume-builder-shubh.vercel.app/",
-    description:
-      "This real-time resume builder using React, allowing users to create and edit resumes dynamically. It features a user-friendly interface for easy resume management.",
-    stack: ["React", "Motion", "Tailwind CSS"],
   },
   {
     title: "Food App",
