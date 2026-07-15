@@ -20,6 +20,10 @@ import {
   CssLogo,
   ExpressLogo,
   MySQLLogo,
+  InngestLogo,
+  PineconeLogo,
+  AiLogo,
+  SSELogo,
 } from "../icons/stack";
 
 export const getLogoFortechnology = (technology: string) => {
@@ -79,6 +83,26 @@ export const getLogoFortechnology = (technology: string) => {
     CSS: <CssLogo className="size-4 shrink-0" color="#264de4" stroke={1.5} />,
     MySQL: (
       <MySQLLogo className="size-4 shrink-0" color="#264de4" stroke={1.5} />
+    ),
+    Inngest: (
+      <InngestLogo
+        className="size-4 shrink-0"
+        color="currentColor"
+        stroke={1.5}
+      />
+    ),
+    Pinecone: (
+      <PineconeLogo
+        className="size-4 shrink-0"
+        color="currentColor"
+        stroke={1.5}
+      />
+    ),
+    AI: (
+      <AiLogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
+    ),
+    SSE: (
+      <SSELogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
     ),
   };
 
