@@ -24,6 +24,7 @@ import {
   PineconeLogo,
   AiLogo,
   SSELogo,
+  PlaywrightLogo,
 } from "../icons/stack";
 
 export const getLogoFortechnology = (technology: string) => {
@@ -103,6 +104,13 @@ export const getLogoFortechnology = (technology: string) => {
     ),
     SSE: (
       <SSELogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
+    ),
+    Playwright: (
+      <PlaywrightLogo
+        className="size-4 shrink-0"
+        color="#2EAD33"
+        stroke={1.5}
+      />
     ),
   };
 

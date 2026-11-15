@@ -37,6 +37,12 @@ export function Collage() {
         "https://res.cloudinary.com/dgiyltklg/image/upload/v1750522519/portfolio/about/2.jpg",
       className: "absolute top-10 left-[20%] rotate-[-5deg]",
     },
+    {
+      title: "Garbett Plateau",
+      image:
+        "https://res.cloudinary.com/dgiyltklg/image/upload/v1794752316/portfolio/about/9.jpg",
+      className: "absolute top-24 left-[45%] rotate-[-4deg]",
+    },
   ];
   return (
     <DraggableCardContainer className="relative flex min-h-[30rem] w-full items-center justify-center overflow-clip">

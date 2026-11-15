@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
-import { Projects } from "@/components/projects";
+import { ProjectList } from "@/components/project-list";
+import { projects } from "@/constants/projects";
 import { Scales } from "@/components/scales";
 import { SubHeading } from "@/components/sub-heading";
 
@@ -23,7 +24,7 @@ export default function ProjectsPage() {
           concepts like API design and authentication to better understand how
           full-stack systems work.
         </SubHeading>
-        <Projects />
+        <ProjectList projects={projects} />
       </Container>
     </div>
   );

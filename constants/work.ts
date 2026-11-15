@@ -10,7 +10,7 @@ export type WorkData = {
 export const workData: WorkData[] = [
   {
     company: "Tecknotrove Systems (I) Pvt. Ltd.",
-    title: "Software Engineer",
+    title: "Software Developer",
     duration: "July 2025 - Present",
     description: [
       "Developed and optimized simulator systems using C# and strong OOP principles, writing clean, modular, and maintainable code. Contributed to 3 successful project deliveries with zero major bugs at PDI by handling development, testing, and log-based debugging end-to-end.",
@@ -22,7 +22,7 @@ export const workData: WorkData[] = [
   },
   {
     company: "Tecknotrove Systems (I) Pvt. Ltd.",
-    title: "SWE Intern",
+    title: "Software Intern",
     duration: "January 2025 - July 2025",
     description: [
       "Started from scratch with structured training in Unity and C#, building strong fundamentals in OOP and modular architecture. After 3 months, began contributing to live projects, implementing features, fixing bugs, and supporting testing under senior guidance. Gained hands-on experience with real-world development workflows and SVN-based version control.",

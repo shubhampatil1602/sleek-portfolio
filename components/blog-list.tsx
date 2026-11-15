@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { Link } from "next-view-transitions";
 import { truncate } from "@/lib/helper-functions";
 import { Button } from "@/components/button";
+import { Pagination } from "@/components/pagination";
 
 interface Blog {
   slug: string;
@@ -150,57 +151,11 @@ export function BlogList({ blogs, tags }: BlogListProps) {
         </div>
       )}
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2">
-          <Button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Previous
-          </Button>
-
-          <div className="flex gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-              // Show first page, last page, current page, and pages around current
-              if (
-                page === 1 ||
-                page === totalPages ||
-                (page >= currentPage - 1 && page <= currentPage + 1)
-              ) {
-                return (
-                  <Button
-                    key={page}
-                    type="button"
-                    onClick={() => setCurrentPage(page)}
-                    active={currentPage === page}
-                  >
-                    {page}
-                  </Button>
-                );
-              } else if (page === currentPage - 2 || page === currentPage + 2) {
-                return (
-                  <span key={page} className="px-2 py-1 text-sm text-secondary">
-                    ...
-                  </span>
-                );
-              }
-              return null;
-            })}
-          </div>
-
-          <Button
-            type="button"
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Next
-          </Button>
-        </div>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </div>
   );
 }

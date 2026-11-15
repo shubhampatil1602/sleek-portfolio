@@ -20,6 +20,7 @@ import {
   IconAi,
   IconVector,
   IconBroadcast,
+  IconMasksTheater,
 } from "@tabler/icons-react";
 import { SiExpress, SiPostgresql, SiRedux } from "react-icons/si";
 
@@ -47,3 +48,4 @@ export const MySQLLogo = IconBrandMysql;
 export const PineconeLogo = IconVector;
 export const InngestLogo = IconAiAgent;
 export const SSELogo = IconBroadcast;
+export const PlaywrightLogo = IconMasksTheater;

@@ -9,8 +9,24 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Finance Snapshot",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1794751857/portfolio/projects/finanace-snapshot.png",
+    github: "https://github.com/shubhampatil1602/finance-snapshot",
+    deploy: "https://finance.shubhamspatil.me/",
+    description:
+      'A clean, fast, and secure personal finance web app that tracks your income, expenses, and budgets to answer one question at a glance: "How much can I still spend this month?"',
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "MongoDB",
+      "Tailwind CSS",
+      "Playwright",
+    ],
+  },
+  {
     title: "SnackDesk",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1782870720/portfolio/projects/snacdesk.png",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1794752657/portfolio/projects/snackdesk.png",
     github: "https://github.com/shubhampatil1602/snack-desks",
     deploy: "https://snackdesk.shubhamspatil.me",
     description:
