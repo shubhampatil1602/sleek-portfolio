@@ -11,6 +11,32 @@ type ButtonProps = {
   HTMLButtonElement
 >;
 
+const buttonClassName =
+  "relative overflow-hidden rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-700 shadow-buttonLightInset transition-colors hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset";
+
+// Anchor styled like <Button>. External links open in a new tab.
+export const LinkButton = ({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const isExternal = href.startsWith("http");
+  return (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      className={cn(buttonClassName, "inline-flex items-center", className)}
+    >
+      {children}
+    </a>
+  );
+};
+
 export const Button = ({
   children,
   type = "submit",
@@ -21,11 +47,7 @@ export const Button = ({
   return (
     <button
       type={type}
-      className={cn(
-        "relative overflow-hidden rounded-[6px] border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-700 shadow-buttonLightInset transition-colors hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:shadow-buttonDarkInset",
-        className,
-        active && "font-semibold",
-      )}
+      className={cn(buttonClassName, className, active && "font-semibold")}
       {...props}
     >
       {active && (

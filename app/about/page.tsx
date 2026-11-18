@@ -10,7 +10,7 @@ import { Timeline } from "@/components/timeline";
 export const metadata: Metadata = {
   title: "About | Shubham Patil",
   description:
-    "This is Shubham Patil's portfolio about page, showcasing his journey, skills, and experiences as a software engineer.",
+    "About Shubham Patil, a full-stack engineer from India: background, experience and what he's looking for next.",
 };
 
 export default function AboutPage() {
@@ -19,16 +19,20 @@ export default function AboutPage() {
       <Container className="min-h-screen px-4 pt-20 sm:px-8 md:pb-10">
         <Scales />
         <Heading>About Me</Heading>
-        <SubHeading>
-          I&apos;m a software engineer who enjoys building web applications and
-          exploring how systems work behind the scenes. My main interest lies in
-          backend development — designing APIs, handling data, and understanding
-          the architecture that powers modern web apps.
+        <SubHeading as="p">
+          I&apos;m a full-stack engineer from India. I like owning a product end
+          to end, from the database schema to the last bit of UI polish. Most of
+          my work is in Next.js, TypeScript and PostgreSQL.
         </SubHeading>
-        <SectionHeading className="mx-4">I Love Travelling</SectionHeading>
-        <Collage />
+        <SubHeading as="p">
+          I&apos;m looking for a full-stack, frontend, backend or product
+          engineering role where I can ship to real users often.
+        </SubHeading>
 
         <Timeline />
+
+        <SectionHeading className="mx-4">Outside work, I travel</SectionHeading>
+        <Collage />
       </Container>
     </div>
   );

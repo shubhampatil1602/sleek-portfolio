@@ -107,7 +107,7 @@ export function LinksPageContent() {
             </Heading>
 
             <SubHeading className="px-0 pt-1 text-left text-sm leading-[1.2] text-neutral-600 dark:text-neutral-400">
-              Building software that people actually enjoy coming back to.
+              Full-stack engineer. I build and ship web products.
             </SubHeading>
           </div>
         </div>

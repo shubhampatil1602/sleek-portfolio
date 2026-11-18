@@ -83,6 +83,8 @@ export function Navbar() {
               <Link
                 key={idx}
                 href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 className="relative px-2 py-1 text-sm"
                 onMouseEnter={() => setHovered(idx)}
                 onMouseLeave={() => setHovered(null)}
@@ -200,6 +202,8 @@ export function Navbar() {
                 <Link
                   className="text-2xl font-medium text-neutral-800 transition-colors hover:text-neutral-500 dark:text-neutral-200 dark:hover:text-neutral-400"
                   href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   {item.title}

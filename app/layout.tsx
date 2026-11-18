@@ -10,16 +10,32 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { SITE_URL } from "@/lib/constants";
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const description =
+  "Shubham Patil is a full-stack engineer from India who builds and ships web products with Next.js, TypeScript and PostgreSQL.";
+
 export const metadata: Metadata = {
-  title: "Shubham Patil",
-  description:
-    "This is Shubham Patil's Portfolio built with React, Next.js, Tailwind CSS, motion and TypeScript showcasing his projects and skills. This website is designed with minimal and smooth micro-interactions.",
+  metadataBase: new URL(SITE_URL),
+  title: "Shubham Patil · Full-stack engineer",
+  description,
+  openGraph: {
+    title: "Shubham Patil · Full-stack engineer",
+    description,
+    url: SITE_URL,
+    siteName: "Shubham Patil",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shubham Patil · Full-stack engineer",
+    description,
+  },
 };
 
 export default function RootLayout({

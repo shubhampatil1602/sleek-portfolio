@@ -8,7 +8,7 @@ import { SubHeading } from "@/components/sub-heading";
 export const metadata: Metadata = {
   title: "Contact | Shubham Patil",
   description:
-    "Get in touch with Shubham Patil, a software engineer passionate about building innovative solutions. Reach out for collaborations, inquiries, or just to say hello!",
+    "Contact Shubham Patil about full-stack, frontend, backend or product engineering roles.",
 };
 
 export default function ContactPage() {
@@ -18,18 +18,17 @@ export default function ContactPage() {
         <Scales />
         <Heading>Contact Me</Heading>
         <SubHeading>
-          If you&apos;re building an interesting product or looking for a
-          backend-focused full stack developer, feel free to reach out. I&apos;m
-          open to discussing engineering roles, collaborations, or interesting
-          technical problems. Reach out to me to inquire more about my work or{" "}
+          I&apos;m looking for full-stack, frontend, backend or product
+          engineering roles. Send me a message below, or{" "}
           <a
             className="text-blue-500 hover:underline"
             href="https://cal.com/shubhampatil1602/15min"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Schedule a Call
+            book a 15-minute call
           </a>
+          .
         </SubHeading>
         <ContactForm />
       </Container>

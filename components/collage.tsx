@@ -8,7 +8,7 @@ import {
 export function Collage() {
   const items = [
     {
-      title: "Kashtabhajan",
+      title: "Kashtabhanjan",
       image:
         "https://res.cloudinary.com/dgiyltklg/image/upload/v1750522512/portfolio/about/4.jpg",
       className: "absolute top-40 left-[25%] rotate-[-7deg]",
@@ -32,7 +32,7 @@ export function Collage() {
       className: "absolute top-20 right-[35%] rotate-[2deg]",
     },
     {
-      title: "Banars",
+      title: "Banaras",
       image:
         "https://res.cloudinary.com/dgiyltklg/image/upload/v1750522519/portfolio/about/2.jpg",
       className: "absolute top-10 left-[20%] rotate-[-5deg]",

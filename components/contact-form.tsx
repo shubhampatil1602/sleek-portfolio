@@ -82,14 +82,14 @@ export function ContactForm() {
         <div className="flex flex-col gap-2">
           <label
             className="text-sm font-medium tracking-tight text-neutral-600"
-            htmlFor="name"
+            htmlFor="email"
           >
             Email Address
           </label>
           <input
             id="email"
             name="email"
-            type="text"
+            type="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="mayfield@projectmax.com"
@@ -99,7 +99,7 @@ export function ContactForm() {
         <div className="flex flex-col gap-2">
           <label
             className="text-sm font-medium tracking-tight text-neutral-600"
-            htmlFor="name"
+            htmlFor="message"
           >
             Message
           </label>

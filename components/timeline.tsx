@@ -17,9 +17,7 @@ export function Timeline() {
       ref={ref}
       className="my-10 border-y border-neutral-100 p-4 pt-1 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark"
     >
-      <SectionHeading className="mx-2 my-10">
-        Timeline of Achievements
-      </SectionHeading>
+      <SectionHeading className="mx-2 my-10">Timeline</SectionHeading>
       {timelineData.map((year, index) => (
         <div key={year.title} content="px-4 py-1" className="mb-4">
           <motion.h2

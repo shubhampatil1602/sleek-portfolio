@@ -124,7 +124,6 @@ export function BlogList({ blogs, tags }: BlogListProps) {
                 <p className="max-w-lg pt-4 text-sm text-secondary md:text-sm">
                   {blog.date &&
                     new Date(blog.date).toLocaleDateString("en-us", {
-                      weekday: "long",
                       year: "numeric",
                       month: "short",
                       day: "numeric",

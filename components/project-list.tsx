@@ -57,7 +57,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
       ref={listTopRef}
       className="my-4 flex scroll-mt-20 flex-col gap-6 border-y border-neutral-100 px-4 py-6 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark"
     >
-      <SectionHeading delay={0.2}>I love building things</SectionHeading>
+      <SectionHeading delay={0.2}>Things I&apos;ve built</SectionHeading>
 
       <div className="space-y-4">
         <input
@@ -85,10 +85,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
       ) : (
         // Re-key so the card entrance animation replays on page change
         // (not on search, which would flicker on every keystroke)
-        <ProjectGrid
-          key={currentPage}
-          projects={paginatedProjects}
-        />
+        <ProjectGrid key={currentPage} projects={paginatedProjects} />
       )}
 
       <Pagination

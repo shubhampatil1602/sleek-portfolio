@@ -9,7 +9,7 @@ import { SubHeading } from "@/components/sub-heading";
 export const metadata: Metadata = {
   title: "Projects | Shubham Patil",
   description:
-    "Explore my projects showcasing my skills in software development, including web applications, tools, and more. Each project reflects my passion for coding and problem-solving.",
+    "Web products Shubham Patil has built and deployed: SnackDesk, Finance Snapshot and PR Pilot.",
 };
 
 export default function ProjectsPage() {
@@ -18,11 +18,9 @@ export default function ProjectsPage() {
       <Container className="min-h-screen px-4 pt-20 sm:px-8 md:pb-10">
         <Scales />
         <Heading>Projects</Heading>
-        <SubHeading>
-          These projects reflect my journey in building web applications using
-          modern frontend tools. Along the way, I’am also exploring backend
-          concepts like API design and authentication to better understand how
-          full-stack systems work.
+        <SubHeading as="p">
+          Web products I&apos;ve built and deployed end to end, from the
+          database to the UI.
         </SubHeading>
         <ProjectList projects={projects} />
       </Container>

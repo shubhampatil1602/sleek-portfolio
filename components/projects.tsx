@@ -11,6 +11,10 @@ import {
 import { SectionHeading } from "./section-heading";
 import { TechStack } from "./tech-stack";
 import { SiGithub } from "react-icons/si";
+import { IconBrandYoutube } from "@tabler/icons-react";
+
+const iconLinkClassName =
+  "flex size-[1.6rem] items-center justify-center rounded-full bg-neutral-100 p-1.5 text-neutral-500 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700";
 
 export function Projects({
   projects = defaultProjects,
@@ -19,7 +23,7 @@ export function Projects({
 }) {
   return (
     <div className="my-4 border-y border-neutral-100 px-4 py-6 shadow-sectionInset dark:border-neutral-800 dark:shadow-sectionInsetDark">
-      <SectionHeading delay={0.2}>I love building things</SectionHeading>
+      <SectionHeading delay={0.2}>Things I&apos;ve built</SectionHeading>
       <ProjectGrid projects={projects} />
     </div>
   );
@@ -49,13 +53,26 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
           className="group mb-4"
         >
           <div className="group relative rounded-2xl delay-100 hover:shadow-custom active:shadow-none">
-            <Link
-              href={project.github}
-              target="_blank"
-              className="absolute bottom-4 right-0 z-20"
-            >
-              <SiGithub className="flex size-[1.6rem] items-center justify-center rounded-full bg-neutral-100 p-1.5 text-neutral-500 duration-300 hover:bg-neutral-200 group-hover:mx-4 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700" />
-            </Link>
+            <div className="absolute bottom-4 right-0 z-20 flex gap-1 transition-[margin] duration-300 group-hover:mx-4">
+              {project.demoVideo && (
+                <Link
+                  href={project.demoVideo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} demo video`}
+                >
+                  <IconBrandYoutube className={iconLinkClassName} />
+                </Link>
+              )}
+              <Link
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} source on GitHub`}
+              >
+                <SiGithub className={iconLinkClassName} />
+              </Link>
+            </div>
             <Link href={project.deploy}>
               <Image
                 src={project.src}

@@ -8,7 +8,8 @@ import { BlogList } from "@/components/blog-list";
 
 export const metadata: Metadata = {
   title: "All blogs | Shubham Patil",
-  description: "All my general wisdom and thoughts",
+  description:
+    "Notes by Shubham Patil on web development, networking and generative AI.",
 };
 
 export default async function BlogsPage() {

@@ -9,7 +9,7 @@ export function SubHeading({
   children,
   className,
 }: {
-  as?: "h2" | "h3" | "h4" | "h5" | "h6";
+  as?: "h2" | "h3" | "h4" | "h5" | "h6" | "p";
   children: React.ReactNode;
   className?: string;
 }) {

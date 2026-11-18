@@ -8,12 +8,29 @@ export type TimelineData = {
 
 export const timelineData: TimelineData[] = [
   {
+    title: "2026",
+    content: [
+      {
+        title: "Launched SnackDesk.",
+        description:
+          "An AI-powered snack-ordering app for teams with live updates, role-based access and order windows. Now actively used by 30+ people.",
+      },
+      {
+        title: "Built Finance Snapshot.",
+        description:
+          "A budgeting app with unit-tested money logic and Playwright end-to-end tests.",
+      },
+    ],
+  },
+  {
     title: "2025",
     content: [
       {
-        title: "Right joined 6 month full-time internship.",
-        description:
-          "Started my first full-time internship, gaining valuable industry experience and skills.",
+        title: "Graduated in Computer Engineering (B.Tech).",
+      },
+      {
+        title: "Started full-time as a software developer.",
+        description: "After a 6-month internship at the same company.",
       },
     ],
   },
@@ -21,40 +38,14 @@ export const timelineData: TimelineData[] = [
     title: "2024",
     content: [
       {
-        title:
-          "Involved in learning in public and received 2 internship offers.",
+        title: "Frontend internship at PHICSIT InfoTech.",
         description:
-          "Started sharing my learning journey and projects publicly, which led to receiving two internship offers from startups.",
+          "Merged 10+ pull requests into a React and TypeScript web app.",
       },
-    ],
-  },
-  {
-    title: "2023",
-    content: [
       {
-        title: "Started DSA and building web dev projects.",
+        title: "Learned in public and got 2 internship offers.",
         description:
-          "Began learning Data Structures and Algorithms (DSA) and started building web development projects to strengthen my programming and problem-solving skills.",
-      },
-    ],
-  },
-  {
-    title: "2022",
-    content: [
-      {
-        title: "Started learning web development.",
-        description:
-          "Began my journey into web development by learning HTML, CSS, JavaScript, and eventually diving into React and TypeScript.",
-      },
-    ],
-  },
-  {
-    title: "2021",
-    content: [
-      {
-        title: "Built my first coding project",
-        description:
-          "Created a basic portfolio site using just HTML and CSS — my first step into the world of programming.",
+          "Sharing my projects online led to internship offers from two startups.",
       },
     ],
   },

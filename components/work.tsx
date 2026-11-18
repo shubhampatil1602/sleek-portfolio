@@ -147,13 +147,9 @@ function WorkItem({
           <motion.div
             id={panelId}
             key="panel"
-            initial={
-              reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }
-            }
+            initial={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
             animate={
-              reduceMotion
-                ? { opacity: 1 }
-                : { height: "auto", opacity: 1 }
+              reduceMotion ? { opacity: 1 } : { height: "auto", opacity: 1 }
             }
             exit={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}

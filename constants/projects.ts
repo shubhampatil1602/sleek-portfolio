@@ -3,18 +3,37 @@ export type Project = {
   src: string;
   github: string;
   deploy: string;
+  demoVideo?: string;
   description: string;
   stack: string[];
 };
 
 export const projects: Project[] = [
   {
+    title: "SnackDesk",
+    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1794752657/portfolio/projects/snackdesk.png",
+    github: "https://github.com/shubhampatil1602/snack-desks",
+    deploy: "https://snackdesk.shubhamspatil.me",
+    demoVideo: "https://www.youtube.com/watch?v=fp6EKVy0Zvc",
+    description:
+      "AI-powered snack-ordering app for teams, used by 30+ people. Users order, update and cancel by chatting with AI; admins use AI to open and close windows, name them and review history.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "SSE",
+      "Docker",
+      "AI",
+    ],
+  },
+  {
     title: "Finance Snapshot",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1794751857/portfolio/projects/finanace-snapshot.png",
     github: "https://github.com/shubhampatil1602/finance-snapshot",
     deploy: "https://finance.shubhamspatil.me/",
     description:
-      'A clean, fast, and secure personal finance web app that tracks your income, expenses, and budgets to answer one question at a glance: "How much can I still spend this month?"',
+      "Budgeting app built around one number: how much you can still spend this month. The money logic is unit-tested with Vitest and the main flows have Playwright end-to-end tests.",
     stack: [
       "Next.js",
       "React",
@@ -25,28 +44,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "SnackDesk",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1794752657/portfolio/projects/snackdesk.png",
-    github: "https://github.com/shubhampatil1602/snack-desks",
-    deploy: "https://snackdesk.shubhamspatil.me",
-    description:
-      "A real-time snack ordering platform used by 30+ members, featuring RBAC, live order updates with SSE, notifications, configurable ordering windows, and org-level administration.",
-    stack: [
-      "Next.js",
-      "TypeScript",
-      "PostgreSQL",
-      "Tailwind CSS",
-      "SSE",
-      "Docker",
-    ],
-  },
-  {
     title: "PR Pilot - AI Code Reviewer",
     src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1784130368/portfolio/projects/pr-pilot.png",
     github: "https://github.com/shubhampatil1602/ai-pr-reviewer",
     deploy: "https://pr-pilot.shubhamspatil.me",
     description:
-      "PR Pilot is an AI-powered code review assistant that helps developers continuously improve their code quality by providing instant, automated feedback and smart suggestions.",
+      "GitHub app that reviews pull requests with an LLM. Webhooks queue background jobs in Inngest, the repo is embedded into Pinecone for context, and comments are posted on the PR.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -55,71 +58,7 @@ export const projects: Project[] = [
       "Docker",
       "Inngest",
       "Pinecone",
-      "AI",
+      "OpenRouter",
     ],
-  },
-  {
-    title: "Resume Builder",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513158/portfolio/projects/resume-builder.png",
-    github: "https://github.com/shubhampatil1602/resume-builder",
-    deploy: "https://resume-builder-shubh.vercel.app/",
-    description:
-      "This real-time resume builder using React, allowing users to create and edit resumes dynamically. It features a user-friendly interface for easy resume management.",
-    stack: ["React", "Motion", "Tailwind CSS"],
-  },
-  {
-    title: "Bhaicode",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/v1750513164/portfolio/projects/bhaicode.png",
-    github: "https://github.com/shubhampatil1602/bhaicode",
-    deploy: "#",
-    description:
-      "Bhaicode is a coding platform similar to leetcode where users can practice coding problems, participate in contests, and improve their coding skills with a wide range of coding challenges.",
-    stack: [
-      "React",
-      "Express",
-      "Node",
-      "PostgreSQL",
-      "Motion",
-      "Tailwind CSS",
-      "Docker",
-      "AWS",
-    ],
-  },
-  {
-    title: "Food App",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513172/portfolio/projects/swiggy.png",
-    github: "https://github.com/shubhampatil1602/swiggy-clone",
-    deploy: "https://foodapp-swiggy-clone.vercel.app/",
-    description:
-      "A frontend project with the live Swiggy API to display real-time restaurant data. Includes a config-driven UI, add to cart, smooth shimmer effects, and search functionality.",
-    stack: ["React", "Redux", "Tailwind CSS"],
-  },
-
-  {
-    title: "Youtube (FE) with live API",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513178/portfolio/projects/siuutube.png",
-    github: "https://github.com/shubhampatil1602/SiuuTube",
-    deploy: "https://siuu-tube.vercel.app/",
-    description:
-      "Frontend YouTube-like app with live API: debounced & cached search, infinite scroll, nested comments, live chat, shimmer loading, and theme toggle.",
-    stack: ["React", "Redux", "Tailwind CSS"],
-  },
-  {
-    title: "Hoobank UI",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513183/portfolio/projects/hoobank.png",
-    github: "https://github.com/shubhampatil1602/HooBank-ui",
-    deploy: "https://hoo-bank-ui-one.vercel.app/",
-    description:
-      "The HooBank UI is a fully responsive website built using React and Tailwind CSS, transforming a Figma design into clean, functional code.",
-    stack: ["React", "Tailwind CSS"],
-  },
-  {
-    title: "Moonex UI",
-    src: "https://res.cloudinary.com/dgiyltklg/image/upload/w_600,q_auto,f_auto/v1750513178/portfolio/projects/moonex.png",
-    github: "https://github.com/shubhampatil1602/dotprolabs-moonex-ui",
-    deploy: "https://dotprolabs-moonex-ui-shubh.vercel.app/",
-    description:
-      "Moonex UI is a fully responsive website built using Next.js and Tailwind CSS, transforming a Figma design into clean, functional code.",
-    stack: ["React", "Tailwind CSS"],
   },
 ];

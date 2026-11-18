@@ -102,6 +102,9 @@ export const getLogoFortechnology = (technology: string) => {
     AI: (
       <AiLogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
     ),
+    OpenRouter: (
+      <AiLogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
+    ),
     SSE: (
       <SSELogo className="size-4 shrink-0" color="currentColor" stroke={1.5} />
     ),
