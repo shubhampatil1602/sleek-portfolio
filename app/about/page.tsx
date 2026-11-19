@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { Heading } from "@/components/heading";
 import { Scales } from "@/components/scales";
 import { SectionHeading } from "@/components/section-heading";
+import { StravaCard } from "@/components/strava-card";
 import { SubHeading } from "@/components/sub-heading";
 import { Timeline } from "@/components/timeline";
 
@@ -12,6 +13,9 @@ export const metadata: Metadata = {
   description:
     "About Shubham Patil, a full-stack engineer from India: background, experience and what he's looking for next.",
 };
+
+// Re-render hourly so the Strava card stays current.
+export const revalidate = 3600;
 
 export default function AboutPage() {
   return (
@@ -31,7 +35,10 @@ export default function AboutPage() {
 
         <Timeline />
 
-        <SectionHeading className="mx-4">Outside work, I travel</SectionHeading>
+        <SectionHeading className="mx-4">
+          Outside work, I run and travel
+        </SectionHeading>
+        <StravaCard />
         <Collage />
       </Container>
     </div>
