@@ -50,6 +50,20 @@ export async function StravaCard() {
                 day.active ? `${day.distanceKm.toFixed(1)} km` : "Rest day"
               }
             >
+              {day.distanceKm > 0 && (
+                <MotionDiv
+                  className={cn(
+                    "text-xs font-medium tabular-nums text-secondary",
+                    isToday && "text-[#FC5200]",
+                  )}
+                  initial={{ opacity: 0, y: 4 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.3 + 0.05 * i }}
+                >
+                  {day.distanceKm.toFixed(1)}
+                </MotionDiv>
+              )}
               <MotionDiv
                 className={cn(
                   "w-full origin-bottom rounded-[3px]",
