@@ -5,13 +5,13 @@ import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
-const SIZE = 128;
-const STROKE = 6;
+const SIZE = 104;
+const STROKE = 5;
 // Ring sits a little inside the badge's shadow edge.
-const RADIUS = SIZE / 2 - STROKE / 2 - 6;
+const RADIUS = SIZE / 2 - STROKE / 2 - 5;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 // Round caps add STROKE/2 at each end, so the visible gap is GAP - STROKE.
-const GAP = 13;
+const GAP = 11;
 
 // Circular badge: the ring is the last 7 days (one segment per day,
 // orange when active, starting at the top and running clockwise to today),
@@ -68,20 +68,20 @@ export function StravaRing({
       <div className="flex flex-col items-center leading-none">
         <IconBrandStrava
           className={cn(
-            "mb-1.5 size-4",
+            "mb-1 size-3.5",
             active ? "text-[#FC5200]" : "text-neutral-400",
           )}
           aria-hidden
         />
         <span
           className={cn(
-            "text-2xl font-bold tabular-nums tracking-tight",
+            "text-xl font-bold tabular-nums tracking-tight",
             active ? "text-primary" : "text-secondary",
           )}
         >
           {value}
         </span>
-        <span className="mt-1 text-[11px] text-secondary">{unit}</span>
+        <span className="mt-0.5 text-[10px] text-secondary">{unit}</span>
       </div>
     </div>
   );

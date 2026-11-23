@@ -3,11 +3,15 @@
 const TIME_ZONE = "Asia/Kolkata";
 const REVALIDATE_SECONDS = 3600;
 const DAY_MS = 86_400_000;
+const WEEKS = 53;
+const PAGE_SIZE = 200;
+const MAX_PAGES = 5;
 
 type StravaActivity = {
   id: number;
   athlete: { id: number };
   sport_type: string;
+  start_date: string;
   start_date_local: string;
   distance: number;
   moving_time: number;
@@ -15,24 +19,32 @@ type StravaActivity = {
   visibility?: string;
 };
 
+type Sport = "run" | "walk";
+
+const SPORT_TYPES: Record<Sport, string[]> = {
+  run: ["Run", "TrailRun", "VirtualRun"],
+  walk: ["Walk", "Hike"],
+};
+
+function sportOf(sportType: string): Sport | null {
+  if (SPORT_TYPES.run.includes(sportType)) return "run";
+  if (SPORT_TYPES.walk.includes(sportType)) return "walk";
+  return null;
+}
+
 export type StravaDay = {
   date: string; // YYYY-MM-DD in India
-  distanceKm: number;
-  active: boolean;
+  runKm: number;
+  walkKm: number;
 };
 
 export type StravaSummary = {
   profileUrl: string;
-  // Last 7 days, oldest first; the last entry is today.
+  // Every day from a Sunday ~a year ago to today, oldest first.
   days: StravaDay[];
-  week: {
-    distanceKm: number;
-    activities: number;
-    movingTimeSeconds: number;
-  };
+  totals: { runKm: number; walkKm: number; runs: number; walks: number };
+  // Consecutive days with a run or a walk, ending today or yesterday.
   streakDays: number;
-  // Today's activities of the most recent sport, summed (null on a rest day).
-  today: { sportType: string; distanceKm: number } | null;
   latest: { id: number; sportType: string; daysAgo: number };
 };
 
@@ -70,8 +82,39 @@ function activityDate(activity: StravaActivity): string {
   return activity.start_date_local.slice(0, 10);
 }
 
+function addDays(date: string, days: number): string {
+  return new Date(Date.parse(`${date}T00:00:00Z`) + days * DAY_MS)
+    .toISOString()
+    .slice(0, 10);
+}
+
 function daysBetween(from: string, to: string): number {
   return Math.round((Date.parse(to) - Date.parse(from)) / DAY_MS);
+}
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
+// All activities since `after` (epoch seconds), following Strava's pagination.
+// `after` only changes once a week, so the cached URLs stay stable.
+async function fetchActivities(
+  token: string,
+  after: number,
+): Promise<StravaActivity[] | null> {
+  const all: StravaActivity[] = [];
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const res = await fetch(
+      `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=${PAGE_SIZE}&page=${page}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        next: { revalidate: REVALIDATE_SECONDS },
+      },
+    );
+    if (!res.ok) return page === 1 ? null : all;
+    const batch = (await res.json()) as StravaActivity[];
+    all.push(...batch);
+    if (batch.length < PAGE_SIZE) break;
+  }
+  return all;
 }
 
 export async function getStravaSummary(): Promise<StravaSummary | null> {
@@ -79,71 +122,75 @@ export async function getStravaSummary(): Promise<StravaSummary | null> {
     const token = await getAccessToken();
     if (!token) return null;
 
-    const res = await fetch(
-      "https://www.strava.com/api/v3/athlete/activities?per_page=30",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-        next: { revalidate: REVALIDATE_SECONDS },
-      },
-    );
-    if (!res.ok) return null;
+    const todayDate = dateInIndia(new Date());
+    // Start on a Sunday so the heatmap has WEEKS full columns ending this week.
+    const weekday = new Date(`${todayDate}T00:00:00Z`).getUTCDay();
+    const startDate = addDays(todayDate, -(WEEKS - 1) * 7 - weekday);
+    // A day of slack for timezones; activities before startDate are dropped below.
+    const after = Date.parse(`${startDate}T00:00:00Z`) / 1000 - 86_400;
 
-    // Newest first. Never show private activities.
-    const activities = ((await res.json()) as StravaActivity[]).filter(
-      (a) => !a.private && a.visibility !== "only_me",
-    );
+    const fetched = await fetchActivities(token, after);
+    if (!fetched) return null;
+
+    // Newest first. Never show private activities, and only runs and walks.
+    const activities = fetched
+      .filter(
+        (a) =>
+          !a.private &&
+          a.visibility !== "only_me" &&
+          sportOf(a.sport_type) &&
+          activityDate(a) >= startDate,
+      )
+      .sort((a, b) => b.start_date.localeCompare(a.start_date));
     const latest = activities[0];
     if (!latest) return null;
 
-    const now = Date.now();
-    const todayDate = dateInIndia(new Date(now));
-    const dates = Array.from({ length: 7 }, (_, i) =>
-      dateInIndia(new Date(now - (6 - i) * DAY_MS)),
-    );
+    const byDate = new Map<string, StravaDay>();
+    const totals = { runKm: 0, walkKm: 0, runs: 0, walks: 0 };
+    for (const a of activities) {
+      const date = activityDate(a);
+      const day = byDate.get(date) ?? { date, runKm: 0, walkKm: 0 };
+      const km = a.distance / 1000;
+      if (sportOf(a.sport_type) === "run") {
+        day.runKm += km;
+        totals.runKm += km;
+        totals.runs++;
+      } else {
+        day.walkKm += km;
+        totals.walkKm += km;
+        totals.walks++;
+      }
+      byDate.set(date, day);
+    }
 
-    const days = dates.map((date) => {
-      const onDay = activities.filter((a) => activityDate(a) === date);
-      return {
+    const days: StravaDay[] = [];
+    for (let date = startDate; date <= todayDate; date = addDays(date, 1)) {
+      const day = byDate.get(date);
+      days.push({
         date,
-        distanceKm: onDay.reduce((sum, a) => sum + a.distance, 0) / 1000,
-        active: onDay.length > 0,
-      };
-    });
-
-    const inWeek = activities.filter((a) => dates.includes(activityDate(a)));
+        runKm: round2(day?.runKm ?? 0),
+        walkKm: round2(day?.walkKm ?? 0),
+      });
+    }
 
     // Consecutive active days ending today (or yesterday, so a streak
     // isn't shown as broken before today's activity is done).
-    const activeDates = new Set(activities.map(activityDate));
     let streakDays = 0;
-    let cursor = activeDates.has(todayDate) ? now : now - DAY_MS;
-    while (activeDates.has(dateInIndia(new Date(cursor)))) {
+    let cursor = byDate.has(todayDate) ? todayDate : addDays(todayDate, -1);
+    while (byDate.has(cursor)) {
       streakDays++;
-      cursor -= DAY_MS;
+      cursor = addDays(cursor, -1);
     }
-
-    const todaySame = activities.filter(
-      (a) =>
-        activityDate(a) === todayDate && a.sport_type === latest.sport_type,
-    );
 
     return {
       profileUrl: `https://www.strava.com/athletes/${latest.athlete.id}`,
       days,
-      week: {
-        distanceKm: inWeek.reduce((sum, a) => sum + a.distance, 0) / 1000,
-        activities: inWeek.length,
-        movingTimeSeconds: inWeek.reduce((sum, a) => sum + a.moving_time, 0),
+      totals: {
+        ...totals,
+        runKm: round2(totals.runKm),
+        walkKm: round2(totals.walkKm),
       },
       streakDays,
-      today:
-        todaySame.length > 0
-          ? {
-              sportType: latest.sport_type,
-              distanceKm:
-                todaySame.reduce((sum, a) => sum + a.distance, 0) / 1000,
-            }
-          : null,
       latest: {
         id: latest.id,
         sportType: latest.sport_type,

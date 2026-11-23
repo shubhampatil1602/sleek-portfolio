@@ -36,7 +36,7 @@ export default function AboutPage() {
         <Timeline />
 
         <SectionHeading className="mx-4">
-          Outside work, I run and travel
+          Outside work, I run, walk and travel
         </SectionHeading>
         <StravaCard />
         <Collage />
