@@ -14,8 +14,9 @@ export const metadata: Metadata = {
     "About Shubham Patil, a full-stack engineer from India: background, experience and what he's looking for next.",
 };
 
-// Re-render hourly so the Strava card stays current.
-export const revalidate = 3600;
+// Re-render every 30 minutes so the Strava card stays current
+// (matches the Strava token's cache in lib/strava.ts).
+export const revalidate = 1800;
 
 export default function AboutPage() {
   return (

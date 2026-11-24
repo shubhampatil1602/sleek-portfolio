@@ -14,8 +14,9 @@ import { projects } from "@/constants/projects";
 import { workData } from "@/constants/work";
 import { CAL_URL, EMAIL, GITHUB_URL, RESUME_URL } from "@/lib/constants";
 
-// Re-render hourly so the Strava status stays current.
-export const revalidate = 3600;
+// Re-render every 30 minutes so the Strava status stays current
+// (matches the Strava token's cache in lib/strava.ts).
+export const revalidate = 1800;
 
 export default function Home() {
   return (

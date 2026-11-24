@@ -2,6 +2,8 @@
 
 const TIME_ZONE = "Asia/Kolkata";
 const REVALIDATE_SECONDS = 3600;
+// Pages using the summary re-render at least this often (see getAccessToken)
+const TOKEN_REVALIDATE_SECONDS = 1800;
 const DAY_MS = 86_400_000;
 const WEEKS = 53;
 const PAGE_SIZE = 200;
@@ -48,22 +50,18 @@ export type StravaSummary = {
   latest: { id: number; sportType: string; daysAgo: number };
 };
 
+// The token comes from SnackDesk, which shares this Strava app and keeps the
+// connection refreshed. Strava keeps one live token per athlete per app, so a
+// copy kept here would die whenever SnackDesk reconnects. No token (not
+// connected in SnackDesk, or SnackDesk is down) hides the Strava blocks.
 async function getAccessToken(): Promise<string | null> {
-  const { STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN } =
-    process.env;
-  if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET || !STRAVA_REFRESH_TOKEN) {
-    return null;
-  }
+  const { SNACKDESK_STRAVA_TOKEN_URL, STRAVA_SHARE_SECRET } = process.env;
+  if (!SNACKDESK_STRAVA_TOKEN_URL || !STRAVA_SHARE_SECRET) return null;
 
-  const res = await fetch("https://www.strava.com/oauth/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      client_id: STRAVA_CLIENT_ID,
-      client_secret: STRAVA_CLIENT_SECRET,
-      refresh_token: STRAVA_REFRESH_TOKEN,
-      grant_type: "refresh_token",
-    }),
+  const res = await fetch(SNACKDESK_STRAVA_TOKEN_URL, {
+    headers: { Authorization: `Bearer ${STRAVA_SHARE_SECRET}` },
+    // SnackDesk hands out tokens with at least an hour left
+    next: { revalidate: TOKEN_REVALIDATE_SECONDS },
   });
   if (!res.ok) return null;
 
