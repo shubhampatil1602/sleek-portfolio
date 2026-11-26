@@ -2,6 +2,8 @@
 
 const TIME_ZONE = "Asia/Kolkata";
 const REVALIDATE_SECONDS = 3600;
+// SnackDesk expires this tag when a new activity arrives (app/api/strava/refresh)
+export const STRAVA_TAG = "strava";
 // Pages using the summary re-render at least this often (see getAccessToken)
 const TOKEN_REVALIDATE_SECONDS = 1800;
 const DAY_MS = 86_400_000;
@@ -104,7 +106,7 @@ async function fetchActivities(
       `https://www.strava.com/api/v3/athlete/activities?after=${after}&per_page=${PAGE_SIZE}&page=${page}`,
       {
         headers: { Authorization: `Bearer ${token}` },
-        next: { revalidate: REVALIDATE_SECONDS },
+        next: { revalidate: REVALIDATE_SECONDS, tags: [STRAVA_TAG] },
       },
     );
     if (!res.ok) return page === 1 ? null : all;
